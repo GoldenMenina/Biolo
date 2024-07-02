@@ -237,8 +237,7 @@ export default function Home() {
                         <a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a>
                       </li>
                       <li>
-                        <a x-on:click="   const idExists =  cart.some(obj => obj.id === item.id);
-                                if(idExists){return false}; item = produtos[79]; AddCart(item);  item.qty = '1'; cart.push(item);getTotal()"  href="#caixas">adicionar </a>
+                        <a  href="#caixas">adicionar </a>
                       </li>
                     </ul>
                   </figure>
@@ -270,8 +269,7 @@ export default function Home() {
                         <a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a>
                       </li>
                       <li>
-                        <a x-on:click="   const idExists =  cart.some(obj => obj.id === item.id);
-                                if(idExists){return false};item=produtos[77]; AddCart(item); item.qty = '1'; cart.push(item);getTotal()"  href="#caixas">adicionar </a>
+                        <a  href="#caixas">adicionar </a>
                       </li>
                     </ul>
                   </figure>
@@ -301,8 +299,7 @@ export default function Home() {
                         <a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a>
                       </li>
                       <li>
-                        <a x-on:click="   const idExists =  cart.some(obj => obj.id === item.id);
-                                if(idExists){return false}; item = produtos[76]; AddCart(item); item.qty = '1'; cart.push(item);getTotal()"  href="#caixas">adicionar </a>
+                        <a   href="#caixas">adicionar </a>
                       </li>
                     </ul>
                   </figure>
@@ -332,8 +329,7 @@ export default function Home() {
                         <a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a>
                       </li>
                       <li>
-                        <a x-on:click="   const idExists =  cart.some(obj => obj.id === item.id);
-                                if(idExists){return false};item = produtos[75]; AddCart(item); item.qty = '1'; cart.push(item);getTotal()" href="#caixas">adicionar </a>
+                        <a  href="#caixas">adicionar </a>
                       </li>
                     </ul>
                   </figure>
