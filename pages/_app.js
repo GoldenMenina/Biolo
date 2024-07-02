@@ -11,12 +11,12 @@ export default function App({
 }) {
   const router = useRouter();
 
-  useEffect(() => {
+/*  useEffect(() => {
     const element = document.querySelector("body");
 
 
     element.classList.add("color-theme-blue" ,"mont-font");
-  }, [router]);
+  }, [router]); */
 
 
   return (  
@@ -55,7 +55,20 @@ export default function App({
     <link href="/assets/css/style.css" rel="stylesheet" />
     <link href="/assets/css/responsive.css" rel="stylesheet" />
   
+  <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/owl.js"></script>
+    <script src="/assets/js/wow.js"></script>
+    <script src="/assets/js/validation.js"></script>
+    <script src="/assets/js/jquery.fancybox.js"></script>
+    <script src="/assets/js/appear.js"></script>
+    <script src="/assets/js/scrollbar.js"></script>
+    <script src="/assets/js/nav-tool.js"></script>
 
+    
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/mainscript.js"></script>
         </Head>
         <Component {...pageProps} />
       </Layout>
