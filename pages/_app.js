@@ -22,18 +22,40 @@ export default function App({
   return (  
       <Layout>
         <Head>
-    <link rel="stylesheet" href="/css/themify-icons.css" />
-    <link rel="stylesheet" href="/css/feather.css" />
+     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/emoji.css" />
+    <title>Giannu Carnes - Melhor Carne de Angola</title>
+
     
-    <link rel="stylesheet" href="/css/lightbox.css" />
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" />
 
-    <script src="/js/plugin.js"></script>
+   
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-<script src="/js/lightbox.js"></script>
-<script src="/js/scripts.js"></script>
+    
+    <link href="/assets/css/font-awesome-all.css" rel="stylesheet" />
+    <link href="/assets/css/flaticon.css" rel="stylesheet" />
+    <link href="/assets/css/owl.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/css/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="/assets/css/animate.css" rel="stylesheet" />
+    <link href="/assets/css/color.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/responsive.css" rel="stylesheet" />
+  
+
         </Head>
         <Component {...pageProps} />
       </Layout>
