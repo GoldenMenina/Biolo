@@ -64,7 +64,7 @@ export default function Layout({ children }) {
                           >kz
                           <strong> <span x-text="'/'+item.qty"></span></strong>
                           <button
-                            x-on:click="cart[index].qty++; updateCart(cart); getTotal();"
+                          
                             class="btn btn-sm btn-success"
                             style={{fontSize: "0.675rem", lineHeight: 1.3}}
                           >
