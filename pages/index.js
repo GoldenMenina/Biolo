@@ -17,7 +17,7 @@ export default function Home() {
           <div className="slide-item">
             <div
               className="image-layer"
-              style="background-image: url(assets/images/banner/banner-4.jpg)"
+              style={{backgroundImage: 'url(assets/images/banner/banner-4.jpg)' }}
             ></div>
             <div className="auto-container">
               <div className="content-box centred">
@@ -37,7 +37,7 @@ export default function Home() {
           <div className="slide-item">
             <div
               className="image-layer"
-              style="background-image: url(assets/images/banner/banner-5.jpg)"
+              style={{backgroundImage: 'url(assets/images/banner/banner-5.jpg)'}}
             ></div>
             <div className="auto-container">
               <div className="content-box">
@@ -57,7 +57,7 @@ export default function Home() {
           <div className="slide-item">
             <div
               className="image-layer"
-              style="background-image: url(assets/images/banner/banner-6.jpg)"
+              style={{backgroundImage:' url(assets/images/banner/banner-6.jpg)'}}
             ></div>
             <div className="auto-container">
               <div className="content-box centred">
@@ -137,11 +137,11 @@ export default function Home() {
                     <p>
                       <strong>A Giannu Carnes</strong> é uma marca registada da
                       empresa
-                      <span style="font-weight: bold; font-style: italic">
+                      <span style={{fontWeight: 'bold',fontStyle: 'italic'}}>
                         ZHA Serviços e Investimentos LDA</span
                       >, empresa de direito angolano que, de entre outras
                       actividades dedica-se a comercialização de
-                      <span style="font-weight: bold"> carnes</span>
+                      <span style={{fontWeight: 'bold'}}> carnes</span>
                       exclusivamente nacionais de origem nobre...
                     </p>
                   </div>
@@ -164,27 +164,36 @@ export default function Home() {
                 
                 
                 
-            <div className="owl-stage-outer"><div className="owl-stage" style="transform: translate3d(-860px, 0px, 0px); transition: all 0.5s ease 0s; width: 3010px;"><div className="owl-item cloned" style="width: 400px; margin-right: 30px;"><div className="portfolio-block-one">
+            <div className="owl-stage-outer"><div className="owl-stage" style={{transform: 'translate3d(-860px, 0px, 0px)', transition: 'all 0.5s ease 0s', width: '3010px'}}><div className="owl-item cloned" style={{width: '400px', marginRight: '30px'}}><div className="portfolio-block-one">
                     <div className="inner-box">
                         <figure className="image-box"><img src="assets/images/produtos/foods/6.jpeg" alt=""/></figure>
                         
                     </div>
-                </div></div><div className="owl-item cloned" style="width: 400px; margin-right: 30px;"><div className="portfolio-block-one">
+                </div></div><div className="owl-item cloned" style={{width: '400px', marginRight: '30px'}}><div className="portfolio-block-one">
                     <div className="inner-box">
                         <figure className="image-box"><img src="assets/images/produtos/foods/3.jpeg" alt=""/></figure>
                       
                     </div>
-                </div></div><div className="owl-item active" style="width: 400px; margin-right: 30px;"><div className="portfolio-block-one">
+                </div>
+                </div>
+                
+                <div className="owl-item active" style={{width: '400px', marginRight: '30px'}}><div className="portfolio-block-one">
                     <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/1.jpeg" alt=""/></figure>
+                        <figure className="image-box"><img src="assets/images/produtos/foods/1.jpeg" 
+                        alt="" />
+                        
+                        </figure>
                         
                     </div>
-                </div></div><div className="owl-item" style={{width: "400px", marginRight: "30px"}}><div className="portfolio-block-one">
+                </div>
+                </div>
+                
+                <div className="owl-item" style={{width: "400px", marginRight: "30px"}}><div className="portfolio-block-one">
                     <div className="inner-box">
                         <figure className="image-box"><img src="assets/images/produtos/foods/7.jpeg" alt=""/></figure>
                         
                     </div>
-                </div></div><div className="owl-item" style="width: 400px; margin-right: 30px;"><div className="portfolio-block-one">
+                </div></div><div className="owl-item" style={{width: "400px",marginRight: "30px"}}><div className="portfolio-block-one">
                     <div className="inner-box">
                         <figure className="image-box"><img src="assets/images/produtos/foods/5.jpeg" alt=""/></figure>
                         

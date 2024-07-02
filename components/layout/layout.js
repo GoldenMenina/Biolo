@@ -34,28 +34,31 @@ export default function Layout({ children }) {
                     <a href="index.html"
                       ><img
                         src="assets/images/giannulogo.png"
-                        style="height: 160px; width: auto"
+                        style={{height: "160px", width: "auto"}}
                         alt=""
                     /></a>
                   </div>
                   <div class="content-box">
-                    <h3 style="color: white; margin-bottom: 20px">
+                    <h3 
+                    style={{color: "white", marginBottom: "20px"}}
+                    
+                    >
                       Carrinho <i class="flaticon-shopping-cart-1"></i>
                     </h3>
                     <div class="margin-top:10px">
                       <template
                         x-for="(item,index) in cart"
                         
-                        style="margin-top: 50px"
+                        style={{marginTop: "50px"}}
                       >
-                        <li style="color: white">
+                        <li style={{color: "white"}}>
                           <span
-                            style="margin-right: 5px"
+                            style={{marginRight: "5px"}}
                             x-text="item.corte+' ('+item.categoria+')'"
                           ></span>
                           |
                           <span
-                            style="margin-right: 3px"
+                            style={{marginRight: "3px"}}
                             x-text="item.preco.toFixed(2)+' '"
                           ></span
                           >kz
@@ -63,17 +66,14 @@ export default function Layout({ children }) {
                           <button
                             x-on:click="cart[index].qty++; updateCart(cart); getTotal();"
                             class="btn btn-sm btn-success"
-                            style="font-size: 0.675rem; line-height: 1.3"
+                            style={{fontSize: "0.675rem", lineHeight: 1.3}}
                           >
                             <i class="fa fa-plus"></i>
                           </button>
                           <button
-                            x-on:click="cart[index].qty--; if(cart[index].qty == 0 ) {
-                              cart.splice(index,1);
-                            }  updateCart(cart);
-                            getTotal();"
+                            
                             class="btn btn-sm btn-warning"
-                            style="font-size: 0.675rem; line-height: 1.3"
+                             style={{fontSize: "0.675rem", lineHeight: 1.3}}
                           >
                             <i class="fa fa-minus"></i>
                           </button>
@@ -82,19 +82,19 @@ export default function Layout({ children }) {
                           <br />
                         </li>
                       </template>
-                      <div style="margin-top: 10px">
-                        <span style="color: #fff"
+                      <div style={{arginTop: "10px"}}>
+                        <span style={{color: "#fff"}}
                           ><strong
                             >Total:
                             <span
-                              style="color: white"
+                              style={{color: "white"}}
                               x-text="' '+total.toFixed()+' Kz'"
                             ></span></strong
                         ></span>
                         <br />
                         -------------------------------------------
                       </div>
-                      <div style="margin-top: 15px">
+                      <div style={{marginTop: "15px"}}>
                         <a
                           target="_blank"
                           href="https://wa.me/+244931781843"
@@ -144,7 +144,7 @@ export default function Layout({ children }) {
                   <a href="index.html"
                     ><img
                       src="assets/images/giannulogo.png"
-                      style="height: 90px; width: auto"
+                      style={{height: "90px", width: "auto"}}
                       alt=""
                   /></a>
                 </figure>
@@ -241,7 +241,7 @@ export default function Layout({ children }) {
                 <a href="#index.html"
                   ><img
                     src="assets/images/giannulogo.png"
-                    style="height: 70px; width: auto"
+                    style={{height: "70px", width: "auto"}}
                     alt=""
                 /></a>
               </figure>
@@ -314,7 +314,7 @@ export default function Layout({ children }) {
                       <a href="#index.html"
                         ><img
                           src="assets/images/giannulogo.png"
-                          style="height: 70px; width: auto"
+                          style={{height: "70px", width: "auto"}}
                           alt=""
                       /></a>
                     </figure>
@@ -410,11 +410,12 @@ export default function Layout({ children }) {
       <button class="scroll-top scroll-to-target" data-target="html">
         <span class="fa fa-arrow-up"></span>
       </button>
-      <button x-show="total > 0" class="scroll-top  navSidebar-button" style="margin-right: 60px;" data-target="html">
+      <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
         <i class="flaticon-shopping-cart-1"></i></button>
-        <button x-show="total > 0" class="scroll-top  navSidebar-button" style="margin-right: 60px;" data-target="html">
+        <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
           <i class="flaticon-shopping-cart-1"></i></button>
     </div>
+
 
   );
 }
