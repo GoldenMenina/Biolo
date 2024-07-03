@@ -2,9 +2,9 @@
 
     loop:true,
 
-    margin:5,
+    margin:1,
     autoplay:true,
-    autoplayTimeout:3000,
+    autoplayTimeout:2000,
     responsiveClass:true,
     autoplayHoverPause:true,
     responsive:{
