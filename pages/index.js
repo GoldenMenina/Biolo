@@ -158,7 +158,7 @@ export default function Home() {
         </div>
       </section>
       
-         <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
+         <div className="three-item-carousel owl-carousel new owl-theme owl-dots-none owl-nav-none">
          
          <div className="service-block-one">
   <div className="">
