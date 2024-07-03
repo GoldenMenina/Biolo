@@ -161,13 +161,13 @@ export default function Home() {
          <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
                     <div className="service-block-one">
                         <div className="">
-                          <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" />
+                          <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" style={{height:"400px",width:"auto"}}/>
                         </div>
                     </div>
                     
                       <div className="service-block-one">
                         <div className="">
-                          <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" />
+                          <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" style={{height:"400px",width:"auto"}} />
                         </div>
                     </div>
                     
