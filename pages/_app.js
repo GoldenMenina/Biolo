@@ -55,6 +55,9 @@ export default function App({
     <link href="/assets/css/style.css" rel="stylesheet" />
     <link href="/assets/css/responsive.css" rel="stylesheet" />
   
+        </Head>
+        <Component {...pageProps} />
+        
   <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -69,8 +72,6 @@ export default function App({
     
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/mainscript.js"></script>
-        </Head>
-        <Component {...pageProps} />
       </Layout>
   );
 }

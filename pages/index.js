@@ -17,7 +17,7 @@ export default function Home() {
           <div className="slide-item">
             <div
               className="image-layer"
-              style={{backgroundImage: 'url("assets/images/banner/banner-4.jpg")' }}
+              style={{backgroundImage: 'url("/assets/images/banner/banner-4.jpg")' }}
             ></div>
             <div className="auto-container">
               <div className="content-box centred">
