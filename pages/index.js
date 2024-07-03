@@ -162,97 +162,97 @@ export default function Home() {
          
          <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/3.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/3.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/4.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/4.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/5.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/5.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/6.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/6.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/7.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/7.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/8.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/8.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/9.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/9.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/10.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/10.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/11.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/11.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/12.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/12.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/13.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/13.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/14.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/14.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/15.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/15.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/16.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/16.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/17.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/17.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/18.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/18.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
 <div className="service-block-one">
   <div className="">
-    <img className="img-fluid" src="/assets/images/produtos/foods/19.jpeg" style={{height:"400px"}}/>
+    <img className="img-fluid" src="/assets/images/produtos/foods/19.jpeg" style={{height:"600px"}}/>
   </div>
 </div>
                     
