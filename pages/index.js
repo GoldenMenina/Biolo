@@ -158,6 +158,21 @@ export default function Home() {
         </div>
       </section>
       
+         <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
+                    <div className="service-block-one">
+                        <div className="">
+                          <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" />
+                        </div>
+                    </div>
+                    
+                      <div className="service-block-one">
+                        <div className="">
+                          <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" />
+                        </div>
+                    </div>
+                    
+                    </div>
+      
       <section className="portfolio-section sec-pad">
         <div className="auto-container">
             <div className="single-item-carousel owl-carousel owl-theme owl-dots-none owl-loaded owl-drag">
