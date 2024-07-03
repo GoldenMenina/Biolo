@@ -159,73 +159,105 @@ export default function Home() {
       </section>
       
          <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
-                    <div className="service-block-one">
-                        <div className="">
-                          <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" style={{height:"400px",width:"auto"}}/>
-                        </div>
-                    </div>
+         
+         <div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/1.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/3.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/4.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/5.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/6.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/7.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/8.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/9.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/10.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/11.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/12.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/13.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/14.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/15.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/16.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/17.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/18.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
+<div className="service-block-one">
+  <div className="">
+    <img className="img-fluid" src="/assets/images/produtos/foods/19.jpeg" style={{height:"400px",width:"auto"}}/>
+  </div>
+</div>
                     
-                      <div className="service-block-one">
-                        <div className="">
-                          <img className="img-fluid" src="/assets/images/produtos/foods/2.jpeg" style={{height:"400px",width:"auto"}} />
-                        </div>
-                    </div>
-                    
-                    </div>
+            </div>
       
-      <section className="portfolio-section sec-pad">
-        <div className="auto-container">
-            <div className="single-item-carousel owl-carousel owl-theme owl-dots-none owl-loaded owl-drag">
-                
-                
-                
-            <div className="owl-stage-outer"><div className="owl-stage" style={{transform: 'translate3d(-860px, 0px, 0px)', transition: 'all 0.5s ease 0s', width: '3010px'}}><div className="owl-item cloned" style={{width: '400px', marginRight: '30px'}}><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/6.jpeg" alt=""/></figure>
-                        
-                    </div>
-                </div></div><div className="owl-item cloned" style={{width: '400px', marginRight: '30px'}}><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/3.jpeg" alt=""/></figure>
-                      
-                    </div>
-                </div>
-                </div>
-                
-                <div className="owl-item active" style={{width: '400px', marginRight: '30px'}}><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/1.jpeg" 
-                        alt="" />
-                        
-                        </figure>
-                        
-                    </div>
-                </div>
-                </div>
-                
-                <div className="owl-item" style={{width: "400px", marginRight: "30px"}}><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/7.jpeg" alt=""/></figure>
-                        
-                    </div>
-                </div></div><div className="owl-item" style={{width: "400px",marginRight: "30px"}}><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/5.jpeg" alt=""/></figure>
-                        
-                    </div>
-                </div></div><div className="owl-item cloned" ><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/1.jpeg" alt=""/></figure>
-                        
-                    </div>
-                </div></div><div className="owl-item cloned" style={{width: "400px", marginRight: "30px"}}><div className="portfolio-block-one">
-                    <div className="inner-box">
-                        <figure className="image-box"><img src="assets/images/produtos/foods/8.jpeg" alt=""/></figure>
-                        
-                    </div>
-                </div></div></div></div><div className="owl-nav disabled"><div className="owl-prev"><span className="flaticon-left"></span></div><div className="owl-next"><span className="flaticon-right"></span></div></div><div className="owl-dots"><div className="owl-dot active"><span></span></div><div className="owl-dot"><span></span></div><div className="owl-dot"><span></span></div></div></div>
-        </div>
-    </section>
 
       
       <section className="shop-style-two bg-color-3">
