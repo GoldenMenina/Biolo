@@ -283,13 +283,14 @@ export default function Layout({ children }) {
             <div class="outer-box clearfix">
               <div class="logo-box">
                 <figure class="logo">
-                  <a href="../index.html"
+                <Link href="/">
+                  <a
                     ><img
                       src="/assets/images/giannulogo.png"
                       alt=""
                       style={{height: "80px", width: "auto"}}
                     />
-                  </a>
+                  </a></Link>
                 </figure>
               </div>
               <div class="menu-area pull-right">
