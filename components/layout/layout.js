@@ -306,7 +306,7 @@ export default function Layout({ children }) {
                     id="navbarSupportedContent"
                   >
                     <ul class="navigation clearfix">
-                      <li><a href="aempresa.html">Sobre nós</a></li>
+                      <li> <Link href="/PT/aempresa"><a>Sobre nós</a></Link></li>
 
                       <li><a href="osnossosservicos.html">Serviços</a></li>
 
