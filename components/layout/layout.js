@@ -382,7 +382,7 @@ export default function Layout({ children }) {
                     src="/assets/images/giannulogo.png"
                     style={{height: "70px", width: "auto"}}
                     alt=""
-                /></a></Link
+                /></a></Link>
               </figure>
               <div class="menu-area pull-right">
                 <nav class="main-menu clearfix">
