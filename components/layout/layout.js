@@ -220,7 +220,9 @@ export default function Layout({ children }) {
                     id="navbarSupportedContent"
                   >
                     <ul class="navigation clearfix">
-                      <li><a href="PT/aempresa.html">Sobre nós</a></li>
+                      <li>
+                      <Link href="PT/aempresa" >
+                      <a>Sobre nós</a></Link></li>
                       <li><a href="PT/osnossosservicos.html">Serviços</a></li>
 
                       <li><a href="PT/osnossosprodutos.html">Produtos</a></li>
@@ -401,7 +403,7 @@ export default function Layout({ children }) {
               <li><a href="index.html">Página Inicial</a></li>
               <li>
               <Link href="/PT/aempresa">
-              <a>Sobre</a>
+              <a>Sobre nós</a>
               </Link>
               
               </li>
