@@ -399,7 +399,12 @@ export default function Layout({ children }) {
             </div>
             <ul class="footer-nav pull-right clearfix">
               <li><a href="index.html">Página Inicial</a></li>
-              <li><a href="PT/aempresa.html">Sobre</a></li>
+              <li>
+              <Link href="/PT/aempresa">
+              <a>Sobre</a>
+              </Link>
+              
+              </li>
               <li><a href="PT/osnossosprodutos.html">Produtos</a></li>
               <li><a href="PT/contacte-nos.html">Contacte-nos</a></li>
             </ul>
