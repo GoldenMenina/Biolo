@@ -110,8 +110,8 @@ export default function Layout({ children }) {
           </div>
         </div>
       </div>
-
-      <header class="main-header style-two">
+      
+      {router.pathname == "/"?( <header class="main-header style-two">
         <div class="header-top">
           <div class="auto-container clearfix">
             <div class="top-left pull-left clearfix">
@@ -255,6 +255,143 @@ export default function Layout({ children }) {
           </div>
         </div>
       </header>
+     ):(<header class="main-header">
+        <div class="header-top">
+          <div class="auto-container">
+            <div class="top-info">
+              <ul class="info-list clearfix">
+                <li>
+                  <i class="flaticon-location-pin"></i>
+                  Avendida Pedro de castro Van-Dúnem Loy, Talatona
+                </li>
+                <li>
+                  <i class="flaticon-envelope"></i>
+                  <a href="mailto:clientes.particulares@giannu.co.ao"
+                    >clientes.particulares@giannu.co.ao</a
+                  >
+                </li>
+                <li class="phone">
+                  <i class="flaticon-dial"></i>
+                  <a href="tel:244931781843">+244 931 781 843</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="header-upper">
+          <div class="auto-container">
+            <div class="outer-box clearfix">
+              <div class="logo-box">
+                <figure class="logo">
+                  <a href="../index.html"
+                    ><img
+                      src="assets/images/giannulogo.png"
+                      alt=""
+                      style={{height: "80px", width: "auto"}}
+                    />
+                  </a>
+                </figure>
+              </div>
+              <div class="menu-area pull-right">
+                
+                <div class="mobile-nav-toggler">
+                  <i class="icon-bar"></i>
+                  <i class="icon-bar"></i>
+                  <i class="icon-bar"></i>
+                </div>
+                <nav class="main-menu navbar-expand-md navbar-light">
+                  <div
+                    class="collapse navbar-collapse show clearfix"
+                    id="navbarSupportedContent"
+                  >
+                    <ul class="navigation clearfix">
+                      <li><a href="aempresa.html">Sobre nós</a></li>
+
+                      <li><a href="osnossosservicos.html">Serviços</a></li>
+
+                      <li><a href="osnossosprodutos.html">Produtos</a></li>
+
+                      <li><a href="contacte-nos.html">Contacte-nos</a></li>
+                    </ul>
+                  </div>
+                </nav>
+                <ul class="menu-right-content pull-left clearfix">
+                  <li class="user-box">
+                    <a href="#../index.html"
+                      ><i class="flaticon-user-symbol-of-thin-outline"></i
+                    ></a>
+                  </li>
+                  <li class="search-box-outer">
+                    <div class="dropdown">
+                      <button
+                        class="search-box-btn"
+                        type="button"
+                        id="dropdownMenu3"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <span class="flaticon-search"></span>
+                      </button>
+                      <ul
+                        class="dropdown-menu pull-right search-panel"
+                        aria-labelledby="dropdownMenu3"
+                      >
+                        <li class="panel-outer">
+                          <div class="form-container">
+                            <form method="post" action="blog.html">
+                              <div class="form-group">
+                                <input
+                                  type="search"
+                                  name="field-name"
+                                  value=""
+                                  placeholder="Search...."
+                                  required=""
+                                />
+                                <button type="submit" class="search-btn">
+                                  <span class="fas fa-search"></span>
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cart-box">
+                    <a href="shop-1.html" class="navSidebar-button"
+                      ><i class="flaticon-shopping-cart-1"></i
+                      ><span x-text="cart.length">0</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="sticky-header">
+          <div class="auto-container">
+            <div class="outer-box clearfix">
+              <figure class="logo-box pull-left">
+                <a href="../index.html"
+                  ><img
+                    src="assets/images/giannulogo.png"
+                    style={{height: "70px", width: "auto"}}
+                    alt=""
+                /></a>
+              </figure>
+              <div class="menu-area pull-right">
+                <nav class="main-menu clearfix">
+                  
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>)}
+
       
       <div class="mobile-menu">
         <div class="menu-backdrop"></div>
