@@ -375,12 +375,13 @@ export default function Layout({ children }) {
           <div class="auto-container">
             <div class="outer-box clearfix">
               <figure class="logo-box pull-left">
-                <a href="../index.html"
+              <Link href="/">
+                <a
                   ><img
                     src="/assets/images/giannulogo.png"
                     style={{height: "70px", width: "auto"}}
                     alt=""
-                /></a>
+                /></a></Link
               </figure>
               <div class="menu-area pull-right">
                 <nav class="main-menu clearfix">
