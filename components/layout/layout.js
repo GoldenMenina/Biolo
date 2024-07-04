@@ -285,7 +285,7 @@ export default function Layout({ children }) {
                 <figure class="logo">
                   <a href="../index.html"
                     ><img
-                      src="assets/images/giannulogo.png"
+                      src="/assets/images/giannulogo.png"
                       alt=""
                       style={{height: "80px", width: "auto"}}
                     />
@@ -377,7 +377,7 @@ export default function Layout({ children }) {
               <figure class="logo-box pull-left">
                 <a href="../index.html"
                   ><img
-                    src="assets/images/giannulogo.png"
+                    src="/assets/images/giannulogo.png"
                     style={{height: "70px", width: "auto"}}
                     alt=""
                 /></a>
