@@ -283,14 +283,14 @@ export default function Layout({ children }) {
             <div class="outer-box clearfix">
               <div class="logo-box">
                 <figure class="logo">
-                <Link href="/">
-                  <a
+                
+                  <a href="/"
                     ><img
                       src="/assets/images/giannulogo.png"
                       alt=""
                       style={{height: "80px", width: "auto"}}
                     />
-                  </a></Link>
+                  </a>
                 </figure>
               </div>
               <div class="menu-area pull-right">
@@ -376,13 +376,13 @@ export default function Layout({ children }) {
           <div class="auto-container">
             <div class="outer-box clearfix">
               <figure class="logo-box pull-left">
-              <Link href="/">
-                <a
+              
+                <a href="/"
                   ><img
                     src="/assets/images/giannulogo.png"
                     style={{height: "70px", width: "auto"}}
                     alt=""
-                /></a></Link>
+                /></a>
               </figure>
               <div class="menu-area pull-right">
                 <nav class="main-menu clearfix">
