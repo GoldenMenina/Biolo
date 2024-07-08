@@ -223,11 +223,11 @@ export default function Layout({ children }) {
                       <li>
                       <Link href="PT/aempresa" >
                       <a>Sobre nós</a></Link></li>
-                      <li><a href="PT/osnossosservicos.html">Serviços</a></li>
+                      <li><Link href="/PT/osnossosservicos"><a>Serviços</a></Link></li>
 
-                      <li><a href="PT/osnossosprodutos.html">Produtos</a></li>
+                      <li><Link href="/PT/osnossosprodutos"><a>Produtos</a></Link></li>
 
-                      <li><a href="PT/contacte-nos.html">Contacte-nos</a></li>
+                      <li><Link href="/PT/contacte-nos"><a >Contacte-nos</a></Link></li>
                     </ul>
                   </div>
                 </nav>
@@ -308,11 +308,11 @@ export default function Layout({ children }) {
                     <ul class="navigation clearfix">
                       <li> <Link href="/PT/aempresa"><a>Sobre nós</a></Link></li>
 
-                      <li><a href="osnossosservicos.html">Serviços</a></li>
+                      <li><Link href="/PT/osnossosservicos"><a>Serviços</a> </Link></li>
 
-                      <li><a href="osnossosprodutos.html">Produtos</a></li>
+                      <li><Link href="/PT/osnossosprodutos"><a>Produtos</a></Link></li>
 
-                      <li><a href="contacte-nos.html">Contacte-nos</a></li>
+                      <li><Link href="/PT/contacte-nos"><a >Contacte-nos</a></Link></li>
                     </ul>
                   </div>
                 </nav>
@@ -546,8 +546,8 @@ export default function Layout({ children }) {
               </Link>
               
               </li>
-              <li><a href="PT/osnossosprodutos.html">Produtos</a></li>
-              <li><a href="PT/contacte-nos.html">Contacte-nos</a></li>
+              <li><Link href="/PT/osnossosprodutos"><a >Produtos</a></Link></li>
+              <li><Link href="/PT/contacte-nos"><a>Contacte-nos</a></Link></li>
             </ul>
           </div>
         </div>
