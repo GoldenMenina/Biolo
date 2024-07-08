@@ -11,17 +11,17 @@ export default function Empresa() {
 
   return( <> 
    <section
-        class="page-title"
+        className="page-title"
         style={{
           backgroundImage: 'url("../assets/images/background/page-title.jpg")'
         }}
       >
-        <div class="auto-container">
-          <div class="content-box">
-            <div class="title-box">
+        <div className="auto-container">
+          <div className="content-box">
+            <div className="title-box">
               <h1>Sobre nós</h1>
             </div>
-            <ul class="bread-crumb clearfix">
+            <ul className="bread-crumb clearfix">
               <li>Giannu Carnes</li>
               <li>Qualidade e Distinção</li>
             </ul>
@@ -31,17 +31,17 @@ export default function Empresa() {
       
 
      
-      <section class="about-style-two">
-        <div class="auto-container">
-          <div class="row align-items-center clearfix">
-            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+      <section className="about-style-two">
+        <div className="auto-container">
+          <div className="row align-items-center clearfix">
+            <div className="col-lg-6 col-md-12 col-sm-12 content-column">
               <div id="content_block_2">
-                <div class="content-box">
-                  <div class="sec-title style-two">
+                <div className="content-box">
+                  <div className="sec-title style-two">
                     <span>Giannu Carnes</span>
                     <h2>Quem somos</h2>
                   </div>
-                  <div class="text">
+                  <div className="text">
                     <p>
                       A Giannu Carnes é uma marca registada da
                       empresa
@@ -79,10 +79,10 @@ export default function Empresa() {
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+            <div className="col-lg-6 col-md-12 col-sm-12 text-center">
               <div id="content_block_2">
-                <div class="content-box">
-                  <img src="../assets/images/guiniimage.jpg" />
+                <div className="content-box">
+                  <img src="/assets/images/guiniimage.jpg" />
                 </div>
               </div>
             </div>

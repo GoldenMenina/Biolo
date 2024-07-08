@@ -45,11 +45,11 @@ export default function Empresa() {
           <div className="row">
             <div
               className="col-lg-6 col-md-12 col-sm-12 mb-5 text-center"
-              styie="margin-bottom:30px"
+              style={{marginBottom:"30px"}}
             >
               <div id="content_block_2">
                 <div className="content-box">
-                  <img className="img-fluid" src="../assets/images/giannulogo.png" />
+                  <img className="img-fluid" src="/assets/images/giannulogo.png" />
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export default function Empresa() {
             <div className="col-lg-6 col-md-12 col-sm-12 text-center">
               <div id="content_block_2">
                 <div className="content-box">
-                  <img className="img-fluid" src="../assets/images/giannulogocoprate.png"  />
+                  <img className="img-fluid" src="/assets/images/giannulogocoprate.png"  />
                 </div>
               </div>
               <div className="testimonial-block-one" style={{marginTop: '10px'}}>
