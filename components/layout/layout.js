@@ -478,8 +478,8 @@ export default function Layout({ children }) {
                     <div class="text">
                       <p>
                         O nosso foco é a satisfação do cliente na
-                        <strong>Qualidade</strong> dos nossos
-                        <strong>Serviços</strong> & <strong>Produtos.</strong>
+                        <strong> Qualidade</strong> dos nossos
+                        <strong> Serviços</strong> & <strong>Produtos.</strong>
                       </p>
                     </div>
                   </div>
