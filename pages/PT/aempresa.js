@@ -1,19 +1,14 @@
-import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
-import { useRef, useState, useEffect } from "react";
 
 
 export default function Empresa() {
-  const router = useRouter();
-
+  
 
   return( <> 
    <section
         className="page-title"
         style={{
-          backgroundImage: 'url("../assets/images/background/page-title.jpg")'
+          backgroundImage: 'url("/assets/images/background/page-title.jpg")'
         }}
       >
         <div className="auto-container">
