@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useRef, useState, useEffect } from "react";
 
 
-export default function Empresa() {
+export default function Servicos() {
   const router = useRouter();
 
 
