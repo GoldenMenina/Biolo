@@ -277,7 +277,7 @@ useEffect(()=>{
      )}
      
      
-   {ptrouter == "/PT" (<header class="main-header">
+   {ptrouter == "/PT" &&(<header class="main-header">
         <div class="header-top">
           <div class="auto-container">
             <div class="top-info">
