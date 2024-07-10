@@ -18,14 +18,12 @@ export default function Layout({ children }) {
 function getFirstThreeCharacters() {
   const str = router.pathname;
   const route = str.slice(0, 3);
-  console.log(route)
   setptrouter(route)
 }
 
 function getFirstFourCharacters() {
   const str = router.pathname;
   const route = str.slice(0, 4);
-  
   setenrouter(route)
 }
 
@@ -132,7 +130,7 @@ useEffect(()=>{
         </div>
       </div>
       
-      {router.pathname == "/" && router.pathname != "/ENG" &&( <header class="main-header style-two">
+      {router.pathname == "/" && ( <header class="main-header style-two">
         <div class="header-top">
           <div class="auto-container clearfix">
             <div class="top-left pull-left clearfix">
@@ -619,7 +617,8 @@ useEffect(()=>{
           </div>
         </nav>
       </div>
-      
+      {enrouter}
+      {ptrouter}
     {children}
   
       <footer class="main-footer mr-0">
