@@ -485,7 +485,7 @@ useEffect(()=>{
                   <a href='/ENG/ourcompany'>About Us</a>
                 </li>
                 <li>
-                  <a href='/ENG/servicos'>Services</a>
+                  <a href='/ENG/services'>Services</a>
                 </li>
                 <li>
                   <a href="/ENG/ourproducts">Products</a>

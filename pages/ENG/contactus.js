@@ -135,3 +135,23 @@ export default function Contact() {
 
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div className="form-group">
+                    <i className="far fa-comment-alt"></i>
+                    <textarea name="message" placeholder="Message"></textarea>
+                  </div>
+                </div>
+
+                <div
+                  className="col-lg-12 col-md-12 col-sm-12 form-group message-btn centred"
+                >
+                  <button className="theme-btn" type="submit" name="submit-form">
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
