@@ -18,12 +18,14 @@ export default function Layout({ children }) {
 function getFirstThreeCharacters() {
   const str = router.pathname;
   const route = str.slice(0, 3);
+  console.log(route)
   setptrouter(route)
 }
 
 function getFirstFourCharacters() {
   const str = router.pathname;
   const route = str.slice(0, 4);
+  
   setenrouter(route)
 }
 
@@ -31,8 +33,6 @@ function getFirstFourCharacters() {
 useEffect(()=>{
   getFirstFourCharacters()
   getFirstThreeCharacters()
-  alert(ptrouter)
-  alert(enrouter)
 },[router.pathname])
 
 
