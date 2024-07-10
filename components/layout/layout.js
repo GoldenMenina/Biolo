@@ -18,13 +18,13 @@ export default function Layout({ children }) {
 function getFirstThreeCharacters() {
   const str = router.pathname;
   const route = str.slice(0, 3);
-  setptrouter(str)
+  setptrouter(route)
 }
 
 function getFirstFourCharacters() {
   const str = router.pathname;
   const route = str.slice(0, 4);
-  setenrouter(str)
+  setenrouter(route)
 }
 
 
