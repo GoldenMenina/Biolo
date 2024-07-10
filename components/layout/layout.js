@@ -617,7 +617,7 @@ useEffect(()=>{
           </div>
         </nav>
       </div>
-      {enrouter}
+      
       {ptrouter}
     {children}
   
