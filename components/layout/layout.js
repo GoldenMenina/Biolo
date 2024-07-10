@@ -31,6 +31,8 @@ function getFirstFourCharacters() {
 useEffect(()=>{
   getFirstFourCharacters()
   getFirstThreeCharacters()
+  alert(ptrouter)
+  alert(enrouter)
 },[router.pathname])
 
 
