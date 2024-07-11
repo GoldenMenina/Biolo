@@ -279,7 +279,7 @@ useEffect(()=>{
      )}
      
      
-   {ptrouter == "/PT" &&(<header class="main-header">
+   {ptrouter == "/PT"||ptrouter == "/PT/" &&(<header class="main-header">
         <div class="header-top">
           <div class="auto-container">
             <div class="top-info">
@@ -620,7 +620,6 @@ useEffect(()=>{
         </nav>
       </div>
       
-         {ptrouter == "/PT" ? ('true'):('False')}
     {children}
   
       <footer class="main-footer mr-0">
