@@ -618,7 +618,7 @@ useEffect(()=>{
         </nav>
       </div>
       
-      {ptrouter}
+         {ptrouter == "/PT" ? ('true'):('False')}
     {children}
   
       <footer class="main-footer mr-0">
