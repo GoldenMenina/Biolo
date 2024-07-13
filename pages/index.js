@@ -8,6 +8,10 @@ import { useRef, useState, useEffect } from "react";
 export default function Home() {
   const router = useRouter();
 
+const [lingau,setlingua] = useState("pt")
+function ChangeLangauge (){
+    
+  }
 
   return(
     <div>

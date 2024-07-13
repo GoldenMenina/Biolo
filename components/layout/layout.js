@@ -11,29 +11,9 @@ import {
 export default function Layout({ children }) {
   const router = useRouter();
   const [usuario, setusuario] = useState(null);
-  const [ptrouter, setptrouter] = useState("");
-    const [enrouter, setenrouter] = useState("");
+  const [curlang, setcurlang] = useState("");
+    const [oldlang, setoldlang] = useState("");
 
-
-function getFirstThreeCharacters() {
-  const str = router.pathname;
-  const route = str.slice(0, 3);
-  setptrouter(route)
-}
-
-function getFirstFourCharacters() {
-  const str = router.pathname;
-  const route = str.slice(0, 4);
-  setenrouter(route)
-}
-
-
-useEffect(()=>{
-  getFirstFourCharacters()
-  getFirstThreeCharacters()
-  console.log(ptrouter)
-  console.log(enrouter)
-},[ptrouter,enrouter])
 
 
   return (
@@ -132,7 +112,7 @@ useEffect(()=>{
         </div>
       </div>
       
-      {router.pathname == "/" && ( <header class="main-header style-two">
+      {router.pathname == "/" && router.pathname != "/admin/dashboard" && ( <header class="main-header style-two">
         <div class="header-top">
           <div class="auto-container clearfix">
             <div class="top-left pull-left clearfix">
@@ -279,7 +259,7 @@ useEffect(()=>{
      )}
      
      
-   {ptrouter == "/PT"||ptrouter == "/PT/" &&(<header class="main-header">
+   {router.pathname != "/"  && router.pathname != "/admin/dashboard"&&(<header class="main-header">
         <div class="header-top">
           <div class="auto-container">
             <div class="top-info">
