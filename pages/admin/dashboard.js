@@ -89,7 +89,7 @@ export default function Admin() {
         </div>
      <div className="mb-3">
           <select
-            className="form-select"
+            className="form-control"
             value={novoProduto.categoria}
             onChange={(e) => setNovoProduto({ ...novoProduto, categoria: e.target.value })}
           >
