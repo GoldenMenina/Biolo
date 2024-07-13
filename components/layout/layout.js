@@ -413,7 +413,7 @@ export default function Layout({ children }) {
           </div>
         </div>
       </header>)}
-      
+      /*
       {enrouter == "/ENG" &&(<header class="main-header">
   <div class="header-top">
     <div class="auto-container">
@@ -551,7 +551,7 @@ export default function Layout({ children }) {
     </div>
   </div>
 </header>)}
-
+*/
       
       <div class="mobile-menu">
         <div class="menu-backdrop"></div>
