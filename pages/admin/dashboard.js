@@ -31,48 +31,47 @@ export default function Admin() {
     }
     setShowModal(false);
   }
+  
+async function adicionarProduto() {
+  const { data, error } = await supabase.from('produtos').insert([{
+    corte: novoProduto.corte,
+    preco: novoProduto.preco,
+    categoria: novoProduto.categoria,
+    image: novoProduto.image
+  }]);
 
-  async function adicionarProduto() {
-    const { data, error } = await supabase.from('produtos').insert([{
-      corte: novoProduto.corte,
-      preco: novoProduto.preco,
-      categoria: novoProduto.categoria,
-      image: novoProduto.image
-    }]);
-    if (error) console.error('Erro ao adicionar produto:', error);
-    else {
-      carregarProdutos();
-      setNovoProduto({ corte: '', preco: '', categoria: '', image: null });
-    }
+  if (error) {
+    console.error('Erro ao adicionar produto:', error);
+  } else {
+    console.log('Produto adicionado:', data);
+    carregarProdutos();
+    setNovoProduto({ corte: '', preco: '', categoria: '', image: null });
   }
+}
 
-  async function atualizarProduto() {
-    if (!editingProduto) return;
+async function atualizarProduto() {
+  if (!editingProduto) return;
 
-    if (editingProduto.image !== editingProduto.originalImage) {
-      const oldImagePath = editingProduto.originalImage.split('/').pop();
-      const { error: deleteError } = await supabase.storage
-        .from('images')
-        .remove([oldImagePath]);
-      if (deleteError) console.error('Erro ao deletar imagem antiga:', deleteError);
-    }
+  const { error } = await supabase
+    .from('produtos')
+    .update({
+      corte: editingProduto.corte,
+      preco: editingProduto.preco,
+      categoria: editingProduto.categoria,
+      image: editingProduto.image
+    })
+    .eq('id', editingProduto.id);
 
-    const { error } = await supabase
-      .from('produtos')
-      .update({
-        corte: editingProduto.corte,
-        preco: editingProduto.preco,
-        categoria: editingProduto.categoria,
-        image: editingProduto.image
-      })
-      .eq('id', editingProduto.id);
-
-    if (error) console.error('Erro ao atualizar produto:', error);
-    else {
-      carregarProdutos();
-      setEditingProduto(null);
-    }
+  if (error) {
+    console.error('Erro ao atualizar produto:', error);
+  } else {
+    console.log('Produto atualizado');
+    carregarProdutos();
+    setEditingProduto(null);
   }
+}
+  
+  
 
   async function deletarProduto(id, imagePath) {
     if (imagePath) {
@@ -90,27 +89,32 @@ export default function Admin() {
 
   async function uploadImagem(e) {
     const file = e.target.files[0];
+    if (!file) return;
+  
     const fileExt = file.name.split('.').pop();
     const fileName = `${Math.random()}.${fileExt}`;
     const filePath = `${fileName}`;
-
+  
     const { data, error } = await supabase.storage
-      .from('images')
+      .from('images') // make sure this matches your bucket name
       .upload(filePath, file);
-    
+  
     if (error) {
       console.error('Erro ao fazer upload da imagem:', error);
-    } else {
-      const { data: { publicUrl } } = supabase.storage
-        .from('images')
-        .getPublicUrl(filePath);
-      
-      if (editingProduto) {
-        setEditingProduto({ ...editingProduto, image: publicUrl });
-      } else {
-        setNovoProduto({ ...novoProduto, image: publicUrl });
-      }
+      return;
     }
+  
+    const { data: { publicUrl } } = supabase.storage
+      .from('images') // make sure this matches your bucket name
+      .getPublicUrl(filePath);
+  
+    if (editingProduto) {
+      setEditingProduto(prev => ({ ...prev, image: publicUrl }));
+    } else {
+      setNovoProduto(prev => ({ ...prev, image: publicUrl }));
+    }
+  
+    console.log("Image URL set to:", publicUrl); // Add this line for debugging
   }
 
   function startEditing(produto) {
@@ -225,6 +229,7 @@ export default function Admin() {
                     type="file"
                     className="form-control"
                     onChange={uploadImagem}
+                    accept="image/*"
                   />
                 </div>
                 <button type="submit" className="btn btn-primary">
