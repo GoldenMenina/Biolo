@@ -1,6 +1,5 @@
 export default function Home() {
-  const router = useRouter();
-
+ 
   return (
     <div>
       <section className="main-slider style-two">
