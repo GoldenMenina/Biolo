@@ -33,11 +33,46 @@ export default function Admin() {
   }
 
   async function adicionarProduto() {
-    const { data, error } = await supabase.from('produtos').insert([novoProduto]);
+    const { data, error } = await supabase.from('produtos').insert([{
+      corte: novoProduto.corte,
+      preco: novoProduto.preco,
+      categoria: novoProduto.categoria,
+      image: novoProduto.image
+    }]);
     if (error) console.error('Erro ao adicionar produto:', error);
     else {
       carregarProdutos();
       setNovoProduto({ corte: '', preco: '', categoria: '', image: null });
+    }
+  }
+  
+  async function atualizarProduto() {
+    if (!editingProduto) return;
+  
+    if (editingProduto.image !== editingProduto.originalImage) {
+      const oldImagePath = editingProduto.originalImage?.split('/').pop();
+      if (oldImagePath) {
+        const { error: deleteError } = await supabase.storage
+          .from('images')
+          .remove([oldImagePath]);
+        if (deleteError) console.error('Erro ao deletar imagem antiga:', deleteError);
+      }
+    }
+  
+    const { error } = await supabase
+      .from('produtos')
+      .update({
+        corte: editingProduto.corte,
+        preco: editingProduto.preco,
+        categoria: editingProduto.categoria,
+        image: editingProduto.image
+      })
+      .eq('id', editingProduto.id);
+  
+    if (error) console.error('Erro ao atualizar produto:', error);
+    else {
+      carregarProdutos();
+      setEditingProduto(null);
     }
   }
 
@@ -84,30 +119,29 @@ export default function Admin() {
   }
 
   async function uploadImagem(e) {
-    const file = e.target.files[0];
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Math.random()}.${fileExt}`;
-    const filePath = `${fileName}`;
+  const file = e.target.files[0];
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Math.random()}.${fileExt}`;
+  const filePath = `${fileName}`;
 
-    const { data, error } = await supabase.storage
+  const { data, error } = await supabase.storage
+    .from('images')
+    .upload(filePath, file);
+  
+  if (error) {
+    console.error('Erro ao fazer upload da imagem:', error);
+  } else {
+    const { data: { publicUrl } } = supabase.storage
       .from('images')
-      .upload(filePath, file);
+      .getPublicUrl(filePath);
     
-    if (error) {
-      console.error('Erro ao fazer upload da imagem:', error);
+    if (editingProduto) {
+      setEditingProduto({ ...editingProduto, image: publicUrl });
     } else {
-      const { data: { publicUrl } } = supabase.storage
-        .from('images')
-        .getPublicUrl(filePath);
-      
-      if (editingProduto) {
-        setEditingProduto({ ...editingProduto, image: publicUrl });
-      } else {
-        setNovoProduto({ ...novoProduto, image: publicUrl });
-      }
+      setNovoProduto({ ...novoProduto, image: publicUrl });
     }
   }
-
+}
   function startEditing(produto) {
     setEditingProduto({ ...produto, originalImage: produto.image });
     setShowModal(true);
