@@ -526,7 +526,7 @@ function ChangeLangauge (){
         </section>
       
       <section>
-        <img src="assets/images/cortes-de-carne-do-boi-infografico.jpg" />
+        <img src="assets/images/feitoangola.jpg" />
       </section>
 
     </div>

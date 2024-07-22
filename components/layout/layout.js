@@ -40,82 +40,69 @@ export default function Layout({ children }) {
             </div>
             <div class="sidebar-textwidget">
               <div class="sidebar-info-contents">
-                <div class="content-inner">
-                  <div class="logo text-center">
-                    <a href="index.html"
-                      ><img
-                        src="assets/images/giannulogo.png"
-                        style={{height: "160px", width: "auto"}}
-                        alt=""
-                    /></a>
-                  </div>
-                  <div class="content-box">
-                    <h3 
-                    style={{color: "white", marginBottom: "20px"}}
-                    
-                    >
-                      Carrinho <i class="flaticon-shopping-cart-1"></i>
-                    </h3>
-                    <div class="margin-top:10px">
-                      <template
-                        x-for="(item,index) in cart"
-                        
-                        style={{marginTop: "50px"}}
-                      >
-                        <li style={{color: "white"}}>
-                          <span
-                            style={{marginRight: "5px"}}
-                            x-text="item.corte+' ('+item.categoria+')'"
-                          ></span>
-                          |
-                          <span
-                            style={{marginRight: "3px"}}
-                            x-text="item.preco.toFixed(2)+' '"
-                          ></span
-                          >kz
-                          <strong> <span x-text="'/'+item.qty"></span></strong>
-                          <button
-                          
-                            class="btn btn-sm btn-success"
-                            style={{fontSize: "0.675rem", lineHeight: 1.3}}
-                          >
-                            <i class="fa fa-plus"></i>
-                          </button>
-                          <button
-                            
-                            class="btn btn-sm btn-warning"
-                             style={{fontSize: "0.675rem", lineHeight: 1.3}}
-                          >
-                            <i class="fa fa-minus"></i>
-                          </button>
-
-                          <br />
-                          <br />
-                        </li>
-                      </template>
-                      <div style={{arginTop: "10px"}}>
-                        <span style={{color: "#fff"}}
-                          ><strong
-                            >Total:
-                            <span
-                              style={{color: "white"}}
-                              x-text="' '+total.toFixed()+' Kz'"
-                            ></span></strong
-                        ></span>
-                        <br />
-                        -------------------------------------------
+                    <div className="content-inner">
+                      <div className="logo text-center">
+                        <a href="index.html">
+                          <img
+                            src="assets/images/giannulogo.png"
+                            style={{height: "160px", width: "auto"}}
+                            alt=""
+                          />
+                        </a>
                       </div>
-                      <div style={{marginTop: "15px"}}>
-                        <a
-                          target="_blank"
-                          href="https://wa.me/+244931781843"
-                          class="btn btn-success"
-                          >Finalizar</a
-                        >
+                      <div className="content-box">
+                        <h3 style={{color: "white", marginBottom: "20px"}}>
+                          Carrinho <i className="flaticon-shopping-cart-1"></i>
+                        </h3>
+                        <div style={{marginTop: "10px"}}>
+                          {cartItems.map((item, index) => (
+                            <li key={index} style={{color: "white", marginBottom: "10px"}}>
+                              <span style={{marginRight: "5px"}}>
+                                {item.corte} ({item.categoria})
+                              </span>
+                              |
+                              <span style={{marginRight: "3px"}}>
+                                {item.preco.toFixed(2)} 
+                              </span>
+                              kz
+                              <strong> /{item.quantity}</strong>
+                              <button
+                                className="btn btn-sm btn-success"
+                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
+                                onClick={() => addToCart(item)}
+                              >
+                                <i className="fa fa-plus"></i>
+                              </button>
+                              <button
+                                className="btn btn-sm btn-warning"
+                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
+                                onClick={() => removeFromCart(item.id)}
+                              >
+                                <i className="fa fa-minus"></i>
+                              </button>
+                            </li>
+                          ))}
+                          <div style={{marginTop: "10px"}}>
+                            <span style={{color: "#fff"}}>
+                              <strong>
+                                Total: <span style={{color: "white"}}>{totalPrice.toFixed(2)} Kz</span>
+                              </strong>
+                            </span>
+                            <br />
+                            -------------------------------------------
+                          </div>
+                          <div style={{marginTop: "15px"}}>
+                            
+                              target="_blank"
+                              href="https://wa.me/+244931781843"
+                              className="btn btn-success"
+                            >
+                              Finalizar
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
