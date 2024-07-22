@@ -107,9 +107,10 @@ export default function Admin() {
           body: formData,
         }
       );
-
+console.loh(response)
       const data = await response.json();
-
+      
+console.log(data)
       if (editingProduto) {
         setEditingProduto(prev => ({ ...prev, image: data.secure_url }));
       } else {
