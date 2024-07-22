@@ -1,10 +1,38 @@
-export default function Produtos() {
-  
+import { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
 
-  return( <>  <section
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
+
+const predefinedCategories = ["Bovinos", "Suínos", "Aves", "Caprinos", "Caixas"];
+
+export default function Produtos() {
+  const [produtos, setProdutos] = useState([]);
+  const [selectedCategoria, setSelectedCategoria] = useState(null);
+
+  useEffect(() => {
+    carregarProdutos();
+  }, []);
+
+  async function carregarProdutos() {
+    const { data, error } = await supabase.from('produtos').select('*');
+    if (error) console.error('Erro ao carregar produtos:', error);
+    else setProdutos(data);
+  }
+
+  const filteredProdutos = selectedCategoria
+    ? produtos.filter(produto => produto.categoria === selectedCategoria)
+    : produtos;
+
+  return (
+    <>
+      <section
         className="page-title"
         style={{
-          backgroundImage: 'url(/assets/images/background/page-title.jpg)'}}
+          backgroundImage: 'url(/assets/images/background/page-title.jpg)'
+        }}
       >
         <div className="auto-container">
           <div className="content-box">
@@ -18,7 +46,7 @@ export default function Produtos() {
           </div>
         </div>
       </section>
-      
+
       <section className="shop-page-section sec-pad">
         <div className="auto-container">
           <div className="row clearfix">
@@ -30,17 +58,28 @@ export default function Produtos() {
                   </div>
                   <div className="widget-content">
                     <ul className="category-list clearfix">
-                      <template x-for="(item ,index) in categorias">
-                        <li>
-                          <i className="flaticon-right"></i
-                          ><a
+                      <li>
+                        <i className="flaticon-right"></i>
+                        <a 
+                          className="item"
+                          href="#categoria"
+                          onClick={() => setSelectedCategoria(null)}
+                        >
+                          Todas
+                        </a>
+                      </li>
+                      {predefinedCategories.map((categoria, index) => (
+                        <li key={index}>
+                          <i className="flaticon-right"></i>
+                          <a
                             className="item"
-                            
                             href="#categoria"
-                            ><span x-text="item.categoria"></span>
+                            onClick={() => setSelectedCategoria(categoria)}
+                          >
+                            {categoria}
                           </a>
                         </li>
-                      </template>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -49,53 +88,39 @@ export default function Produtos() {
             <div className="col-lg-9 col-md-12 col-sm-12 content-side">
               <div className="our-shop">
                 <div className="row clearfix">
-                  <template x-for="item in produtos" >
-                    <div className="col-lg-4 col-md-6 col-sm-12 shop-block">
+                  {filteredProdutos.map((item, index) => (
+                    <div key={index} className="col-lg-4 col-md-6 col-sm-12 shop-block">
                       <div className="shop-block-one">
                         <div className="inner-box">
                           <figure className="image-box">
-                               <img
-                              src="item.image"
-                              alt=""
-                            /> 
+                            <img src={item.image} alt={item.corte} />
                           </figure>
                           <div className="lower-content">
                             <h6>
-                              <a
-                                href="shop-details.html"
-                                style={{font: '15px'}}
-                                x-text="item.corte"
-                                >Whole Tenderloin</a
-                              >
+                              <a href="#" style={{ fontSize: '15px' }}>
+                                {item.corte}
+                              </a>
                             </h6>
                             <div>
-                              <span x-text="item.categoria"></span>
+                              <span>{item.categoria}</span>
                             </div>
-                            <span
-                              className="price"
-                          
-                              >$ 400.00</span
-                            >
+                            <span className="price">$ {item.preco}</span>
                             <span>
-                              <button
-                           
-                                className="btn btn-success btn-sm add-to-cart-btn" 
-                               
-                              >
-                                Adicionar <i className="fas fa-plus"></i></button
-                            ></span>
+                              <button className="btn btn-success btn-sm add-to-cart-btn">
+                                Adicionar <i className="fas fa-plus"></i>
+                              </button>
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </template>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>   </>)
-  
-  
-  
+      </section>
+    </>
+  );
 }
