@@ -12,10 +12,33 @@ export default function Admin() {
   const [imgModal, setImagemodal] = useState(false);
   const [searchCorte, setSearchCorte] = useState('');
   const [searchCategoria, setSearchCategoria] = useState('');
-  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
   useEffect(() => {
     carregarProdutos();
   }, []);
+  useEffect(() => {
+  const session = localStorage.getItem('session');
+  if (session) {
+    setIsAuthenticated(true);
+  }
+  carregarProdutos();
+}, []);
+function handleLogin(e) {
+  e.preventDefault();
+  if (email === process.env.NEXT_PUBLIC_USER_EMAIL && password === process.env.NEXT_PUBLIC_USER_PASSWORD) {
+    setIsAuthenticated(true);
+    localStorage.setItem('session', 'true');
+  } else {
+    alert('Invalid credentials');
+  }
+}
+
+function handleLogout() {
+  setIsAuthenticated(false);
+  localStorage.removeItem('session');
+}
   
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
@@ -155,10 +178,54 @@ if(id != 'img'){
     setShowModal(true);
   }
 
+  if (!isAuthenticated) {
+    return (
+      <div className="modal d-block" tabIndex="-1" style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Login</h5>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={handleLogin}>
+                <div className="mb-3 text-center">
+                  <i className="fas fa-user fa-3x"></i>
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
  
 
   return (
     <div className="container mt-5">
+    <button className="btn btn-danger btn-sm" onClick={handleLogout}>
+            <i className="fas fa-sign-out-alt"></i> Logout
+          </button>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Administração de Produtos</h1>
         <button className="btn btn-primary" onClick={openModal}>Novo Produto</button>
