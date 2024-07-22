@@ -9,7 +9,7 @@ const supabase = createClient(
 export default function Admin() {
   const [produtos, setProdutos] = useState([]);
   const [img, setImg] = useState('');
-  
+  var imag = ''
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +36,8 @@ export default function Admin() {
   
   async function adicionarProduto() {
     console.log(img);
+    console.log('gh')
+    console.log(imag)
     const { data, error } = await supabase.from('produtos').insert([{
       corte: novoProduto.corte,
       preco: novoProduto.preco,
@@ -47,6 +49,7 @@ export default function Admin() {
       console.error('Erro ao adicionar produto:', error);
     } else {
       console.log('Produto adicionado:', data);
+      imag = '';
       carregarProdutos();
       setNovoProduto({ corte: '', preco: '', categoria: '', image: null });
     }
@@ -114,6 +117,7 @@ export default function Admin() {
       const data = await response.json();
       
       setImg(data.secure_url)
+      imag = data.secure_url
 
       if (editingProduto) {
         setEditingProduto(prev => ({ ...prev, image: data.secure_url }));
