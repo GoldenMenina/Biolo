@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap-icons": "^1.7.2",
     "chart.js": "^3.7.1",
+    "cloudinary": "^2.3.0",
     "cookie": "^0.5.0",
     "crypto-js": "^4.1.1",
     "data-grid": "^3.0.0",
