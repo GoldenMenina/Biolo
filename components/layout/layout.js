@@ -92,7 +92,7 @@ export default function Layout({ children }) {
                             -------------------------------------------
                           </div>
                           <div style={{marginTop: "15px"}}>
-                            
+                            <a
                               target="_blank"
                               href="https://wa.me/+244931781843"
                               className="btn btn-success"
