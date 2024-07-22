@@ -9,9 +9,11 @@ cloudinary.config({
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { publicId } = req.body;
-console.log(publicId)
+    
+    const folderName = 'uploads';
+        const fullPublicId = `${folderName}/${publicId}`;
     try {
-      const result = await cloudinary.uploader.destroy(publicId);
+      const result = await cloudinary.uploader.destroy(fullPublicId);
       console.log(result)
       
       res.status(200).json(result);
