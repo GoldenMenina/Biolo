@@ -8,7 +8,7 @@ const supabase = createClient(
 
 export default function Admin() {
   const [produtos, setProdutos] = useState([]);
-  const [imgPic, setImg] = useState();
+  const [formdata, setFormdata] = useState();
   
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
@@ -41,40 +41,32 @@ export default function Admin() {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'utjuauqd');
-
-    try {
-      const response = await fetch(
+    
+    setFormdata(formData);
+  }
+  
+  async function cloudinaryUp(){
+    const response = await fetch(
         `https://api.cloudinary.com/v1_1/dbagu0ju8/image/upload`,
         {
           method: 'POST',
-          body: formData,
+          body: formdata,
         }
       );
 
       const data = await response.json();
       
-      setImg(data.secure_url)
-      
-
-      if (editingProduto) {
-        setEditingProduto(prev => ({ ...prev, image: data.secure_url }));
-      } else {
-        setNovoProduto(prev => ({ ...prev, image: data.secure_url }));
-      }
-
-      console.log("Image URL set to:", data.secure_url);
-    } catch (error) {
-      console.error('Erro ao fazer upload da imagem:', error);
-    }
+      return(data.secure_url)
+     
   }
 
   async function adicionarProduto() {
-    console.log(imgPic);
+    const img = await cloudinaryUp()
     const { data, error } = await supabase.from('produtos').insert([{
       corte: novoProduto.corte,
       preco: novoProduto.preco,
       categoria: novoProduto.categoria,
-      image: imgPic
+      image: img
     }]);
 
     if (error) {
