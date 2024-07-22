@@ -63,13 +63,13 @@ function handleLogout() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setloading(false)
+    setloading(true)
     if (editingProduto) {
       await atualizarProduto();
     } else {
       await adicionarProduto();
     }
-    setloading(true)
+    setloading(false)
     setShowModal(false);
   }
   
