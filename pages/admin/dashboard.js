@@ -74,7 +74,7 @@ export default function Admin() {
       corte: novoProduto.corte,
       preco: novoProduto.preco,
       categoria: novoProduto.categoria,
-      image: img
+      image: imgPic
     }]);
 
     if (error) {
