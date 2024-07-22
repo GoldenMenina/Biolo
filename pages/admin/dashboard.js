@@ -9,6 +9,7 @@ const supabase = createClient(
 export default function Admin() {
   const [produtos, setProdutos] = useState([]);
   const [formdata, setFormdata] = useState();
+  const [imgModal, setImagemodal] = useState(false);
   
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
@@ -35,6 +36,9 @@ export default function Admin() {
   }
   
   async function uploadImagem(e) {
+    if(editingProduto){
+      setImagemodal(true)
+    }
     const file = e.target.files[0];
     if (!file) return;
 
@@ -81,14 +85,17 @@ export default function Admin() {
 
   async function atualizarProduto() {
     if (!editingProduto) return;
-
+    var img =''
+    if(imgModal){
+     img = await cloudinaryUp()
+}
     const { error } = await supabase
       .from('produtos')
       .update({
         corte: editingProduto.corte,
         preco: editingProduto.preco,
         categoria: editingProduto.categoria,
-        image: editingProduto.image
+        image: imgModal?img:editingProduto.image
       })
       .eq('id', editingProduto.id);
 
@@ -97,7 +104,8 @@ export default function Admin() {
     } else {
       console.log('Produto atualizado');
       carregarProdutos();
-      setEditingProduto(null);
+      setEditingProduto(null)
+      imgModal(false)
     }
   }
 
@@ -115,10 +123,12 @@ export default function Admin() {
         console.error('Erro ao deletar imagem do Cloudinary:', error);
       }
     }
-
+if(id != 'img'){
     const { error } = await supabase.from('produtos').delete().eq('id', id);
     if (error) console.error('Erro ao deletar produto:', error);
     else carregarProdutos();
+  
+}
   }
 
   function startEditing(produto) {
