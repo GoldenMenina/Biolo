@@ -10,6 +10,12 @@ export default function Admin() {
   const [produtos, setProdutos] = useState([]);
   const [formdata, setFormdata] = useState();
   const [imgModal, setImagemodal] = useState(false);
+  const [searchCorte, setSearchCorte] = useState('');
+  const [searchCategoria, setSearchCategoria] = useState('');
+  
+  useEffect(() => {
+    carregarProdutos();
+  }, []);
   
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
@@ -18,6 +24,12 @@ export default function Admin() {
   useEffect(() => {
     carregarProdutos();
   }, []);
+  
+  const filteredProdutos = produtos.filter(produto => {
+    const corteMatch = produto.corte.toLowerCase().includes(searchCorte.toLowerCase());
+    const categoriaMatch = searchCategoria === '' || produto.categoria === searchCategoria;
+    return corteMatch && categoriaMatch;
+  });
 
   async function carregarProdutos() {
     const { data, error } = await supabase.from('produtos').select('*');
@@ -151,7 +163,31 @@ if(id != 'img'){
         <h1>Administração de Produtos</h1>
         <button className="btn btn-primary" onClick={openModal}>Novo Produto</button>
       </div>
-
+     <div className="mb-3 row">
+        <div className="col">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Buscar por corte"
+            value={searchCorte}
+            onChange={(e) => setSearchCorte(e.target.value)}
+          />
+        </div>
+        <div className="col">
+          <select
+            className="form-control"
+            value={searchCategoria}
+            onChange={(e) => setSearchCategoria(e.target.value)}
+          >
+            <option value="">Todos</option>
+            <option value="Bovinos">Bovinos</option>
+            <option value="Suínos">Suínos</option>
+            <option value="Aves">Aves</option>
+            <option value="Caprinos">Caprinos</option>
+            <option value="Caixas">Caixas</option>
+          </select>
+        </div>
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -163,7 +199,7 @@ if(id != 'img'){
           </tr>
         </thead>
         <tbody>
-          {produtos.map((produto) => (
+       {filteredProdutos.map((produto) => (
             <tr key={produto.id}>
               <td>{produto.corte}</td>
               <td>{produto.preco}</td>
