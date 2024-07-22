@@ -80,13 +80,13 @@ return
         }
       );
 
-      const data = await response.json();
+      const resul = await response.json();
       
     const { data, error } = await supabase.from('produtos').insert([{
       corte: novoProduto.corte,
       preco: novoProduto.preco,
       categoria: novoProduto.categoria,
-      image: data.secure_url
+      image: resul.secure_url
     }]);
 
     if (error) {
