@@ -88,6 +88,7 @@ export default function Admin() {
     var img =''
     if(imgModal){
      img = await cloudinaryUp()
+     deletarProduto('img',editingProduto.image)
 }
     const { error } = await supabase
       .from('produtos')
