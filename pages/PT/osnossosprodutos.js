@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import NumberFormat from "react-number-format";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -104,7 +105,21 @@ export default function Produtos() {
                             <div>
                               <span>{item.categoria}</span>
                             </div>
-                            <span className="price">$ {item.preco}</span>
+                            <span >
+                            <NumberFormat
+                      value={item.preco}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      className="price"
+                      thousandSeparator=" "
+                      decimalSeparator=","
+                      allowNegative={false}
+                      
+                      decimalScale={2}
+                      fixedDecimalScale={true}
+                    /></span>
+                            
+                            
                             <span>
                               <button className="btn btn-success btn-sm add-to-cart-btn">
                                 Adicionar <i className="fas fa-plus"></i>
