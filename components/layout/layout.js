@@ -24,28 +24,30 @@ export default function Layout({ children }) {
     return () => clearInterval(intervalId);
   }, []);
 const addToCart = (product) => {
-    const updatedCart = [...cartItems];
-    const existingItemIndex = updatedCart.findIndex(item => item.id === product.id);
+  const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const existingItemIndex = savedCart.findIndex(item => item.id === product.id);
 
-    if (existingItemIndex !== -1) {
-      updatedCart[existingItemIndex].quantity += 1;
-    } else {
-      updatedCart.push({ ...product, quantity: 1 });
-    }
+  if (existingItemIndex !== -1) {
+    savedCart[existingItemIndex].quantity += 1;
+  } else {
+    savedCart.push({ ...product, quantity: 1 });
+  }
 
-    
-    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-  };
+  localStorage.setItem('cartItems', JSON.stringify(savedCart));
+  setCartItems(savedCart); // Update state to reflect changes
+};
+
 const removeFromCart = (productId) => {
-    const updatedCart = cartItems.map(item => 
-      item.id === productId 
-        ? { ...item, quantity: Math.max(0, item.quantity - 1) } 
-        : item
-    ).filter(item => item.quantity > 0);
+  const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const updatedCart = savedCart.map(item =>
+    item.id === productId ?
+    { ...item, quantity: Math.max(0, item.quantity - 1) } :
+    item
+  ).filter(item => item.quantity > 0);
 
-    setCartItems(updatedCart);
-    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-  };
+  localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+  setCartItems(updatedCart); // Update state to reflect changes
+};
 
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
