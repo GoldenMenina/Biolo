@@ -34,6 +34,40 @@ export default function Admin() {
     setShowModal(false);
   }
   
+  async function uploadImagem(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'utjuauqd');
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dbagu0ju8/image/upload`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      
+      setImg(data.secure_url)
+      imag = data.secure_url
+
+      if (editingProduto) {
+        setEditingProduto(prev => ({ ...prev, image: data.secure_url }));
+      } else {
+        setNovoProduto(prev => ({ ...prev, image: data.secure_url }));
+      }
+
+      console.log("Image URL set to:", data.secure_url);
+    } catch (error) {
+      console.error('Erro ao fazer upload da imagem:', error);
+    }
+  }
+
   async function adicionarProduto() {
     console.log(img);
     console.log('gh')
@@ -95,40 +129,6 @@ export default function Admin() {
     const { error } = await supabase.from('produtos').delete().eq('id', id);
     if (error) console.error('Erro ao deletar produto:', error);
     else carregarProdutos();
-  }
-
-  async function uploadImagem(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'utjuauqd');
-
-    try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dbagu0ju8/image/upload`,
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-      
-      setImg(data.secure_url)
-      imag = data.secure_url
-
-      if (editingProduto) {
-        setEditingProduto(prev => ({ ...prev, image: data.secure_url }));
-      } else {
-        setNovoProduto(prev => ({ ...prev, image: data.secure_url }));
-      }
-
-      console.log("Image URL set to:", data.secure_url);
-    } catch (error) {
-      console.error('Erro ao fazer upload da imagem:', error);
-    }
   }
 
   function startEditing(produto) {
