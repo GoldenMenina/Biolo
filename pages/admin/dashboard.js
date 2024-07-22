@@ -14,7 +14,8 @@ export default function Admin() {
   const [searchCategoria, setSearchCategoria] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
+const [password, setPassword] = useState('')
+const [loading, setloading] = useState(false);
   useEffect(() => {
     carregarProdutos();
   }, []);
@@ -62,11 +63,13 @@ function handleLogout() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setloading(false)
     if (editingProduto) {
       await atualizarProduto();
     } else {
       await adicionarProduto();
     }
+    setloading(true)
     setShowModal(false);
   }
   
@@ -352,9 +355,10 @@ if(id != 'img'){
                     accept="image/*"
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">
+               {loading?( <button className="btn btn-primary disabled">
+                Aguarde ...</button>):( <button type="submit" className="btn btn-primary">
                   {editingProduto ? 'Atualizar' : 'Adicionar'} Produto
-                </button>
+                </button>)}
               </form>
             </div>
           </div>
