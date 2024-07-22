@@ -8,8 +8,8 @@ const supabase = createClient(
 
 export default function Admin() {
   const [produtos, setProdutos] = useState([]);
-  const [img, setImg] = useState('');
-  var imag = ''
+  const [formDat, setformData] = useState('');
+
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +41,9 @@ export default function Admin() {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'utjuauqd');
-
+    
+    setformData(formData)
+return
     try {
       const response = await fetch(
         `https://api.cloudinary.com/v1_1/dbagu0ju8/image/upload`,
@@ -54,7 +56,7 @@ export default function Admin() {
       const data = await response.json();
       
       setImg(data.secure_url)
-      imag = data.secure_url
+      
 
       if (editingProduto) {
         setEditingProduto(prev => ({ ...prev, image: data.secure_url }));
@@ -69,14 +71,22 @@ export default function Admin() {
   }
 
   async function adicionarProduto() {
-    console.log(img);
-    console.log('gh')
-    console.log(imag)
+    
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dbagu0ju8/image/upload`,
+        {
+          method: 'POST',
+          body: formDat,
+        }
+      );
+
+      const data = await response.json();
+      
     const { data, error } = await supabase.from('produtos').insert([{
       corte: novoProduto.corte,
       preco: novoProduto.preco,
       categoria: novoProduto.categoria,
-      image: img
+      image: data.secure_url
     }]);
 
     if (error) {
