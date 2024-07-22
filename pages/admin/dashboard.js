@@ -184,7 +184,7 @@ if(id != 'img'){
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Login</h5>
+              <h5 className="modal-title">Iniciar Sessão</h5>
             </div>
             <div className="modal-body">
               <form onSubmit={handleLogin}>
@@ -211,7 +211,7 @@ if(id != 'img'){
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-100">Login</button>
+                <button type="submit" className="btn btn-primary w-100">Iniciar Sessão</button>
               </form>
             </div>
           </div>
