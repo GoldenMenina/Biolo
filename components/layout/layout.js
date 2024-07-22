@@ -23,6 +23,31 @@ export default function Layout({ children }) {
     // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
+const addToCart = (product) => {
+    const updatedCart = [...cartItems];
+    const existingItemIndex = updatedCart.findIndex(item => item.id === product.id);
+
+    if (existingItemIndex !== -1) {
+      updatedCart[existingItemIndex].quantity += 1;
+    } else {
+      updatedCart.push({ ...product, quantity: 1 });
+    }
+
+    setCartItems(updatedCart);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+  };
+const removeFromCart = (productId) => {
+    const updatedCart = cartItems.map(item => 
+      item.id === productId 
+        ? { ...item, quantity: Math.max(0, item.quantity - 1) } 
+        : item
+    ).filter(item => item.quantity > 0);
+
+    setCartItems(updatedCart);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+  };
+
+  const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
 
 
@@ -582,3 +607,5 @@ export default function Layout({ children }) {
 
   );
 }
+
+
