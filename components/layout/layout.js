@@ -18,7 +18,7 @@ export default function Layout({ children }) {
     const intervalId = setInterval(() => {
       const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
       setCartItems(savedCartItems);
-    }, 1000);
+    }, 5000);
 
     // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
@@ -603,7 +603,7 @@ const removeFromCart = (productId) => {
       <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
         <i class="flaticon-shopping-cart-1"></i>{cartItems.reduce((total, item) => total + item.quantity, 0)}</button>
         <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
-          <i class="flaticon-shopping-cart-1">{cartItems.reduce((total, item) => total + item.quantity, 0)}</i></button>
+          <i class="flaticon-shopping-cart-1"></i>{cartItems.reduce((total, item) => total + item.quantity, 0)}</button>
     </div>
 
 
