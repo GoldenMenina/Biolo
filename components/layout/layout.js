@@ -13,6 +13,16 @@ export default function Layout({ children }) {
   const [usuario, setusuario] = useState(null);
   const [curlang, setcurlang] = useState("");
     const [oldlang, setoldlang] = useState("");
+    const [cartItems, setCartItems] = useState([]);
+    useEffect(() => {
+    const intervalId = setInterval(() => {
+      const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      setCartItems(savedCartItems);
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
 
 
 
@@ -197,7 +207,7 @@ export default function Layout({ children }) {
                 </li>
                 <li class="cart-box">
                   <a href="#shop-1.html" class="navSidebar-button"
-                    ><i class="flaticon-shopping-cart-1"></i><span x-text="cart.length">0</span></a
+                    ><i class="flaticon-shopping-cart-1"></i><span x-text="cart.length">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span></a
                   >
                 </li>
                
@@ -382,7 +392,7 @@ export default function Layout({ children }) {
                   <li class="cart-box">
                     <a href="shop-1.html" class="navSidebar-button"
                       ><i class="flaticon-shopping-cart-1"></i
-                      ><span x-text="cart.length">0</span></a
+                      ><span x-text="cart.length">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span></a
                     >
                   </li>
                 </ul>
@@ -413,145 +423,7 @@ export default function Layout({ children }) {
           </div>
         </div>
       </header>)}
-    {  /*
-      {enrouter == "/ENG" &&(<header class="main-header">
-  <div class="header-top">
-    <div class="auto-container">
-      <div class="top-info">
-        <ul class="info-list clearfix">
-          <li>
-            <i class="flaticon-location-pin"></i>
-            Avenida Pedro de Castro Van-Dúnem Loy, Talatona
-          </li>
-          <li>
-            <i class="flaticon-envelope"></i>
-            <a href="mailto:clientes.particulares@giannu.co.ao">
-              clientes.particulares@giannu.co.ao
-            </a>
-          </li>
-          <li class="phone">
-            <i class="flaticon-dial"></i>
-            <a href="tel:244931781843">+244 931 781 843</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="header-upper">
-    <div class="auto-container">
-      <div class="outer-box clearfix">
-        <div class="logo-box">
-          <figure class="logo">
-            <a href="/">
-              <img
-                src="/assets/images/giannulogo.png"
-                alt=""
-                style="height: 80px; width: auto;"
-              />
-            </a>
-          </figure>
-        </div>
-        <div class="menu-area pull-right">
-          <div class="mobile-nav-toggler">
-            <i class="icon-bar"></i>
-            <i class="icon-bar"></i>
-            <i class="icon-bar"></i>
-          </div>
-          <nav class="main-menu navbar-expand-md navbar-light">
-            <div
-              class="collapse navbar-collapse show clearfix"
-              id="navbarSupportedContent"
-            >
-              <ul class="navigation clearfix">
-                <li>
-                  <a href='/ENG/ourcompany'>About Us</a>
-                </li>
-                <li>
-                  <a href='/ENG/services'>Services</a>
-                </li>
-                <li>
-                  <a href="/ENG/ourproducts">Products</a>
-                </li>
-                <li>
-                  <a href="/ENG/contactus">Contact Us</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <ul class="menu-right-content pull-left clearfix">
-            <li class="user-box">
-              <a href="#../index.html">
-                <i class="flaticon-user-symbol-of-thin-outline"></i>
-              </a>
-            </li>
-            <li class="search-box-outer">
-              <div class="dropdown">
-                <button
-                  class="search-box-btn"
-                  type="button"
-                  id="dropdownMenu3"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span class="flaticon-search"></span>
-                </button>
-                <ul
-                  class="dropdown-menu pull-right search-panel"
-                  aria-labelledby="dropdownMenu3"
-                >
-                  <li class="panel-outer">
-                    <div class="form-container">
-                      <form method="post" action="blog.html">
-                        <div class="form-group">
-                          <input
-                            type="search"
-                            name="field-name"
-                            value=""
-                            placeholder="Search...."
-                            required=""
-                          />
-                          <button type="submit" class="search-btn">
-                            <span class="fas fa-search"></span>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="cart-box">
-              <a href="shop-1.html" class="navSidebar-button">
-                <i class="flaticon-shopping-cart-1"></i>
-                <span x-text="cart.length">0</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="sticky-header">
-    <div class="auto-container">
-      <div class="outer-box clearfix">
-        <figure class="logo-box pull-left">
-          <a href="/">
-            <img
-              src="/assets/images/giannulogo.png"
-              style="height: 70px; width: auto;"
-              alt=""
-            />
-          </a>
-        </figure>
-        <div class="menu-area pull-right">
-          <nav class="main-menu clearfix"></nav>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>)}
-*/}
+    
       
       <div class="mobile-menu">
         <div class="menu-backdrop"></div>
@@ -715,7 +587,7 @@ export default function Layout({ children }) {
         <span class="fa fa-arrow-up"></span>
       </button>
       <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
-        <i class="flaticon-shopping-cart-1"></i></button>
+        <i class="flaticon-shopping-cart-1">{cartItems.reduce((total, item) => total + item.quantity, 0)}</i></button>
         <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
           <i class="flaticon-shopping-cart-1"></i></button>
     </div>

@@ -8,6 +8,7 @@ const supabase = createClient(
 );
 
 const predefinedCategories = ["Bovinos", "Suínos", "Aves", "Caprinos", "Caixas"];
+const [cartItems, setCartItems] = useState([]);
 
 export default function Produtos() {
   const [produtos, setProdutos] = useState([]);
@@ -16,6 +17,10 @@ export default function Produtos() {
   useEffect(() => {
     carregarProdutos();
   }, []);
+  useEffect(() => {
+  const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  setCartItems(savedCartItems);
+}, []);
 
   async function carregarProdutos() {
     const { data, error } = await supabase.from('produtos').select('*');
@@ -26,7 +31,20 @@ export default function Produtos() {
   const filteredProdutos = selectedCategoria
     ? produtos.filter(produto => produto.categoria === selectedCategoria)
     : produtos;
+    
+const addToCart = (product) => {
+  const updatedCart = [...cartItems];
+  const existingItemIndex = updatedCart.findIndex(item => item.id === product.id);
 
+  if (existingItemIndex !== -1) {
+    updatedCart[existingItemIndex].quantity += 1;
+  } else {
+    updatedCart.push({ ...product, quantity: 1 });
+  }
+
+  setCartItems(updatedCart);
+  localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+};
   return (
     <>
       <section
@@ -122,9 +140,12 @@ export default function Produtos() {
                             
                             
                             <span>
-                              <button className="btn btn-success btn-sm add-to-cart-btn">
-                                Adicionar <i className="fas fa-plus"></i>
-                              </button>
+                         <button 
+  className="btn btn-success btn-sm add-to-cart-btn"
+  onClick={() => addToCart(item)}
+>
+  Adicionar <i className="fas fa-plus"></i>
+</button>
                             </span>
                           </div>
                         </div>
