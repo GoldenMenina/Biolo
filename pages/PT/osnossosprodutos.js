@@ -114,6 +114,7 @@ export default function Produtos() {
                       thousandSeparator=" "
                       decimalSeparator=","
                       allowNegative={false}
+                      suffix={" kz"}
                       
                       decimalScale={2}
                       fixedDecimalScale={true}
