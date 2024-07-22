@@ -227,7 +227,7 @@ if(id != 'img'){
   return (
     <div className="container mt-5">
     <button className="btn btn-danger btn-sm" onClick={handleLogout}>
-            <i className="fas fa-sign-out-alt"></i> Logout
+            <i className="fas fa-sign-out-alt"></i> Terminar Sessão
           </button>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Administração de Produtos</h1>
@@ -290,7 +290,7 @@ if(id != 'img'){
                   className="btn btn-sm btn-danger"
                   onClick={() => deletarProduto(produto.id, produto.image)}
                 >
-                  Deletar
+                  Eliminar
                 </button>
               </td>
             </tr>
