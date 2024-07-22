@@ -599,7 +599,7 @@ const removeFromCart = (productId) => {
         <span class="fa fa-arrow-up"></span>
       </button>
       <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
-        <i class="flaticon-shopping-cart-1">{cartItems.reduce((total, item) => total + item.quantity, 0)}</i></button>
+        <i class="flaticon-shopping-cart-1"></i>{cartItems.reduce((total, item) => total + item.quantity, 0)}</button>
         <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
           <i class="flaticon-shopping-cart-1"></i></button>
     </div>
