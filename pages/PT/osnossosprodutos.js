@@ -8,9 +8,10 @@ const supabase = createClient(
 );
 
 const predefinedCategories = ["Bovinos", "Suínos", "Aves", "Caprinos", "Caixas"];
-const [cartItems, setCartItems] = useState([]);
+
 
 export default function Produtos() {
+  const [cartItems, setCartItems] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const [selectedCategoria, setSelectedCategoria] = useState(null);
 
