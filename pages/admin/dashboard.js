@@ -33,6 +33,7 @@ export default function Admin() {
   }
   
   async function adicionarProduto() {
+    console.log(novoProduto);
     const { data, error } = await supabase.from('produtos').insert([{
       corte: novoProduto.corte,
       preco: novoProduto.preco,
