@@ -107,7 +107,7 @@ export default function Admin() {
           body: formData,
         }
       );
-console.loh(response)
+console.log(response)
       const data = await response.json();
       
 console.log(data)
