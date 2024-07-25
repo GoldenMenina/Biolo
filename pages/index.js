@@ -389,10 +389,7 @@ function ChangeLangauge (){
                      
                               </div>
                               <div className="more-btn centred">
-                              <Link href="/PT/osnossosservicos">
-                                <a className="theme-btn"
-                                  >Ver todos os produtos</a
-                                > </Link>
+                     <Link href="/PT/osnossosservicos"><a className="theme-btn">ver todos produtos</a></Link>
                               </div> 
                               </div>
               </section>   
