@@ -321,7 +321,7 @@ function ChangeLangauge (){
                           <div className="shop-block-two">
                               <div className="inner-box">
                                   <figure className="image-box">
-                                      <img src="/public/assets/images/produtos/caixas/kandengue.jpg" alt="" />
+                                      <img src="/assets/images/produtos/caixas/kandengue.jpg" alt="" />
                                       <ul className="list clearfix">
                                           <li><a href="#"><i className="flaticon-cart"></i></a></li>
                                           <li><a href="#">adicionar</a></li>
@@ -338,7 +338,7 @@ function ChangeLangauge (){
                           <div className="shop-block-two">
                               <div className="inner-box">
                                   <figure className="image-box">
-                                      <img src="/public/assets/images/produtos/caixas/kwanza.jpg" alt="" />
+                                      <img src="/assets/images/produtos/caixas/kwanza.jpg" alt="" />
                                       <ul className="list clearfix">
                                           <li><a href="#"><i className="flaticon-cart"></i></a></li>
                                           <li><a href="#">adicionar</a></li>
@@ -355,7 +355,7 @@ function ChangeLangauge (){
                           <div className="shop-block-two">
                               <div className="inner-box">
                                   <figure className="image-box">
-                                      <img src="/public/assets/images/produtos/caixas/paty   .jpg" alt="" />
+                                      <img src="/assets/images/produtos/caixas/paty   .jpg" alt="" />
                                       <ul className="list clearfix">
                                           <li><a href="#"><i className="flaticon-cart"></i></a></li>
                                           <li><a href="#">adicionar</a></li>
@@ -372,7 +372,7 @@ function ChangeLangauge (){
                           <div className="shop-block-two">
                               <div className="inner-box">
                                   <figure className="image-box">
-                                      <img src="/public/assets/images/produtos/caixas/sera.jpg" alt="" />
+                                      <img src="/assets/images/produtos/caixas/sera.jpg" alt="" />
                                       <ul className="list clearfix">
                                           <li><a href="#"><i className="flaticon-cart"></i></a></li>
                                           <li><a href="#">adicionar</a></li>
@@ -386,12 +386,13 @@ function ChangeLangauge (){
                                   </div>
                               </div>
                           </div>
-                     <div className="more-btn centred">
+                     
+                              </div>
+                              <div className="more-btn centred">
                                 <a href="PT/osnossosprodutos.html" className="theme-btn"
                                   >Ver todos os produtos</a
                                 >
                               </div> 
-                              </div>
                               </div>
               </section>   
       
