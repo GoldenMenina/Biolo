@@ -355,7 +355,7 @@ function ChangeLangauge (){
                           <div className="shop-block-two">
                               <div className="inner-box">
                                   <figure className="image-box">
-                                      <img src="/assets/images/produtos/caixas/paty   .jpg" alt="" />
+                                      <img src="/assets/images/produtos/caixas/paty.jpg" alt="" />
                                       <ul className="list clearfix">
                                           <li><a href="#"><i className="flaticon-cart"></i></a></li>
                                           <li><a href="#">adicionar</a></li>
