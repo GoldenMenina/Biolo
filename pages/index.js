@@ -264,8 +264,12 @@ function ChangeLangauge (){
       
 
       
-      <section className="shop-style-two">
+      <section className="shop-style-two bg-color-3">
                   <div className="auto-container">
+                   <div class="sec-title light text-center">
+            <span>Compre Agora</span>
+            <h2>Produtos em Destaque</h2>
+          </div>
                       <div className="four-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
                           <div className="shop-block-two">
                               <div className="inner-box">
