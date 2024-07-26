@@ -103,10 +103,8 @@ async function handleLogout() {
       );
 
       const data = await response.json();
-      console.log(data)
-      const optimizedUrl = data.secure_url.replace('/upload/', '/upload/q_auto,f_auto/');
-  
-  return optimizedUrl;
+      
+      return(data.secure_url)
      
   }
 
@@ -188,7 +186,16 @@ if(id != 'img'){
     setNovoProduto({ corte: '', preco: '', categoria: '', image: null });
     setShowModal(true);
   }
+useEffect(() => {
+    checkSession();
+  }, []);
 
+  async function checkSession() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setIsAuthenticated(true);
+    }
+  }
   
   if (!isAuthenticated) {
     return (
