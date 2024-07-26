@@ -103,7 +103,7 @@ async function handleLogout() {
       );
 
       const data = await response.json();
-      
+      console.log(data)
       const optimizedUrl = data.secure_url.replace('/upload/', '/upload/q_auto,f_auto/');
   
   return optimizedUrl;
