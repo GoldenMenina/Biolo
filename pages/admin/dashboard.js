@@ -20,26 +20,32 @@ const [loading, setloading] = useState(false);
     carregarProdutos();
   }, []);
   useEffect(() => {
-  const session = localStorage.getItem('session');
-  if (session) {
-    setIsAuthenticated(true);
-  }
-  carregarProdutos();
-}, []);
-function handleLogin(e) {
-  e.preventDefault();
-  if (email === process.env.NEXT_PUBLIC_USER_EMAIL && password === process.env.NEXT_PUBLIC_USER_PASSWORD) {
-    setIsAuthenticated(true);
-    localStorage.setItem('session', 'true');
-  } else {
-    alert('Invalid credentials');
-  }
-}
+    checkSession();
+  }, []);
 
-function handleLogout() {
-  setIsAuthenticated(false);
-  localStorage.removeItem('session');
-}
+  async function checkSession() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setIsAuthenticated(true);
+    }
+  }
+async function handleLogin(e) {
+    e.preventDefault();
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      alert('Invalid credentials');
+    } else {
+      setIsAuthenticated(true);
+    }
+  }
+async function handleLogout() {
+    await supabase.auth.signOut();
+    setIsAuthenticated(false);
+  }
   
   const [novoProduto, setNovoProduto] = useState({ corte: '', preco: '', categoria: '', image: null });
   const [editingProduto, setEditingProduto] = useState(null);
@@ -181,6 +187,7 @@ if(id != 'img'){
     setShowModal(true);
   }
 
+  
   if (!isAuthenticated) {
     return (
       <div className="modal d-block" tabIndex="-1" style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
