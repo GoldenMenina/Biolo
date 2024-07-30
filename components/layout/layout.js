@@ -64,6 +64,18 @@ const removeFromCart = (productId) => {
   
    }
  }
+ 
+ useEffect(() => {
+if(localStorage.getItem('lang')=='en'){
+     localStorage.setItem('lang', 'pt');
+  setLang('pt')
+
+   }else{
+     localStorage.setItem('lang', 'en');
+     setLang('en')
+    
+   }
+  }, []);
 
 
   return (
