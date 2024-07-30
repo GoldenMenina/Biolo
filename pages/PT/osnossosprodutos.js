@@ -12,6 +12,7 @@ const predefinedCategories = ["Bovinos", "Suínos", "Aves", "Caprinos", "Caixas"
 
 export default function Produtos() {
   const [cartItems, setCartItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [produtos, setProdutos] = useState([]);
   const [selectedCategoria, setSelectedCategoria] = useState(null);
 
@@ -29,9 +30,12 @@ export default function Produtos() {
     else setProdutos(data);
   }
 
-  const filteredProdutos = selectedCategoria
-    ? produtos.filter(produto => produto.categoria === selectedCategoria)
-    : produtos;
+  const filteredProdutos = produtos
+  .filter(produto => 
+    (!selectedCategoria || produto.categoria === selectedCategoria) &&
+    (produto.corte.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     produto.categoria.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
     
 const addToCart = (product) => {
   const updatedCart = [...cartItems];
@@ -103,6 +107,21 @@ const addToCart = (product) => {
                     </ul>
                   </div>
                 </div>
+                
+                <div className="sidebar-widget search-widget">
+  <div className="widget-title">
+    <h3>Pesquisar Produtos</h3>
+  </div>
+  <div className="search-form">
+    <input 
+      type="text" 
+      placeholder="Pesquisar..." 
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    <button type="submit"><i className="fas fa-search"></i></button>
+  </div>
+</div>
               </div>
             </div>
             <div className="col-lg-9 col-md-12 col-sm-12 content-side">
