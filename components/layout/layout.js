@@ -325,7 +325,7 @@ if(localStorage.getItem('lang')=='en'){
      )}
      
      
-   {router.pathname != "/"  && router.pathname != "/ENG/" && router.pathname != "/admin/dashboard"&&(<header class="main-header">
+   {(router.pathname != "/"  || router.pathname != "/ENG/") && router.pathname != "/admin/dashboard"&&(<header class="main-header">
         <div class="header-top">
           <div class="auto-container">
             <div class="top-info">
