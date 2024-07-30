@@ -56,11 +56,11 @@ const removeFromCart = (productId) => {
    if(localStorage.getItem('lang')=='en'){
      localStorage.setItem('lang', 'pt');
   setLang('pt')
-  router.push('/')
+  window.location.assign('/');
    }else{
      localStorage.setItem('lang', 'en');
      setLang('en')
-     router.push('/ENG/')
+     window.location.assign('/ENG/');
   
    }
  }
