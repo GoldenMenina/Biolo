@@ -65,21 +65,15 @@ const removeFromCart = (productId) => {
    }
  }
  
- useEffect(() => {
-    const interval = setInterval(() => {
-      if (localStorage.getItem('lang') === 'en') {
-        
-        setLang('en');
-      } else {
-        localStorage.setItem('lang', 'pt');
-        setLang('pt');
-      }
-    }, 2000); // 2000 milliseconds = 2 seconds
-
-    // Cleanup the interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
-
+useEffect(() => {
+  const storedLang = localStorage.getItem('lang');
+  if (storedLang === 'en') {
+    setLang('en');
+  } else {
+    localStorage.setItem('lang', 'pt');
+    setLang('pt');
+  }
+}, [router.asPath]);
 
   return (
     <div class="boxed_wrapper ltr">
