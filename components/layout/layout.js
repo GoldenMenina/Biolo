@@ -52,13 +52,15 @@ const removeFromCart = (productId) => {
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
 
- const languageChange = () =>{
+ function languageChange (){
    if(localStorage.getItem('lang')=='en'){
      localStorage.setItem('lang', 'pt');
   setLang('pt')
+  router.push('/')
    }else{
      localStorage.setItem('lang', 'en');
      setLang('en')
+     router.push('/ENG/')
   
    }
  }
@@ -160,9 +162,9 @@ const removeFromCart = (productId) => {
                   </div>
                   <div class="lang-dropdown">
                     <ul>
-                      <li><a onClick={
-                        languageChange
-                      } href="#index.html">{lang == 'pt'?'English': 'português'}</a></li>
+                      <li><a onClick={()=>
+                        {languageChange()
+                      }} href="#index.html">{lang == 'pt'?'English': 'português'}</a></li>
                     </ul>
                   </div>
                 </div>
