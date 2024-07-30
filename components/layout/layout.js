@@ -70,7 +70,7 @@ useEffect(() => {
   if (storedLang === 'en') {
     setLang('en');
     if(router.pathname == '/'){
-      window.location.assign('/ENG');
+      
     }
   } else {
     localStorage.setItem('lang', 'pt');
@@ -546,6 +546,15 @@ useEffect(() => {
                           alt=""
                       /></a>
                     </figure>
+                     <figure class="footer-logo">
+                      <a href="#index.html"
+                        ><img
+                          src="assets/images/feitoangola.jpg"
+                          style={{height: "70px", width: "auto"}}
+                          alt=""
+                      /></a>
+                    </figure>
+                   
                     <div class="text">
                       <p>
                         O nosso foco é a satisfação do cliente na
