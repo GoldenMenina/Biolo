@@ -11,8 +11,8 @@ import {
 export default function Layout({ children }) {
   const router = useRouter();
   const [usuario, setusuario] = useState(null);
-  const [curlang, setcurlang] = useState("");
-    const [oldlang, setoldlang] = useState("");
+  const [lang, setLang] = useState(localStorage.getItem("lang") || 'pt');
+  
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
     const intervalId = setInterval(() => {
@@ -51,6 +51,17 @@ const removeFromCart = (productId) => {
 
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
+
+ const languageChange = () =>{
+   if(localStorage.getItem('lang')=='en'){
+     localStorage.setItem('lang', 'pt');
+  setLang('pt')
+   }else{
+     localStorage.setItem('lang', 'en');
+     setLang('en')
+  
+   }
+ }
 
 
   return (
@@ -144,12 +155,14 @@ const removeFromCart = (productId) => {
                 <div class="language">
                   <div class="lang-btn">
                     <span class="icon flaticon-location"></span>
-                    <span class="txt">Português </span>
+                    <span class="txt">{lang == 'pt'?'English': 'português'} </span>
                     <span class="arrow fa fa-angle-down"></span>
                   </div>
                   <div class="lang-dropdown">
                     <ul>
-                      <li><a href="#index.html">Ingles</a></li>
+                      <li><a onClick={
+                        languageChange
+                      } href="#index.html">{lang == 'pt'?'English': 'português'}</a></li>
                     </ul>
                   </div>
                 </div>
@@ -245,14 +258,23 @@ const removeFromCart = (productId) => {
                     id="navbarSupportedContent"
                   >
                     <ul class="navigation clearfix">
-                      <li>
-                      <Link href="PT/aempresa" >
-                      <a>Sobre nós</a></Link></li>
-                      <li><Link href="/PT/osnossosservicos"><a>Serviços</a></Link></li>
+  <li>
+          <Link href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>
+            <a>{lang === 'en' ? 'Services' : 'Serviços'}</a>
+          </Link>
+        </li>
 
-                      <li><Link href="/PT/osnossosprodutos"><a>Produtos</a></Link></li>
+        <li>
+          <Link href={lang === 'en' ? '/ENG/ourproducts' : '/PT/osnossosprodutos'}>
+            <a>{lang === 'en' ? 'Products' : 'Produtos'}</a>
+          </Link>
+        </li>
 
-                      <li><Link href="/PT/contacte-nos"><a >Contacte-nos</a></Link></li>
+        <li>
+          <Link href={lang === 'en' ? '/ENG/contactus' : '/PT/contacte-nos'}>
+            <a>{lang === 'en' ? 'Contact Us' : 'Contacte-nos'}</a>
+          </Link>
+        </li>
                     </ul>
                   </div>
                 </nav>
@@ -335,28 +357,29 @@ const removeFromCart = (productId) => {
                   >
                     <ul class="navigation clearfix">
                       <li>
-  <Link href='/PT/aempresa'>
-    <a>Sobre nós</a>
-  </Link>
-</li>
 
-<li>
-  <Link href='/PT/osnossosservicos'>
-    <a>Serviços</a>
-  </Link>
-</li>
+          <Link href={lang === 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>
+            <a>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
+          </Link>
+        </li>
 
-<li>
-  <Link href="/PT/osnossosprodutos">
-    <a>Produtos</a>
-  </Link>
-</li>
+        <li>
+          <Link href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>
+            <a>{lang === 'en' ? 'Services' : 'Serviços'}</a>
+          </Link>
+        </li>
 
-<li>
-  <Link href="/PT/contacte-nos">
-    <a>Contacte-nos</a>
-  </Link>
-</li>
+        <li>
+          <Link href={lang === 'en' ? '/ENG/ourproducts' : '/PT/osnossosprodutos'}>
+            <a>{lang === 'en' ? 'Products' : 'Produtos'}</a>
+          </Link>
+        </li>
+
+        <li>
+          <Link href={lang === 'en' ? '/ENG/contactus' : '/PT/contacte-nos'}>
+            <a>{lang === 'en' ? 'Contact Us' : 'Contacte-nos'}</a>
+          </Link>
+        </li>
                     </ul>
                   </div>
                 </nav>
