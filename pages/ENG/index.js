@@ -244,98 +244,137 @@ export default function Home() {
 
 <section className="shop-style-two bg-color-3">
   <div className="auto-container">
-    <div className="sec-title light text-center">
-      <span>Compre Agora</span>
-      <h2>Produtos em Destaque</h2>
-    </div>
-    <div className="row clearfix">
-      <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-        <div className="shop-block-two wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-          <div className="inner-box">
-            <figure className="image-box">
-              <img src="assets/images/produtos/IMG-20240425-WA0024.jpg" alt="Caixa Serra da Leba" />
-              <ul className="list clearfix">
-                <li><a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a></li>
-                <li><a href="#caixas">adicionar</a></li>
-              </ul>
-            </figure>
-            <div className="lower-content">
-              <div className="inner">
-                <h6><a href="#caixas">Caixa Serra da Leba</a></h6>
-                <span className="price">42.898,00 kz</span>
-              </div>
+    <div className="four-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/churrasco.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Barbecue Box</a></h6>
+              <span className="price">78,026.00 Kz</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-        <div className="shop-block-two wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
-          <div className="inner-box">
-            <figure className="image-box">
-              <img src="assets/images/produtos/IMG-20240425-WA0026.jpg" alt="Caixa Kalandula" />
-              <ul className="list clearfix">
-                <li><a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a></li>
-                <li><a href="#caixas">adicionar</a></li>
-              </ul>
-            </figure>
-            <div className="lower-content">
-              <div className="inner">
-                <h6><a href="#caixas">Caixa Kalandula</a></h6>
-                <span className="price">54.108,00 kz</span>
-              </div>
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/gulungo.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Gulungo Box</a></h6>
+              <span className="price">99,796.00 Kz</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-        <div className="shop-block-two wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
-          <div className="inner-box">
-            <figure className="image-box">
-              <img src="assets/images/produtos/IMG-20240425-WA0028.jpg" alt="Caixa Kwanza" />
-              <ul className="list clearfix">
-                <li><a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a></li>
-                <li><a href="#caixas">adicionar</a></li>
-              </ul>
-            </figure>
-            <div className="lower-content">
-              <div className="inner">
-                <h6><a href="#caixas">Caixa Kwanza</a></h6>
-                <span className="price">70.408,00 kz</span>
-              </div>
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/kalandula.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Kalandula Box</a></h6>
+              <span className="price">55,507.00 Kz</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-        <div className="shop-block-two wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="1500ms">
-          <div className="inner-box">
-            <figure className="image-box">
-              <img src="assets/images/produtos/IMG-20240425-WA0027.jpg" alt="Caixa Gulungo" />
-              <ul className="list clearfix">
-                <li><a href="#shop-1.html"><i className="flaticon-cart navSidebar-button"></i></a></li>
-                <li><a href="#caixas">adicionar</a></li>
-              </ul>
-            </figure>
-            <div className="lower-content">
-              <div className="inner">
-                <h6><a href="#caixas">Caixa Gulungo</a></h6>
-                <span className="price">97.798,00 kz</span>
-              </div>
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/kandengue.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Kandengue Box</a></h6>
+              <span className="price">42,064.00 Kz</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/kwanza.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Kwanza Box</a></h6>
+              <span className="price">71,967.00 Kz</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/paty.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Paty Pacheco Box</a></h6>
+              <span className="price">63,018.00 Kz</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="shop-block-two">
+        <div className="inner-box">
+          <figure className="image-box">
+            <img src="/assets/images/produtos/caixas/sera.jpg" alt="" />
+            <ul className="list clearfix">
+              <li><a href="#"><i className="flaticon-cart"></i></a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </figure>
+          <div className="lower-content">
+            <div className="inner">
+              <h6><a href="#">Serra da Leba Box</a></h6>
+              <span className="price">42,898 Kz</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div className="more-btn centred">
-      <a href="PT/osnossosprodutos.html" className="theme-btn">Ver todos os produtos</a>
+      <Link href="/EN/ourproducts"><a className="theme-btn">View All Products</a></Link>
     </div>
   </div>
 </section>
 <section className="service-section">
   <div className="auto-container">
     <div className="sec-title text-center">
-      <span>A Escolha Certa</span>
-      <h2>Nossos Valiosos Parceiros</h2>
+      <span>The right choice</span>
+      <h2>Our Valuable Partners</h2>
     </div>
     <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
       {[
