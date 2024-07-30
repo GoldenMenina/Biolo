@@ -277,7 +277,7 @@ const removeFromCart = (productId) => {
                     <ul class="navigation clearfix">
                      <li>
 
-          <Link href={lang === 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>
+          <Link href={lang == 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>
             <a>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
           </Link>
         </li>
