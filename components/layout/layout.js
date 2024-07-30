@@ -157,7 +157,7 @@ const removeFromCart = (productId) => {
                 <div class="language">
                   <div class="lang-btn">
                     <span class="icon flaticon-location"></span>
-                    <span class="txt">{lang == 'pt'?'English': 'português'} </span>
+                    <span class="txt">{lang == 'en'?'English': 'português'} </span>
                     <span class="arrow fa fa-angle-down"></span>
                   </div>
                   <div class="lang-dropdown">
