@@ -272,6 +272,12 @@ if(localStorage.getItem('lang')=='en'){
                     id="navbarSupportedContent"
                   >
                     <ul class="navigation clearfix">
+                     <li>
+
+          <Link href={lang === 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>
+            <a>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
+          </Link>
+        </li>
   <li>
           <Link href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>
             <a>{lang === 'en' ? 'Services' : 'Serviços'}</a>
