@@ -345,7 +345,7 @@ const removeFromCart = (productId) => {
                 </li>
                 <li class="phone">
                   <i class="flaticon-dial"></i>
-                  <a href="tel:244931781843">+244 931 781 843</a>
+                  <a href="tel:244931781843">+244 931 781 843 {lang}</a>
                 </li>
               </ul>
             </div>
