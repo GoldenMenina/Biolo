@@ -544,17 +544,12 @@ useEffect(() => {
                           src="assets/images/giannulogo.png"
                           style={{height: "70px", width: "auto"}}
                           alt=""
-                      /></a>
-                    </figure>
-                     <figure class="footer-logo">
-                      <a href="#index.html"
-                        ><img
+                      /></a<img
                           src="assets/images/feitoangola.jpg"
                           style={{height: "70px", width: "auto"}}
                           alt=""
-                      /></a>
+                      />
                     </figure>
-                   
                     <div class="text">
                       <p>
                         O nosso foco é a satisfação do cliente na
