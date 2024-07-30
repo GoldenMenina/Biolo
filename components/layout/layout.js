@@ -544,7 +544,7 @@ useEffect(() => {
                           src="assets/images/giannulogo.png"
                           style={{height: "70px", width: "auto"}}
                           alt=""
-                      /></a<img
+                      /></a><img
                           src="assets/images/feitoangola.jpg"
                           style={{height: "70px", width: "auto"}}
                           alt=""
