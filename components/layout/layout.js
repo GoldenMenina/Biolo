@@ -68,11 +68,11 @@ const removeFromCart = (productId) => {
  useEffect(() => {
     const interval = setInterval(() => {
       if (localStorage.getItem('lang') === 'en') {
+        
+        setLang('en');
+      } else {
         localStorage.setItem('lang', 'pt');
         setLang('pt');
-      } else {
-        localStorage.setItem('lang', 'en');
-        setLang('en');
       }
     }, 2000); // 2000 milliseconds = 2 seconds
 
