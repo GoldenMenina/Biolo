@@ -11,7 +11,7 @@ import {
 export default function Layout({ children }) {
   const router = useRouter();
   const [usuario, setusuario] = useState(null);
-  const [lang, setLang] = useState(localStorage.getItem("lang") || 'pt');
+  const [lang, setLang] = useState('pt');
   
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
