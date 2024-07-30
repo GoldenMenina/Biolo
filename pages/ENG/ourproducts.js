@@ -60,7 +60,7 @@ const addToCart = (product) => {
       >
         <div className="auto-container">
           <div className="content-box">
-            <div className="title-">
+            <div className="title-box">
               <h1><span>Our Products</span></h1>
             </div>
             <ul className="bread-crumb clearfix">
