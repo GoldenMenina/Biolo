@@ -69,6 +69,9 @@ useEffect(() => {
   const storedLang = localStorage.getItem('lang');
   if (storedLang === 'en') {
     setLang('en');
+    if(router.pathname == '/'){
+      window.location.assign('/ENG');
+    }
   } else {
     localStorage.setItem('lang', 'pt');
     setLang('pt');
