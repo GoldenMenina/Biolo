@@ -546,7 +546,7 @@ useEffect(() => {
                           alt=""
                       /></a><img
                           src="assets/images/feitoangola.jpg"
-                          style={{height: "70px", width: "auto"}}
+                          style={{height: "70px", width: "auto" , marginLeft:"20pz"}}
                           alt=""
                       />
                     </figure>
