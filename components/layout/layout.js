@@ -60,7 +60,7 @@ const removeFromCart = (productId) => {
    }else{
      localStorage.setItem('lang', 'en');
      setLang('en')
-     window.location.assign('/ENG/');
+     window.location.assign('/ENG');
   
    }
  }
@@ -69,10 +69,16 @@ const removeFromCart = (productId) => {
 if(localStorage.getItem('lang')=='en'){
      localStorage.setItem('lang', 'pt');
   setLang('pt')
+  if(router.pathname != '/'){
+    window.location.assign('/');
+  }
 
    }else{
      localStorage.setItem('lang', 'en');
      setLang('en')
+     if(router.pathname!= '/ENG'){
+       window.location.assign('/ENG')
+     }
     
    }
   }, []);
