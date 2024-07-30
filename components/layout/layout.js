@@ -66,17 +66,18 @@ const removeFromCart = (productId) => {
  }
  
  useEffect(() => {
-if(localStorage.getItem('lang')=='en'){
-     localStorage.setItem('lang', 'pt');
-  setLang('pt')
-  
+    const interval = setInterval(() => {
+      if (localStorage.getItem('lang') === 'en') {
+        localStorage.setItem('lang', 'pt');
+        setLang('pt');
+      } else {
+        localStorage.setItem('lang', 'en');
+        setLang('en');
+      }
+    }, 2000); // 2000 milliseconds = 2 seconds
 
-   }else{
-     localStorage.setItem('lang', 'en');
-     setLang('en')
-     
-    
-   }
+    // Cleanup the interval on component unmount
+    return () => clearInterval(interval);
   }, []);
 
 
