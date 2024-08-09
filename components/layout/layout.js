@@ -15,14 +15,9 @@ export default function Layout({ children }) {
   
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
-    const intervalId = setInterval(() => {
       const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
       setCartItems(savedCartItems);
-    }, 5000);
-
-    // Cleanup the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
+    }, []);
 const addToCart = (product) => {
   const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
   const existingItemIndex = savedCart.findIndex(item => item.id === product.id);
@@ -37,28 +32,22 @@ const addToCart = (product) => {
   setCartItems(savedCart); // Update state to reflect changes
 };
  const removeFromCart = (itemId) => {
-  // Get the cart items from localStorage
-  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-  // Update the cart items
-  const updatedItems = cartItems.map((item) => {
-    if (item.id === itemId) {
-      if (item.quantity > 1) {
-        return { ...item, quantity: item.quantity - 1 };
-      } else {
-        return null; // Remove item if quantity is 1
-      }
-    }
-    return item;
-  }).filter(item => item !== null); // Filter out null values (removed items)
-
-  // Save the updated cart back to localStorage
-  localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-
-  // Optionally update the state if you're using React state management
-  setCartItems(updatedItems);
-};
-
+   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+ 
+   const updatedItems = cartItems.reduce((acc, item) => {
+     if (item.id === itemId) {
+       if (item.quantity > 1) {
+         acc.push({ ...item, quantity: item.quantity - 1 });
+       }
+     } else {
+       acc.push(item);
+     }
+     return acc;
+   }, []);
+ 
+   localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+   setCartItems(updatedItems);
+ };
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
 
