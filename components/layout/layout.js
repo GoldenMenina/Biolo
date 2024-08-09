@@ -168,7 +168,7 @@ const handleFinalizar = () => {
                           <div style={{marginTop: "15px"}}>
                             <button
                             
-                              onClick={handleFinalizar}
+                              onClick={()=>{handleFinalizar()}}
                               className="btn btn-success"
                             >
                               Finalizar
