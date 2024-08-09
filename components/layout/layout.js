@@ -36,9 +36,7 @@ const addToCart = (product) => {
   localStorage.setItem('cartItems', JSON.stringify(savedCart));
   setCartItems(savedCart); // Update state to reflect changes
 };
-
-const removeFromCart = (itemId) => {
-  localStorage.setItem('cartItems', JSON.stringify((prevItems) => {const removeFromCart = (itemId) => {
+ const removeFromCart = (itemId) => {
   // Get the cart items from localStorage
   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
