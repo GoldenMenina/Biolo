@@ -19,17 +19,20 @@ export default function Layout({ children }) {
       setCartItems(savedCartItems);
     }, []);
 const addToCart = (product) => {
+  console.log("1")
   const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
   const existingItemIndex = savedCart.findIndex(item => item.id === product.id);
-
+console.log("2")
   if (existingItemIndex !== -1) {
     savedCart[existingItemIndex].quantity += 1;
+    console.log("3")
   } else {
     savedCart.push({ ...product, quantity: 1 });
+    console.log("3")
   }
 
   localStorage.setItem('cartItems', JSON.stringify(savedCart));
-  console.log("gi")
+  
   console.log(savedCart)
   setCartItems(savedCart); // Update state to reflect changes
 };
