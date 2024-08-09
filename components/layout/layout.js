@@ -29,6 +29,8 @@ const addToCart = (product) => {
   }
 
   localStorage.setItem('cartItems', JSON.stringify(savedCart));
+  console.log("gi")
+  console.log(savedCart)
   setCartItems(savedCart); // Update state to reflect changes
 };
  const removeFromCart = (itemId) => {
