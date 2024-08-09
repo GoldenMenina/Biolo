@@ -37,16 +37,28 @@ const addToCart = (product) => {
   setCartItems(savedCart); // Update state to reflect changes
 };
 
-const removeFromCart = (productId) => {
-  const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const updatedCart = savedCart.map(item =>
-    item.id === productId ?
-    { ...item, quantity: Math.max(0, item.quantity - 1) } :
-    item
-  ).filter(item => item.quantity > 0);
+const removeFromCart = (itemId) => {
+  localStorage.setItem('cartItems', JSON.stringify((prevItems) => {const removeFromCart = (itemId) => {
+  // Get the cart items from localStorage
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-  setCartItems(updatedCart); // Update state to reflect changes
+  // Update the cart items
+  const updatedItems = cartItems.map((item) => {
+    if (item.id === itemId) {
+      if (item.quantity > 1) {
+        return { ...item, quantity: item.quantity - 1 };
+      } else {
+        return null; // Remove item if quantity is 1
+      }
+    }
+    return item;
+  }).filter(item => item !== null); // Filter out null values (removed items)
+
+  // Save the updated cart back to localStorage
+  localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+
+  // Optionally update the state if you're using React state management
+  setCartItems(updatedItems);
 };
 
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
@@ -78,6 +90,18 @@ useEffect(() => {
   }
 }, [router.asPath]);
 
+const handleFinalizar = () => {
+  const message = cartItems.map(item => (
+    `${item.corte} (${item.categoria}) - ${item.quantity} x ${item.preco.toFixed(2)} Kz`
+  )).join('\n');
+
+  const totalPriceMessage = `Total: ${totalPrice.toFixed(2)} Kz`;
+  
+  const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}`);
+  const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
+  
+  window.open(whatsappUrl, "_blank");
+};
   return (
     <div class="boxed_wrapper ltr">
       
@@ -144,13 +168,13 @@ useEffect(() => {
                             -------------------------------------------
                           </div>
                           <div style={{marginTop: "15px"}}>
-                            <a
-                              target="_blank"
-                              href="https://wa.me/+244931781843"
+                            <button
+                            
+                              onClick={handleFinalizar}
                               className="btn btn-success"
                             >
                               Finalizar
-                            </a>
+                            </button>
                           </div>
                         </div>
                       </div>
