@@ -54,17 +54,7 @@ export default function Layout({ children }) {
     router.push(newLang === 'en' ? '/ENG' : '/');
   };
 
-  useEffect(() => {
-    const storedLang = localStorage.getItem('lang') || 'pt';
-    setLang(storedLang);
 
-    const loadCartItems = () => {
-      const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-      setCartItems(savedCartItems);
-    };
-
-    loadCartItems();
-  }, [router.asPath]);
 
   const sendWhatsAppMessage = () => {
     const message = cartItems.map(item => (
