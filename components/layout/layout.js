@@ -1,120 +1,89 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState, useEffect, Children } from "react";
-import {
-  getDecryptedCookie,
-  setEncryptedCookie,
-  deleteCookie,
-} from "../../lib/session";
-
+import { useState, useEffect } from "react";
 import AdditionalCommentsModal from '../AdditionalCommentsModal';
 
 export default function Layout({ children }) {
   const router = useRouter();
-  const [usuario, setusuario] = useState(null);
+  const [usuario, setUsuario] = useState(null);
   const [lang, setLang] = useState('');
   const [additionalComments, setAdditionalComments] = useState('');
-const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
-const openModal = () => {
-  setIsModalOpen(true);
-};
-    const [cartItems, setCartItems] = useState([]);
-  
-const addToCart = (product) => {
-  const updatedCart = cartItems.map(item =>
-    item.id === product.id ?
-    { ...item, quantity: item.quantity + 1 } :
-    item
-  );
-
-  if (!updatedCart.some(item => item.id === product.id)) {
-    updatedCart.push({ ...product, quantity: 1 });
-  }
-
-  localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-};
-function removeFromCart  (itemId) {
-  alert(8888)
-  console.log(itemId)
-  const updatedItems = cartItems
-    .map(item => {
-      if (item.id === itemId) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-      return item;
-    })
-    .filter(item => item.quantity > 0); // This will remove items with quantity 0.
-
-  console.log(updatedItems);
-  localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-};
-  const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0); 
-
-
- function languageChange (){
-   if(localStorage.getItem('lang')=='en'){
-     localStorage.setItem('lang', 'pt');
-  setLang('pt')
-  window.location.assign('/');
-   }else{
-     localStorage.setItem('lang', 'en');
-     setLang('en')
-     window.location.assign('/ENG');
-  
-   }
- }
- 
-useEffect(() => {
-  const storedLang = localStorage.getItem('lang');
-  if (storedLang === 'en') {
-    setLang('en');
-    if(router.pathname == '/'){
-      
-    }
-  } else {
-    localStorage.setItem('lang', 'pt');
-    setLang('pt');
-  }
-}, [router.asPath]);
-const sendWhatsAppMessage = () => {
-  const message = cartItems.map(item => (
-    `${item.corte} (${item.categoria}) - ${item.quantity} x ${item.preco.toFixed(2)} Kz`
-  )).join('\n');
-
-  const totalPriceMessage = `Total: ${totalPrice.toFixed(2)} Kz`;
-  
-  const commentsMessage = additionalComments ? `\n\nAdditional Comments: ${additionalComments}` : '';
-  
-  const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}${commentsMessage}`);
-  const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
-  
-  window.open(whatsappUrl, "_blank");
-  setIsModalOpen(false);
-  setAdditionalComments('');
-};
-
-const handleFinalizar = () => {
-  openModal();
-};
-
-useEffect(() => {
-  const loadCartItems = () => {
-    const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    setCartItems(savedCartItems);
-  
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  loadCartItems();
+  const addToCart = (product) => {
+    const updatedCart = cartItems.map(item =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
 
-  const intervalId = setInterval(loadCartItems, 2000);
+    if (!updatedCart.some(item => item.id === product.id)) {
+      updatedCart.push({ ...product, quantity: 1 });
+    }
 
-  return () => clearInterval(intervalId);
-}, []);
+    setCartItems(updatedCart);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+  };
 
-function test (id){
-  alert (555)
-}
+  const removeFromCart = (itemId) => {
+    const updatedItems = cartItems
+      .map(item => {
+        if (item.id === itemId) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      })
+      .filter(item => item.quantity > 0);
+
+    setCartItems(updatedItems);
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+  };
+
+  const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
+
+  const languageChange = () => {
+    const newLang = lang === 'en' ? 'pt' : 'en';
+    localStorage.setItem('lang', newLang);
+    setLang(newLang);
+    router.push(newLang === 'en' ? '/ENG' : '/');
+  };
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem('lang') || 'pt';
+    setLang(storedLang);
+
+    const loadCartItems = () => {
+      const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      setCartItems(savedCartItems);
+    };
+
+    loadCartItems();
+  }, [router.asPath]);
+
+  const sendWhatsAppMessage = () => {
+    const message = cartItems.map(item => (
+      `${item.corte} (${item.categoria}) - ${item.quantity} x ${item.preco.toFixed(2)} Kz`
+    )).join('\n');
+
+    const totalPriceMessage = `Total: ${totalPrice.toFixed(2)} Kz`;
+    const commentsMessage = additionalComments ? `\n\nAdditional Comments: ${additionalComments}` : '';
+    const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}${commentsMessage}`);
+    const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+    setIsModalOpen(false);
+    setAdditionalComments('');
+  };
+
+  const handleFinalizar = () => {
+    openModal();
+  };
+
 
   return (
     <div class="boxed_wrapper ltr">
@@ -151,55 +120,50 @@ function test (id){
                           Carrinho <i className="flaticon-shopping-cart-1"></i>
                         </h3>
                         <div style={{marginTop: "10px"}}>
-                          {cartItems.map((item, index) => (
-                            <li key={item.id} style={{color: "white", marginBottom: "10px"}}>
-                              <span style={{marginRight: "5px"}}>
-                                {item.corte} ({item.categoria})
-                              </span>
-                              |
-                              <span style={{marginRight: "3px"}}>
-                                {item.preco.toFixed(2)} 
-                              </span>
-                              kz
-                              <strong> /{item.quantity}</strong>
-                              <button
-                                className="btn btn-sm btn-success"
-                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
-                                onClick={() => {
-                                  
-                              addToCart(item)    
-                                }}
-                              >
-                                <i className="fa fa-plus"></i>
-                              </button>
-                              <button
-                                className="btn btn-sm btn-warning"
-                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
-                                onClick={()=>{
-                                  test(item.id)
-                                }}
-                              >
-                                <i className="fa fa-minus"></i>
-                              </button>
-                            </li>
-                          ))}
-                          <div style={{marginTop: "10px"}}>
-                            <span style={{color: "#fff"}}>
-                              <strong>
-                                Total: <span style={{color: "white"}}>{totalPrice.toFixed(2)} Kz</span>
-                              </strong>
-                            </span>
-                            <br />
-                            -------------------------------------------
-                          </div>
-                          <div style={{marginTop: "15px"}}>
-                            <button
-                            
-                              onClick={()=>{handleFinalizar()}}
-                              className="btn btn-success"
-                            >
-                              Finalizar
-                            </button>
+                        {cartItems.map((item, index) => (
+                  <li key={item.id} style={{ color: "white", marginBottom: "10px" }}>
+                    <span style={{ marginRight: "5px" }}>
+                      {item.corte} ({item.categoria})
+                    </span>
+                    |
+                    <span style={{ marginRight: "3px" }}>
+                      {item.preco.toFixed(2)}
+                    </span>
+                    kz
+                    <strong> /{item.quantity}</strong>
+                    <button
+                      className="btn btn-sm btn-success"
+                      style={{ fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px" }}
+                      onClick={() => addToCart(item)}
+                    >
+                      <i className="fa fa-plus"></i>
+                    </button>
+                    <button
+                      className="btn btn-sm btn-warning"
+                      style={{ fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px" }}
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      <i className="fa fa-minus"></i>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div style={{ marginTop: "10px" }}>
+                <span style={{ color: "#fff" }}>
+                  <strong>
+                    Total: <span style={{ color: "white" }}>{totalPrice.toFixed(2)} Kz</span>
+                  </strong>
+                </span>
+                <br />
+                -------------------------------------------
+              </div>
+              <div style={{ marginTop: "15px" }}>
+                <button
+                  onClick={handleFinalizar}
+                  className="btn btn-success"
+                >
+                  Finalizar
+                </button>
                           </div>
                         </div>
                       </div>
