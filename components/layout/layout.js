@@ -164,14 +164,19 @@ useEffect(() => {
                               <button
                                 className="btn btn-sm btn-success"
                                 style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
-                                onClick={() => addToCart(item)}
+                                onClick={() => {
+                                  
+                              addToCart(item)    
+                                }}
                               >
                                 <i className="fa fa-plus"></i>
                               </button>
                               <button
                                 className="btn btn-sm btn-warning"
                                 style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
-                                onClick={() => removeFromCart(item.id)}
+                                onClick={() =>{
+                                  removeFromCart(item.id)
+                                }}
                               >
                                 <i className="fa fa-minus"></i>
                               </button>
