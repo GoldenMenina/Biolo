@@ -106,8 +106,9 @@ useEffect(() => {
   const loadCartItems = () => {
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(savedCartItems);
+    console.log(cartItems)
   };
-console.log(cartItems)
+
   loadCartItems();
 
   const intervalId = setInterval(loadCartItems, 2000);
