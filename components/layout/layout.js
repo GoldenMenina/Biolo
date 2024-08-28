@@ -35,6 +35,7 @@ const addToCart = (product) => {
   localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 };
 const removeFromCart = (itemId) => {
+  console.log(cartItems)
   const updatedItems = cartItems
     .map(item => {
       if (item.id === itemId) {
@@ -44,7 +45,7 @@ const removeFromCart = (itemId) => {
     })
     .filter(item => item.quantity > 0); // This will remove items with quantity 0.
 
-  setCartItems(updatedItems);
+  console.log(updatedItems);
   localStorage.setItem('cartItems', JSON.stringify(updatedItems));
 };
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0); 
