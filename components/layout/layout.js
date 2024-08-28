@@ -46,7 +46,7 @@ const removeFromCart = (itemId) => {
     }
     return acc;
   }, []);
-
+consol.log(updatedItems)
   setCartItems(updatedItems);
   localStorage.setItem('cartItems', JSON.stringify(updatedItems));
 };
@@ -103,7 +103,7 @@ useEffect(() => {
   const loadCartItems = () => {
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(savedCartItems);
-    console.log(savedCartItems)
+  
   };
 
   loadCartItems();
