@@ -22,31 +22,28 @@ const openModal = () => {
     const [cartItems, setCartItems] = useState([]);
   
 const addToCart = (product) => {
-  const updatedCart = [...cartItems];
-  const existingItemIndex = updatedCart.findIndex(item => item.id === product.id);
+  const updatedCart = cartItems.map(item =>
+    item.id === product.id ?
+    { ...item, quantity: item.quantity + 1 } :
+    item
+  );
 
-  if (existingItemIndex !== -1) {
-    updatedCart[existingItemIndex].quantity += 1;
-  } else {
+  if (!updatedCart.some(item => item.id === product.id)) {
     updatedCart.push({ ...product, quantity: 1 });
   }
 
-  setCartItems(updatedCart);
   localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 };
-
 const removeFromCart = (itemId) => {
-  const updatedItems = cartItems.reduce((acc, item) => {
-    if (item.id === itemId) {
-      if (item.quantity > 1) {
-        acc.push({ ...item, quantity: item.quantity - 1 });
+  const updatedItems = cartItems
+    .map(item => {
+      if (item.id === itemId) {
+        return { ...item, quantity: item.quantity - 1 };
       }
-    } else {
-      acc.push(item);
-    }
-    return acc;
-  }, []);
-consol.log(updatedItems)
+      return item;
+    })
+    .filter(item => item.quantity > 0); // This will remove items with quantity 0.
+
   setCartItems(updatedItems);
   localStorage.setItem('cartItems', JSON.stringify(updatedItems));
 };
