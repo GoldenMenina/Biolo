@@ -175,7 +175,9 @@ function test (id){
                               <button
                                 className="btn btn-sm btn-warning"
                                 style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
-                                onClick={test(item.id)}
+                                onClick={()=>{
+                                  test(item.id)
+                                }}
                               >
                                 <i className="fa fa-minus"></i>
                               </button>
