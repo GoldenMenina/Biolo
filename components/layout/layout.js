@@ -7,12 +7,18 @@ import {
   deleteCookie,
 } from "../../lib/session";
 
+import AdditionalCommentsModal from '../AdditionalCommentsModal';
 
 export default function Layout({ children }) {
   const router = useRouter();
   const [usuario, setusuario] = useState(null);
   const [lang, setLang] = useState('');
-  
+  const [additionalComments, setAdditionalComments] = useState('');
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+const openModal = () => {
+  setIsModalOpen(true);
+};
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
       const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -81,22 +87,35 @@ useEffect(() => {
     setLang('pt');
   }
 }, [router.asPath]);
-
-const handleFinalizar = () => {
+const sendWhatsAppMessage = () => {
   const message = cartItems.map(item => (
     `${item.corte} (${item.categoria}) - ${item.quantity} x ${item.preco.toFixed(2)} Kz`
   )).join('\n');
 
   const totalPriceMessage = `Total: ${totalPrice.toFixed(2)} Kz`;
   
-  const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}`);
+  const commentsMessage = additionalComments ? `\n\nAdditional Comments: ${additionalComments}` : '';
+  
+  const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}${commentsMessage}`);
   const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
   
   window.open(whatsappUrl, "_blank");
+  setIsModalOpen(false);
+  setAdditionalComments('');
+};
+
+const handleFinalizar = () => {
+  openModal();
 };
   return (
     <div class="boxed_wrapper ltr">
-      
+      <AdditionalCommentsModal
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+  comments={additionalComments}
+  setComments={setAdditionalComments}
+  onSend={sendWhatsAppMessage}
+/>
       <div class="preloader"></div>
 
       <div class="xs-sidebar-group info-group info-sidebar">
