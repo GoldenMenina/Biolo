@@ -20,10 +20,7 @@ const openModal = () => {
   setIsModalOpen(true);
 };
     const [cartItems, setCartItems] = useState([]);
-    useEffect(() => {
-      const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-      setCartItems(savedCartItems);
-    }, []);
+  
 const addToCart = (product) => {
   const updatedCart = [...cartItems];
   const existingItemIndex = updatedCart.findIndex(item => item.id === product.id);
@@ -106,7 +103,7 @@ useEffect(() => {
   const loadCartItems = () => {
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(savedCartItems);
-    console.log(cartItems)
+    console.log(savedCartItems)
   };
 
   loadCartItems();
