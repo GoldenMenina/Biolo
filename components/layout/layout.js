@@ -25,40 +25,34 @@ const openModal = () => {
       setCartItems(savedCartItems);
     }, []);
 const addToCart = (product) => {
-  console.log("1")
-  const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const existingItemIndex = savedCart.findIndex(item => item.id === product.id);
-console.log("2")
+  const updatedCart = [...cartItems];
+  const existingItemIndex = updatedCart.findIndex(item => item.id === product.id);
+
   if (existingItemIndex !== -1) {
-    savedCart[existingItemIndex].quantity += 1;
-    console.log("3")
+    updatedCart[existingItemIndex].quantity += 1;
   } else {
-    savedCart.push({ ...product, quantity: 1 });
-    console.log("3")
+    updatedCart.push({ ...product, quantity: 1 });
   }
 
-  localStorage.setItem('cartItems', JSON.stringify(savedCart));
-  
-  console.log(savedCart)
-  setCartItems(savedCart); // Update state to reflect changes
+  setCartItems(updatedCart);
+  localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 };
- const removeFromCart = (itemId) => {
-   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
- 
-   const updatedItems = cartItems.reduce((acc, item) => {
-     if (item.id === itemId) {
-       if (item.quantity > 1) {
-         acc.push({ ...item, quantity: item.quantity - 1 });
-       }
-     } else {
-       acc.push(item);
-     }
-     return acc;
-   }, []);
- 
-   localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-   setCartItems(updatedItems);
- };
+
+const removeFromCart = (itemId) => {
+  const updatedItems = cartItems.reduce((acc, item) => {
+    if (item.id === itemId) {
+      if (item.quantity > 1) {
+        acc.push({ ...item, quantity: item.quantity - 1 });
+      }
+    } else {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
+
+  setCartItems(updatedItems);
+  localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+};
   const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
 
@@ -107,6 +101,20 @@ const sendWhatsAppMessage = () => {
 const handleFinalizar = () => {
   openModal();
 };
+
+useEffect(() => {
+  const loadCartItems = () => {
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    setCartItems(savedCartItems);
+  };
+
+  loadCartItems();
+
+  const intervalId = setInterval(loadCartItems, 2000);
+
+  return () => clearInterval(intervalId);
+}, []);
+
   return (
     <div class="boxed_wrapper ltr">
       <AdditionalCommentsModal
