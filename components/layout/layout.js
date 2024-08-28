@@ -113,7 +113,7 @@ useEffect(() => {
 }, []);
 
 function test (id){
-  alert (id)
+  alert (555)
 }
 
   return (
