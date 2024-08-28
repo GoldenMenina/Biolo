@@ -53,7 +53,7 @@ const removeFromCart = (itemId) => {
   setCartItems(updatedItems);
   localStorage.setItem('cartItems', JSON.stringify(updatedItems));
 };
-  const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
+  const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0); 
 
 
  function languageChange (){
@@ -107,7 +107,7 @@ useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(savedCartItems);
   };
-
+console.log(cartItems)
   loadCartItems();
 
   const intervalId = setInterval(loadCartItems, 2000);
