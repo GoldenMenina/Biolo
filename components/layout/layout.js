@@ -120,50 +120,55 @@ export default function Layout({ children }) {
                           Carrinho <i className="flaticon-shopping-cart-1"></i>
                         </h3>
                         <div style={{marginTop: "10px"}}>
-                        {cartItems.map((item, index) => (
-                  <li key={item.id} style={{ color: "white", marginBottom: "10px" }}>
-                    <span style={{ marginRight: "5px" }}>
-                      {item.corte} ({item.categoria})
-                    </span>
-                    |
-                    <span style={{ marginRight: "3px" }}>
-                      {item.preco.toFixed(2)}
-                    </span>
-                    kz
-                    <strong> /{item.quantity}</strong>
-                    <button
-                      className="btn btn-sm btn-success"
-                      style={{ fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px" }}
-                      onClick={() => addToCart(item)}
-                    >
-                      <i className="fa fa-plus"></i>
-                    </button>
-                    <button
-                      className="btn btn-sm btn-warning"
-                      style={{ fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px" }}
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      <i className="fa fa-minus"></i>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <div style={{ marginTop: "10px" }}>
-                <span style={{ color: "#fff" }}>
-                  <strong>
-                    Total: <span style={{ color: "white" }}>{totalPrice.toFixed(2)} Kz</span>
-                  </strong>
-                </span>
-                <br />
-                -------------------------------------------
-              </div>
-              <div style={{ marginTop: "15px" }}>
-                <button
-                  onClick={handleFinalizar}
-                  className="btn btn-success"
-                >
-                  Finalizar
-                </button>
+                          {cartItems.map((item, index) => (
+                            <li key={item.id} style={{color: "white", marginBottom: "10px"}}>
+                              <span style={{marginRight: "5px"}}>
+                                {item.corte} ({item.categoria})
+                              </span>
+                              |
+                              <span style={{marginRight: "3px"}}>
+                                {item.preco.toFixed(2)} 
+                              </span>
+                              kz
+                              <strong> /{item.quantity}</strong>
+                              <button
+                                className="btn btn-sm btn-success"
+                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
+                                onClick={() => {
+                                  
+                              addToCart(item)    
+                                }}
+                              >
+                                <i className="fa fa-plus"></i>
+                              </button>
+                              <button
+                                className="btn btn-sm btn-warning"
+                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
+                                onClick={()=>{
+                                  removeFromCart(item.id)
+                                }}
+                              >
+                                <i className="fa fa-minus"></i>
+                              </button>
+                            </li>
+                          ))}
+                          <div style={{marginTop: "10px"}}>
+                            <span style={{color: "#fff"}}>
+                              <strong>
+                                Total: <span style={{color: "white"}}>{totalPrice.toFixed(2)} Kz</span>
+                              </strong>
+                            </span>
+                            <br />
+                            -------------------------------------------
+                          </div>
+                          <div style={{marginTop: "15px"}}>
+                            <button
+                            
+                              onClick={()=>{handleFinalizar()}}
+                              className="btn btn-success"
+                            >
+                              Finalizar
+                            </button>
                           </div>
                         </div>
                       </div>
