@@ -112,6 +112,10 @@ useEffect(() => {
   return () => clearInterval(intervalId);
 }, []);
 
+function test (id){
+  alert (id)
+}
+
   return (
     <div class="boxed_wrapper ltr">
       <AdditionalCommentsModal
@@ -148,7 +152,7 @@ useEffect(() => {
                         </h3>
                         <div style={{marginTop: "10px"}}>
                           {cartItems.map((item, index) => (
-                            <li key={index} style={{color: "white", marginBottom: "10px"}}>
+                            <li key={item.id} style={{color: "white", marginBottom: "10px"}}>
                               <span style={{marginRight: "5px"}}>
                                 {item.corte} ({item.categoria})
                               </span>
@@ -171,9 +175,7 @@ useEffect(() => {
                               <button
                                 className="btn btn-sm btn-warning"
                                 style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
-                                onClick={() =>{
-                                  removeFromCart(item.id)
-                                }}
+                                onClick={test(item.id)}
                               >
                                 <i className="fa fa-minus"></i>
                               </button>
