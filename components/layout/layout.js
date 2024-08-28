@@ -35,6 +35,7 @@ const addToCart = (product) => {
   localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 };
 function removeFromCart  (itemId) {
+  alert(8888)
   console.log(itemId)
   const updatedItems = cartItems
     .map(item => {
