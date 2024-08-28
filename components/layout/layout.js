@@ -31,6 +31,7 @@ export default function Layout({ children }) {
   };
 
   const removeFromCart = (itemId) => {
+    alert(8888)
     const updatedItems = cartItems
       .map(item => {
         if (item.id === itemId) {
