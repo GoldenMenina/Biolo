@@ -35,7 +35,7 @@ const addToCart = (product) => {
   localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 };
 const removeFromCart = (itemId) => {
-  console.log(cartItems)
+  console.log(itemId)
   const updatedItems = cartItems
     .map(item => {
       if (item.id === itemId) {
