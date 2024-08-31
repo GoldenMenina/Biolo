@@ -10,12 +10,17 @@ import { useRef, useState, useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
+const [activeTooltip, setActiveTooltip] = useState(null);
 
 const [lingau,setlingua] = useState("pt")
 function ChangeLangauge (){
     
   }
   
+  const handleClick = (id) => {
+    setActiveTooltip(activeTooltip === id ? null : id);
+  };
+
   
 
   const meatAreas = [
@@ -533,9 +538,9 @@ function ChangeLangauge (){
       
 
 <section>
-<div className="relative inline-block">
+    <div className="relative inline-block">
       <Image
-        src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
+        src="/cow-anatomy.jpg"
         alt="Cow Anatomy"
         width={500}
         height={500}
@@ -549,14 +554,49 @@ function ChangeLangauge (){
             coords={area.coords}
             alt={area.name}
             href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick(area.id);
+            }}
             data-tooltip-id={area.id}
             data-tooltip-content={`This is the ${area.name} cut`}
           />
         ))}
       </map>
       {meatAreas.map((area) => (
-        <Tooltip key={area.id} id={area.id} />
+        <React.Fragment key={area.id}>
+          <div
+            className="absolute border-2 border-transparent rounded-md pulsate"
+            style={{
+              left: area.coords.split(',')[0] + 'px',
+              top: area.coords.split(',')[1] + 'px',
+              width: parseInt(area.coords.split(',')[2]) - parseInt(area.coords.split(',')[0]) + 'px',
+              height: parseInt(area.coords.split(',')[3]) - parseInt(area.coords.split(',')[1]) + 'px',
+            }}
+          />
+          <Tooltip
+            id={area.id}
+            isOpen={activeTooltip === area.id}
+            clickable={true}
+          />
+        </React.Fragment>
       ))}
+      <style jsx>{`
+        .pulsate {
+          animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          }
+        }
+      `}</style>
     </div>
 </section>
 
@@ -564,5 +604,4 @@ function ChangeLangauge (){
      
   )
 }
-
 
