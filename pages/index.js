@@ -17,7 +17,7 @@ function ChangeLangauge (){
   }
   
   
-const CowAnatomyMap = () => {
+
   const meatAreas = [
     { id: 'chuck', coords: '150,100,200,150', name: 'Chuck' },
     { id: 'rib', coords: '220,120,270,170', name: 'Rib' },
@@ -26,7 +26,7 @@ const CowAnatomyMap = () => {
     { id: 'brisket', coords: '180,220,230,270', name: 'Brisket' },
     { id: 'plate', coords: '250,230,300,280', name: 'Plate' },
     { id: 'flank', coords: '320,240,370,290', name: 'Flank' },
-  ];}
+  ];
 
   return(
     <div>
