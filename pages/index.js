@@ -2,6 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import Image from 'next/image';
+import { Tooltip } from 'react-tooltip';
+
 import { useRef, useState, useEffect } from "react";
 
 
@@ -12,6 +15,18 @@ const [lingau,setlingua] = useState("pt")
 function ChangeLangauge (){
     
   }
+  
+  
+const CowAnatomyMap = () => {
+  const meatAreas = [
+    { id: 'chuck', coords: '150,100,200,150', name: 'Chuck' },
+    { id: 'rib', coords: '220,120,270,170', name: 'Rib' },
+    { id: 'loin', coords: '290,130,340,180', name: 'Loin' },
+    { id: 'round', coords: '360,140,410,190', name: 'Round' },
+    { id: 'brisket', coords: '180,220,230,270', name: 'Brisket' },
+    { id: 'plate', coords: '250,230,300,280', name: 'Plate' },
+    { id: 'flank', coords: '320,240,370,290', name: 'Flank' },
+  ];}
 
   return(
     <div>
@@ -518,10 +533,36 @@ function ChangeLangauge (){
       
 
 <section>
-  <img src="assets/images/cortes-de-carne-do-boi-infografico.jpg" alt="Cortes de Carne do Boi Infográfico" />
+<div className="relative inline-block">
+      <Image
+        src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
+        alt="Cow Anatomy"
+        width={500}
+        height={500}
+        useMap="#cow-map"
+      />
+      <map name="cow-map">
+        {meatAreas.map((area) => (
+          <area
+            key={area.id}
+            shape="rect"
+            coords={area.coords}
+            alt={area.name}
+            href="#"
+            data-tooltip-id={area.id}
+            data-tooltip-content={`This is the ${area.name} cut`}
+          />
+        ))}
+      </map>
+      {meatAreas.map((area) => (
+        <Tooltip key={area.id} id={area.id} />
+      ))}
+    </div>
 </section>
 
     </div>
      
   )
 }
+
+
