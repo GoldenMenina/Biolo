@@ -526,7 +526,7 @@ function ChangeLangauge (){
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg" />
+                        <img className="img-fluid" src="assets/images/parceiros/twenty.jpg" />
                       </div>
                     </div>
                     
@@ -540,7 +540,7 @@ function ChangeLangauge (){
 <section>
     <div className="relative inline-block">
       <Image
-        src="/cow-anatomy.jpg"
+        src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
         alt="Cow Anatomy"
         width={500}
         height={500}
@@ -564,7 +564,7 @@ function ChangeLangauge (){
         ))}
       </map>
       {meatAreas.map((area) => (
-        <React.Fr key={area.id}>
+        <div key={area.id}>
           <div
             className="absolute border-2 border-transparent rounded-md pulsate"
             style={{
@@ -579,7 +579,7 @@ function ChangeLangauge (){
             isOpen={activeTooltip === area.id}
             clickable={true}
           />
-        </>
+        </div>
       ))}
       <style jsx>{`
         .pulsate {
