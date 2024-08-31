@@ -565,7 +565,7 @@ function ChangeLangauge (){
             ))}
           </map>
           {meatAreas.map((area) => (
-            <React.Fragment key={area.id}>
+            <div key={area.id}>
               <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <polygon 
                   points={area.coords}
@@ -577,7 +577,7 @@ function ChangeLangauge (){
                 isOpen={activeTooltip === area.id}
                 place="top"
               />
-            </React.Fragment>
+            </div>
           ))}
           <style jsx>{`
             .pulsate {
