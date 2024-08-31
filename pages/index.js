@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from 'next/image';
 import { Tooltip } from 'react-tooltip';
 
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 
 export default function Home() {
@@ -539,63 +539,63 @@ function ChangeLangauge (){
       
 
 <section>
-      <div className="relative inline-block">
-          <Image
-            src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
-            alt="Cow Anatomy"
-            width={500}
-            height={500}
-            useMap="#cow-map"
-          />
-          <map name="cow-map">
-            {meatAreas.map((area) => (
-              <area
-                key={area.id}
-                shape="poly"
-                coords={area.coords}
-                alt={area.name}
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick(area.id);
-                }}
-                data-tooltip-id={area.id}
-                data-tooltip-content={`This is the ${area.name} cut`}
-              />
-            ))}
-          </map>
-          {meatAreas.map((area) => (
-            <div key={area.id}>
-              <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <polygon 
-                  points={area.coords}
-                  className="fill-transparent stroke-white stroke-2 pulsate"
+         <div className="relative inline-block">
+            <Image
+              src="/cow-anatomy.jpg"
+              alt="Cow Anatomy"
+              width={500}
+              height={500}
+              useMap="#cow-map"
+            />
+            <map name="cow-map">
+              {meatAreas.map((area) => (
+                <area
+                  key={area.id}
+                  shape="poly"
+                  coords={area.coords}
+                  alt={area.name}
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleClick(area.id);
+                  }}
+                  data-tooltip-id={area.id}
+                  data-tooltip-content={`This is the ${area.name} cut`}
                 />
-              </svg>
-              <Tooltip
-                id={area.id}
-                isOpen={activeTooltip === area.id}
-                place="top"
-              />
-            </div>
-          ))}
-          <style jsx>{`
-            .pulsate {
-              animation: pulse 2s infinite;
-            }
-            @keyframes pulse {
-              0% {
-                stroke-opacity: 0.2;
+              ))}
+            </map>
+            {meatAreas.map((area) => (
+              <React.Fragment key={area.id}>
+                <Tooltip
+                  id={area.id}
+                  isOpen={activeTooltip === area.id}
+                  place="top"
+                />
+                <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                  <polygon 
+                    points={area.coords}
+                    className={`fill-transparent stroke-white stroke-2 ${activeTooltip === area.id ? 'pulsate' : ''}`}
+                  />
+                </svg>
+              </React.Fragment>
+            ))}
+            <style jsx>{`
+              .pulsate {
+                animation: pulse 2s infinite;
               }
-              50% {
-                stroke-opacity: 0.5;
+              @keyframes pulse {
+                0% {
+                  stroke-opacity: 0.2;
+                }
+                50% {
+                  stroke-opacity: 0.5;
+                }
+                100% {
+                  stroke-opacity: 0.2;
+                }
               }
-              100% {
-                stroke-opacity: 0.2;
-              }
-            }
-          `}</style>
-        </div>
+            `}</style>
+          </div>
 </section>
 
     </div>
