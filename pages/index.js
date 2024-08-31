@@ -564,7 +564,7 @@ function ChangeLangauge (){
         ))}
       </map>
       {meatAreas.map((area) => (
-        <React.Fragment key={area.id}>
+        <div key={area.id}>
           <div
             className="absolute border-2 border-transparent rounded-md pulsate"
             style={{
@@ -579,7 +579,7 @@ function ChangeLangauge (){
             isOpen={activeTooltip === area.id}
             clickable={true}
           />
-        </React.Fragment>
+        </div>
       ))}
       <style jsx>{`
         .pulsate {
