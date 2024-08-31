@@ -23,14 +23,15 @@ function ChangeLangauge (){
 
   
 
+  
   const meatAreas = [
-    { id: 'chuck', coords: '150,100,200,150', name: 'Chuck' },
-    { id: 'rib', coords: '220,120,270,170', name: 'Rib' },
-    { id: 'loin', coords: '290,130,340,180', name: 'Loin' },
-    { id: 'round', coords: '360,140,410,190', name: 'Round' },
-    { id: 'brisket', coords: '180,220,230,270', name: 'Brisket' },
-    { id: 'plate', coords: '250,230,300,280', name: 'Plate' },
-    { id: 'flank', coords: '320,240,370,290', name: 'Flank' },
+    { id: 'chuck', coords: '180,120,220,110,260,130,240,170,200,170', name: 'Chuck' },
+    { id: 'rib', coords: '260,130,300,140,290,180,240,170', name: 'Rib' },
+    { id: 'loin', coords: '300,140,340,150,330,190,290,180', name: 'Loin' },
+    { id: 'round', coords: '340,150,390,170,370,220,330,190', name: 'Round' },
+    { id: 'brisket', coords: '200,170,240,170,230,220,190,210', name: 'Brisket' },
+    { id: 'plate', coords: '240,170,290,180,280,230,230,220', name: 'Plate' },
+    { id: 'flank', coords: '290,180,330,190,320,240,280,230', name: 'Flank' },
   ];
 
   return(
@@ -538,66 +539,63 @@ function ChangeLangauge (){
       
 
 <section>
-    <div className="relative inline-block">
-      <Image
-        src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
-        alt="Cow Anatomy"
-        width={500}
-        height={500}
-        useMap="#cow-map"
-      />
-      <map name="cow-map">
-        {meatAreas.map((area) => (
-          <area
-            key={area.id}
-            shape="rect"
-            coords={area.coords}
-            alt={area.name}
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick(area.id);
-            }}
-            data-tooltip-id={area.id}
-            data-tooltip-content={`This is the ${area.name} cut`}
+      <div className="relative inline-block">
+          <Image
+            src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
+            alt="Cow Anatomy"
+            width={500}
+            height={500}
+            useMap="#cow-map"
           />
-        ))}
-      </map>
-      {meatAreas.map((area) => (
-        <div key={area.id}>
-          <div
-            className="absolute border-2 border-transparent rounded-md pulsate"
-            style={{
-              left: area.coords.split(',')[0] + 'px',
-              top: area.coords.split(',')[1] + 'px',
-              width: parseInt(area.coords.split(',')[2]) - parseInt(area.coords.split(',')[0]) + 'px',
-              height: parseInt(area.coords.split(',')[3]) - parseInt(area.coords.split(',')[1]) + 'px',
-            }}
-          />
-          <Tooltip
-            id={area.id}
-            isOpen={activeTooltip === area.id}
-            clickable={true}
-          />
+          <map name="cow-map">
+            {meatAreas.map((area) => (
+              <area
+                key={area.id}
+                shape="poly"
+                coords={area.coords}
+                alt={area.name}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClick(area.id);
+                }}
+                data-tooltip-id={area.id}
+                data-tooltip-content={`This is the ${area.name} cut`}
+              />
+            ))}
+          </map>
+          {meatAreas.map((area) => (
+            <React.Fragment key={area.id}>
+              <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <polygon 
+                  points={area.coords}
+                  className="fill-transparent stroke-white stroke-2 pulsate"
+                />
+              </svg>
+              <Tooltip
+                id={area.id}
+                isOpen={activeTooltip === area.id}
+                place="top"
+              />
+            </React.Fragment>
+          ))}
+          <style jsx>{`
+            .pulsate {
+              animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+              0% {
+                stroke-opacity: 0.2;
+              }
+              50% {
+                stroke-opacity: 0.5;
+              }
+              100% {
+                stroke-opacity: 0.2;
+              }
+            }
+          `}</style>
         </div>
-      ))}
-      <style jsx>{`
-        .pulsate {
-          animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-          }
-          70% {
-            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-          }
-        }
-      `}</style>
-    </div>
 </section>
 
     </div>
