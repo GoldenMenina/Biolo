@@ -1,0 +1,55 @@
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.point {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  animation: pulse 1.5s infinite;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+  }
+  50% {
+    transform: scale(1.5);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+  }
+}
+
+.tooltip {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: none;
+  z-index: 10;
+  max-width: 150px;
+}
+
+.tooltip img {
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+  border-radius: 5px;
+}

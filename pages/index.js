@@ -4,11 +4,63 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Image from 'next/image';
 import { Tooltip } from 'react-tooltip';
-
+import Head from "next/head";
+import styles from "./style.module.css"; 
 import React, { useRef, useState, useEffect } from "react";
 
 
+
 export default function Home() {
+  
+  
+  const tooltipRef = useRef(null);
+
+  useEffect(() => {
+    const points = document.querySelectorAll(".point");
+    const tooltip = tooltipRef.current;
+
+    points.forEach((point) => {
+      point.addEventListener("click", (event) => {
+        const title = point.getAttribute("data-title");
+        const imageSrc = point.getAttribute("data-image");
+        const rect = point.getBoundingClientRect();
+        tooltip.style.top = `${rect.top - 50}px`;
+        tooltip.style.left = `${rect.left + 20}px`;
+        tooltip.innerHTML = `<strong>${title}</strong><br><img src="${imageSrc}" alt="${title}">`;
+        tooltip.style.display = "block";
+      });
+    });
+
+    // Hide tooltip when clicking anywhere else
+    document.addEventListener("click", (event) => {
+      if (!event.target.classList.contains("point")) {
+        tooltip.style.display = "none";
+      }
+    });
+
+    // Adjust points positions on resize
+    const adjustPointPositions = () => {
+      const imageContainer = document.getElementById("image-container");
+      const imageWidth = imageContainer.offsetWidth;
+      const baseWidth = 800; // Base image width in pixels
+
+      points.forEach((point) => {
+        const leftPercentage = parseFloat(point.style.left);
+        const newLeft = (leftPercentage / 100) * imageWidth;
+        point.style.left = `${newLeft}px`;
+      });
+    };
+
+    adjustPointPositions(); // Initial adjustment on page load
+
+    window.addEventListener("resize", adjustPointPositions);
+
+    return () => {
+      window.removeEventListener("resize", adjustPointPositions);
+    };
+  }, []);
+  
+  
   const router = useRouter();
 const [activeTooltip, setActiveTooltip] = useState(null);
 
@@ -537,67 +589,39 @@ function ChangeLangauge (){
             </div>
         </section>
       
-
 <section>
-         <div className="relative inline-block">
-            <Image
-              src="/cow-anatomy.jpg"
-              alt="Cow Anatomy"
-              width={500}
-              height={500}
-              useMap="#cow-map"
-            />
-            <map name="cow-map">
-              {meatAreas.map((area) => (
-                <area
-                  key={area.id}
-                  shape="poly"
-                  coords={area.coords}
-                  alt={area.name}
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleClick(area.id);
-                  }}
-                  data-tooltip-id={area.id}
-                  data-tooltip-content={`This is the ${area.name} cut`}
-                />
-              ))}
-            </map>
-            {meatAreas.map((area) => (
-              <React.Fragment key={area.id}>
-                <Tooltip
-                  id={area.id}
-                  isOpen={activeTooltip === area.id}
-                  place="top"
-                />
-                <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                  <polygon 
-                    points={area.coords}
-                    className={`fill-transparent stroke-white stroke-2 ${activeTooltip === area.id ? 'pulsate' : ''}`}
-                  />
-                </svg>
-              </React.Fragment>
-            ))}
-            <style jsx>{`
-              .pulsate {
-                animation: pulse 2s infinite;
-              }
-              @keyframes pulse {
-                0% {
-                  stroke-opacity: 0.2;
-                }
-                50% {
-                  stroke-opacity: 0.5;
-                }
-                100% {
-                  stroke-opacity: 0.2;
-                }
-              }
-            `}</style>
-          </div>
-</section>
+        <div className={styles.imageContainer} id="image-container">
+          <img src="/cow.png" alt="Beef Cuts" id="image" className={styles.image} />
 
+          <div
+            className={styles.point}
+            style={{ top: "14.33%", left: "36%" }}
+            data-title="CUPIM"
+            data-image="/cupim-thumbnail.jpg"
+          ></div>
+          <div
+            className={styles.point}
+            style={{ top: "23.53%", left: "32.5%" }}
+            data-title="ACEM"
+            data-image="/acem-thumbnail.jpg"
+          ></div>
+          <div
+            className={styles.point}
+            style={{ top: "46.33%", left: "28.5%" }}
+            data-title="PEITO"
+            data-image="/peito-thumbnail.jpg"
+          ></div>
+          <div
+            className={styles.point}
+            style={{ top: "19.13%", left: "58.88%" }}
+            data-title="COSTELA"
+            data-image="/costela-thumbnail.jpg"
+          ></div>
+          {/* Add more points as needed */}
+
+          <div id="tooltip" className={styles.tooltip} ref={tooltipRef}></div>
+        </div>
+      </section>
     </div>
      
   )
