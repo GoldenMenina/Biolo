@@ -590,7 +590,7 @@ function ChangeLangauge (){
       
 <section>
           <div className={styles.imageContainer} id="image-container">
-                  <img src="/cow.png" alt="Beef Cuts" id="image" className={styles.image} />
+                  <img src="assets/images/cow.png" alt="Beef Cuts" id="image" className={styles.image} />
         
                   <div className={styles.point} style={{ top: "14.33%", left: "36%" }} data-title="CUPIM" data-image="/cupim-thumbnail.jpg"></div>
                   <div className={styles.point} style={{ top: "23.53%", left: "32.5%" }} data-title="ACEM" data-image="/acem-thumbnail.jpg"></div>
