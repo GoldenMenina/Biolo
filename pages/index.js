@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -590,37 +589,25 @@ function ChangeLangauge (){
         </section>
       
 <section>
-        <div className={styles.imageContainer} id="image-container">
-          <img src="/cow.png" alt="Beef Cuts" id="image" className={styles.image} />
-
-          <div
-            className={styles.point}
-            style={{ top: "14.33%", left: "36%" }}
-            data-title="CUPIM"
-            data-image="/cupim-thumbnail.jpg"
-          ></div>
-          <div
-            className={styles.point}
-            style={{ top: "23.53%", left: "32.5%" }}
-            data-title="ACEM"
-            data-image="/acem-thumbnail.jpg"
-          ></div>
-          <div
-            className={styles.point}
-            style={{ top: "46.33%", left: "28.5%" }}
-            data-title="PEITO"
-            data-image="/peito-thumbnail.jpg"
-          ></div>
-          <div
-            className={styles.point}
-            style={{ top: "19.13%", left: "58.88%" }}
-            data-title="COSTELA"
-            data-image="/costela-thumbnail.jpg"
-          ></div>
-          {/* Add more points as needed */}
-
-          <div id="tooltip" className={styles.tooltip} ref={tooltipRef}></div>
-        </div>
+          <div className={styles.imageContainer} id="image-container">
+                  <img src="/cow.png" alt="Beef Cuts" id="image" className={styles.image} />
+        
+                  <div className={styles.point} style={{ top: "14.33%", left: "36%" }} data-title="CUPIM" data-image="/cupim-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "23.53%", left: "32.5%" }} data-title="ACEM" data-image="/acem-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "46.33%", left: "28.5%" }} data-title="PEITO" data-image="/peito-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "19.13%", left: "58.88%" }} data-title="COSTELA" data-image="/costela-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "51.33%", left: "74.88%" }} data-title="FRALDINHA" data-image="/fraldinha-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "32.33%", left: "63.75%" }} data-title="FILÉ MIGNON" data-image="/filemignon-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "19.73%", left: "87.25%" }} data-title="PICANHA" data-image="/picanha-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "32.53%", left: "83.38%" }} data-title="ALCATRA" data-image="/alcatra-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "52.13%", left: "80.63%" }} data-title="MAMINHA" data-image="/maminha-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "53.93%", left: "87%" }} data-title="COXÃO MOLE" data-image="/coxaomole-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "58.73%", left: "80%" }} data-title="PATINHO" data-image="/patinho-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "43.33%", left: "90.88%" }} data-title="COXÃO DURO" data-image="/coxaoduro-thumbnail.jpg"></div>
+                  <div className={styles.point} style={{ top: "29.93%", left: "99.63%" }} data-title="RABO" data-image="/rabo-thumbnail.jpg"></div>
+        
+                  <div id="tooltip" className={styles.tooltip} ref={tooltipRef}></div>
+                </div>
       </section>
     </div>
      
