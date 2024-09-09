@@ -1,90 +1,33 @@
+import BeefCutsMap from './BeefCutsMap'
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Image from 'next/image';
 import { Tooltip } from 'react-tooltip';
-import Head from "next/head";
-import styles from "./style.module.css"; 
-import React, { useRef, useState, useEffect } from "react";
 
+import { useRef, useState, useEffect } from "react";
 
 
 export default function Home() {
-  
-  
-  const tooltipRef = useRef(null);
-
-  useEffect(() => {
-    const points = document.querySelectorAll(".point");
-    const tooltip = tooltipRef.current;
-
-    points.forEach((point) => {
-      point.addEventListener("click", (event) => {
-        const title = point.getAttribute("data-title");
-        const imageSrc = point.getAttribute("data-image");
-        const rect = point.getBoundingClientRect();
-        tooltip.style.top = `${rect.top - 50}px`;
-        tooltip.style.left = `${rect.left + 20}px`;
-        tooltip.innerHTML = `<strong>${title}</strong><br><img src="${imageSrc}" alt="${title}">`;
-        tooltip.style.display = "block";
-      });
-    });
-
-    // Hide tooltip when clicking anywhere else
-    document.addEventListener("click", (event) => {
-      if (!event.target.classList.contains("point")) {
-        tooltip.style.display = "none";
-      }
-    });
-
-    // Adjust points positions on resize
-    const adjustPointPositions = () => {
-      const imageContainer = document.getElementById("image-container");
-      const imageWidth = imageContainer.offsetWidth;
-      const baseWidth = 800; // Base image width in pixels
-
-      points.forEach((point) => {
-        const leftPercentage = parseFloat(point.style.left);
-        const newLeft = (leftPercentage / 100) * imageWidth;
-        point.style.left = `${newLeft}px`;
-      });
-    };
-
-    adjustPointPositions(); // Initial adjustment on page load
-
-    window.addEventListener("resize", adjustPointPositions);
-
-    return () => {
-      window.removeEventListener("resize", adjustPointPositions);
-    };
-  }, []);
-  
-  
   const router = useRouter();
-const [activeTooltip, setActiveTooltip] = useState(null);
 
 const [lingau,setlingua] = useState("pt")
 function ChangeLangauge (){
     
   }
   
-  const handleClick = (id) => {
-    setActiveTooltip(activeTooltip === id ? null : id);
-  };
-
   
-
-  
+const CowAnatomyMap = () => {
   const meatAreas = [
-    { id: 'chuck', coords: '180,120,220,110,260,130,240,170,200,170', name: 'Chuck' },
-    { id: 'rib', coords: '260,130,300,140,290,180,240,170', name: 'Rib' },
-    { id: 'loin', coords: '300,140,340,150,330,190,290,180', name: 'Loin' },
-    { id: 'round', coords: '340,150,390,170,370,220,330,190', name: 'Round' },
-    { id: 'brisket', coords: '200,170,240,170,230,220,190,210', name: 'Brisket' },
-    { id: 'plate', coords: '240,170,290,180,280,230,230,220', name: 'Plate' },
-    { id: 'flank', coords: '290,180,330,190,320,240,280,230', name: 'Flank' },
-  ];
+    { id: 'chuck', coords: '150,100,200,150', name: 'Chuck' },
+    { id: 'rib', coords: '220,120,270,170', name: 'Rib' },
+    { id: 'loin', coords: '290,130,340,180', name: 'Loin' },
+    { id: 'round', coords: '360,140,410,190', name: 'Round' },
+    { id: 'brisket', coords: '180,220,230,270', name: 'Brisket' },
+    { id: 'plate', coords: '250,230,300,280', name: 'Plate' },
+    { id: 'flank', coords: '320,240,370,290', name: 'Flank' },
+  ];}
 
   return(
     <div>
@@ -590,36 +533,13 @@ function ChangeLangauge (){
         </section>
       
 
-<section>
-<div className="relative inline-block">
-      <Image
-        src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
-        alt="Cow Anatomy"
-        width={500}
-        height={500}
-        useMap="#cow-map"
-      />
-      <map name="cow-map">
-        {meatAreas.map((area) => (
-          <area
-            key={area.id}
-            shape="rect"
-            coords={area.coords}
-            alt={area.name}
-            href="#"
-            data-tooltip-id={area.id}
-            data-tooltip-content={`This is the ${area.name} cut`}
-          />
-        ))}
-      </map>
-      {meatAreas.map((area) => (
-        <Tooltip key={area.id} id={area.id} />
-      ))}
-    </div>
+<section style={{marginTop:"-100px"}}>
+<BeefCutsMap />
 </section>
 
     </div>
      
   )
 }
+
 
