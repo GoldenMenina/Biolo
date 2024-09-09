@@ -2,19 +2,19 @@ import Image from 'next/image'
 import styles from './BeefCutsMap.module.css'
 
 const beefCuts = [
-  { top: '14.33%', left: '36%', title: 'CUPIM', image: 'ttps://www.casadecarnespine.com.br/wp-content/uploads/2023/01/cupim.png' },
-  { top: '23.53%', left: '32.5%', title: 'ACEM', image: 'acem-thumbnail.jpg' },
-  { top: '46.33%', left: '28.5%', title: 'PEITO', image: 'peito-thumbnail.jpg' },
-  { top: '19.13%', left: '58.88%', title: 'COSTELA', image: 'costela-thumbnail.jpg' },
-  { top: '51.33%', left: '74.88%', title: 'FRALDINHA', image: 'fraldinha-thumbnail.jpg' },
-  { top: '32.33%', left: '63.75%', title: 'FILÉ MIGNON', image: 'filemignon-thumbnail.jpg' },
-  { top: '19.73%', left: '87.25%', title: 'PICANHA', image: 'picanha-thumbnail.jpg' },
-  { top: '32.53%', left: '83.38%', title: 'ALCATRA', image: 'alcatra-thumbnail.jpg' },
-  { top: '52.13%', left: '80.63%', title: 'MAMINHA', image: 'maminha-thumbnail.jpg' },
-  { top: '53.93%', left: '87%', title: 'COXÃO MOLE', image: 'coxaomole-thumbnail.jpg' },
-  { top: '58.73%', left: '80%', title: 'PATINHO', image: 'patinho-thumbnail.jpg' },
-  { top: '43.33%', left: '90.88%', title: 'COXÃO DURO', image: 'coxaoduro-thumbnail.jpg' },
-  { top: '29.93%', left: '99.63%', title: 'RABO', image: 'rabo-thumbnail.jpg' },
+  { top: '14.33%', left: '36%', title: 'CUPIM', image: './assets/images/produtos/foods/cupim.jpg' },
+  { top: '23.53%', left: '32.5%', title: 'ACEM', image: './assets/images/produtos/foods/acem.png' },
+  { top: '46.33%', left: '28.5%', title: 'PEITO', image: './assets/images/produtos/foods/peito.png' },
+  { top: '19.13%', left: '58.88%', title: 'COSTELA', image: './assets/images/produtos/foods/costela.webp' },
+  { top: '51.33%', left: '74.88%', title: 'FRALDINHA', image: './assets/images/produtos/foods/fraldinha.jpg' },
+  { top: '32.33%', left: '63.75%', title: 'FILÉ MIGNON', image: './assets/images/produtos/foods/file.webp' },
+  { top: '19.73%', left: '87.25%', title: 'PICANHA', image: './assets/images/produtos/foods/peito.png' },
+  { top: '32.53%', left: '83.38%', title: 'ALCATRA', image: './assets/images/produtos/foods/picanha.webp' },
+  { top: '52.13%', left: '80.63%', title: 'MAMINHA', image: './assets/images/produtos/foods/maminha.webp' },
+  { top: '53.93%', left: '87%', title: 'COXÃO MOLE', image: './assets/images/produtos/foods/coxao.webp' },
+  { top: '58.73%', left: '80%', title: 'PATINHO', image: './assets/images/produtos/foods/patinho.jpeg' },
+  { top: '43.33%', left: '90.88%', title: 'COXÃO DURO', image: './assets/images/produtos/foods/duro.webp' },
+  { top: '29.93%', left: '99.63%', title: 'RABO', image: './assets/images/produtos/foods/rabo.jpg' },
 ]
 
 export default function BeefCutsMap() {

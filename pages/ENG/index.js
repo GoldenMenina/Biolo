@@ -1,4 +1,6 @@
 import Link from "next/link";
+import BeefCutsMap from '../BeefCutsMap'
+
 export default function Home() {
  
   return (
@@ -410,8 +412,8 @@ export default function Home() {
   </div>
 </section>
 
-<section>
-  <img src="assets/images/cortes-de-carne-do-boi-infografico.jpg" alt="Cortes de Carne do Boi Infográfico" />
+<section style={{marginTop:"-100px"}}>
+<BeefCutsMap />
 </section>
 
 </div>
