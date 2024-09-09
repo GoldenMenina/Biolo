@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './BeefCutsMap.module.css'
 
 const beefCuts = [
-  { top: '14.33%', left: '36%', title: 'CUPIM', image: 'https://www.casadecarnespine.com.br/wp-content/uploads/2023/01/cupim.png' },
+  { top: '14.33%', left: '36%', title: 'CUPIM', image: 'ttps://www.casadecarnespine.com.br/wp-content/uploads/2023/01/cupim.png' },
   { top: '23.53%', left: '32.5%', title: 'ACEM', image: 'acem-thumbnail.jpg' },
   { top: '46.33%', left: '28.5%', title: 'PEITO', image: 'peito-thumbnail.jpg' },
   { top: '19.13%', left: '58.88%', title: 'COSTELA', image: 'costela-thumbnail.jpg' },
