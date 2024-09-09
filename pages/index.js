@@ -1,3 +1,4 @@
+import BeefCutsMap from './BeefCutsMap'
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -532,32 +533,8 @@ const CowAnatomyMap = () => {
         </section>
       
 
-<section>
-<div className="relative inline-block">
-      <Image
-        src="assets/images/5c2ccea3-e225-49cf-beaa-b31cbec19b35.jpeg"
-        alt="Cow Anatomy"
-        width={500}
-        height={500}
-        useMap="#cow-map"
-      />
-      <map name="cow-map">
-        {meatAreas.map((area) => (
-          <area
-            key={area.id}
-            shape="rect"
-            coords={area.coords}
-            alt={area.name}
-            href="#"
-            data-tooltip-id={area.id}
-            data-tooltip-content={`This is the ${area.name} cut`}
-          />
-        ))}
-      </map>
-      {meatAreas.map((area) => (
-        <Tooltip key={area.id} id={area.id} />
-      ))}
-    </div>
+<section style={{marginTop:"-100px"}}>
+<BeefCutsMap />
 </section>
 
     </div>

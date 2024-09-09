@@ -1,99 +1,34 @@
 {
   "polyfillFiles": [
-    "static/chunks/polyfills-5cd94c89d3acac5f.js"
+    "static/chunks/polyfills.js"
   ],
-  "devFiles": [],
-  "ampDevFiles": [],
+  "devFiles": [
+    "static/chunks/react-refresh.js"
+  ],
+  "ampDevFiles": [
+    "static/chunks/webpack.js",
+    "static/chunks/amp.js"
+  ],
   "lowPriorityFiles": [
-    "static/Vl6LozWAgkLgAFwduWf1Z/_buildManifest.js",
-    "static/Vl6LozWAgkLgAFwduWf1Z/_ssgManifest.js",
-    "static/Vl6LozWAgkLgAFwduWf1Z/_middlewareManifest.js"
+    "static/development/_buildManifest.js",
+    "static/development/_ssgManifest.js",
+    "static/development/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/917-0fc9817c95c87e9c.js",
-      "static/chunks/pages/index-0d8ca03c043f9417.js"
-    ],
-    "/ENG": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/ENG-650f9ce55bc511db.js"
-    ],
-    "/ENG/contactus": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/ENG/contactus-4fd9d5b4737d6bcb.js"
-    ],
-    "/ENG/ourcompany": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/ENG/ourcompany-16b00711b96cc4da.js"
-    ],
-    "/ENG/ourproducts": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/638-4b84636b84dd8a50.js",
-      "static/chunks/346-481bf822afa80796.js",
-      "static/chunks/pages/ENG/ourproducts-5b19fd6aee443e50.js"
-    ],
-    "/ENG/services": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/ENG/services-88102f138ac992cb.js"
-    ],
-    "/PT/aempresa": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/PT/aempresa-860a27f04572c1bc.js"
-    ],
-    "/PT/contacte-nos": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/PT/contacte-nos-6e537539f11fbae6.js"
-    ],
-    "/PT/osnossosprodutos": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/638-4b84636b84dd8a50.js",
-      "static/chunks/346-481bf822afa80796.js",
-      "static/chunks/pages/PT/osnossosprodutos-6a74b90426e35a0c.js"
-    ],
-    "/PT/osnossosservicos": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/PT/osnossosservicos-13a93c85e69c742d.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
     ],
     "/_app": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/css/55b6f653fe9b0a1e.css",
-      "static/chunks/pages/_app-d78a417625034555.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/_app.js"
     ],
     "/_error": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/pages/_error-350d9d86556f6d87.js"
-    ],
-    "/admin/dashboard": [
-      "static/chunks/webpack-a7d2d110ecb5d020.js",
-      "static/chunks/framework-5f4595e5518b5600.js",
-      "static/chunks/main-bef50b518b880ebb.js",
-      "static/chunks/638-4b84636b84dd8a50.js",
-      "static/chunks/pages/admin/dashboard-d49a537864e0fd52.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/_error.js"
     ]
   },
   "ampFirstPages": []
