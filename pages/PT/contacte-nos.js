@@ -21,7 +21,7 @@ export default function Contacto() {
     const result = await response.json();
 
     if (result.success) {
-      alert('Email sent successfully!');
+      alert('Email enviado com sucesso!');
     } else {
       alert('Error sending email: ' + result.message);
     }
