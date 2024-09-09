@@ -2,9 +2,7 @@ import BeefCutsMap from './BeefCutsMap'
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import Image from 'next/image';
-import { Tooltip } from 'react-tooltip';
+
 
 import { useRef, useState, useEffect } from "react";
 
@@ -12,22 +10,9 @@ import { useRef, useState, useEffect } from "react";
 export default function Home() {
   const router = useRouter();
 
-const [lingau,setlingua] = useState("pt")
-function ChangeLangauge (){
-    
-  }
   
+
   
-const CowAnatomyMap = () => {
-  const meatAreas = [
-    { id: 'chuck', coords: '150,100,200,150', name: 'Chuck' },
-    { id: 'rib', coords: '220,120,270,170', name: 'Rib' },
-    { id: 'loin', coords: '290,130,340,180', name: 'Loin' },
-    { id: 'round', coords: '360,140,410,190', name: 'Round' },
-    { id: 'brisket', coords: '180,220,230,270', name: 'Brisket' },
-    { id: 'plate', coords: '250,230,300,280', name: 'Plate' },
-    { id: 'flank', coords: '320,240,370,290', name: 'Flank' },
-  ];}
 
   return(
     <div>
@@ -541,5 +526,3 @@ const CowAnatomyMap = () => {
      
   )
 }
-
-
