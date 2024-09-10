@@ -20,10 +20,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
-    "/PT/contacte-nos": [
+    "/PT/aempresa": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/PT/contacte-nos.js"
+      "static/chunks/pages/PT/aempresa.js"
+    ],
+    "/PT/osnossosservicos": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/PT/osnossosservicos.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

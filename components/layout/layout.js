@@ -201,12 +201,12 @@ export default function Layout({ children }) {
                 </div>
                 <ul class="social-links clearfix">
                   <li>
-                    <a href="#index-2.html"
+                    <a target="_blank" href="https://web.facebook.com/profile.php?id=100063959979427"
                       ><i class="fab fa-facebook-f"></i
                     ></a>
                   </li>
                   <li>
-                    <a href="#index-2.html"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/giannucarnes/"><i class="fab fa-instagram"></i></a>
                   </li>
                 </ul>
               </div>
@@ -618,8 +618,6 @@ export default function Layout({ children }) {
                         Fique atualizado sobre tudo que é novo e importante!
                       </p>
                       <form
-                        action="contact.html"
-                        method="post"
                         class="newsletter-form"
                       >
                         <div class="form-group">
@@ -629,7 +627,9 @@ export default function Layout({ children }) {
                             placeholder="Email"
                             required=""
                           />
-                          <button type="submit">
+                          <button onClick={()=>{
+                            openModal()
+                          }}>
                             <i class="flaticon-paper-plane-1"></i>
                           </button>
                         </div>
