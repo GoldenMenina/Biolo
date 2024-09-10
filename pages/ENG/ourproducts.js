@@ -119,7 +119,7 @@ const addToCart = (product) => {
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
     />
-    <button type="submit"><i className="fas fa-search"></i></button>
+   <i className="fas fa-search"></i>
   </div>
 </div>
               </div>
@@ -147,13 +147,10 @@ const addToCart = (product) => {
                             <NumberFormat
                       value={item.preco}
                       displayType={"text"}
-                      thousandSeparator={true}
                       className="price"
                       thousandSeparator=" "
-                      decimalSeparator=","
                       allowNegative={false}
                       suffix={" kz"}
-                      
                       decimalScale={2}
                       fixedDecimalScale={true}
                     /></span>

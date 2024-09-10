@@ -537,21 +537,15 @@ export default function Layout({ children }) {
           </div>
           <div class="social-links">
             <ul class="clearfix">
+           
               <li>
-                <a href="#index.html"><span class="fab fa-twitter"></span></a>
-              </li>
-              <li>
-                <a href="#index.html"
+                <a href="https://web.facebook.com/profile.php?id=10006395997942"
                   ><span class="fab fa-facebook-square"></span
                 ></a>
               </li>
+         
               <li>
-                <a href="#index.html"
-                  ><span class="fab fa-pinterest-p"></span
-                ></a>
-              </li>
-              <li>
-                <a href="#index.html"><span class="fab fa-instagram"></span></a>
+                <a href="https://www.instagram.com/giannucarnes/"><span class="fab fa-instagram"></span></a>
               </li>
               <li>
                 <a href="#index.html"><span class="fab fa-youtube"></span></a>
@@ -609,12 +603,12 @@ export default function Layout({ children }) {
                     </ul>
                     <ul class="social-links clearfix">
                       <li>
-                        <a href="#index.html"
+                        <a href="https://web.facebook.com/profile.php?id=10006395997942"
                           ><i class="fab fa-facebook-f"></i
                         ></a>
                       </li>
                       <li>
-                        <a href="#index.html"
+                        <a href="https://www.instagram.com/giannucarnes/"
                           ><i class="fab fa-instagram"></i
                         ></a>
                       </li>
