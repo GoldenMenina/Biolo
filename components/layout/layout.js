@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import AdditionalCommentsModal from '../AdditionalCommentsModal';
 
 import Modal from '../Modal';
+import NumberFormat from "react-number-format";
+
 export default function Layout({ children }) {
   const router = useRouter();
   const [usuario, setUsuario] = useState(null);
@@ -71,10 +73,10 @@ export default function Layout({ children }) {
 
   const sendWhatsAppMessage = () => {
     const message = cartItems.map(item => (
-      `${item.corte} (${item.categoria}) - ${item.quantity} x ${item.preco.toFixed(2)} Kz`
+      `${item.corte} (${item.categoria}) - ${item.quantity} Kz`
     )).join('\n');
 
-    const totalPriceMessage = `Total: ${totalPrice.toFixed(2)} Kz`;
+    const totalPriceMessage = `Total: ${totalPrice} Kz`;
     const commentsMessage = additionalComments ? `\n\nAdditional Comments: ${additionalComments}` : '';
     const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}${commentsMessage}`);
     const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
@@ -125,9 +127,16 @@ export default function Layout({ children }) {
                               </span>
                               |
                               <span style={{marginRight: "3px"}}>
-                                {item.preco.toFixed(2)} 
+                                <NumberFormat
+                      value={item.preco}
+                      displayType={"text"}
+                      thousandSeparator=" "
+                      allowNegative={false}
+                      suffix={" kz"}
+                      
+                      fixedDecimalScale={true}
+                    />
                               </span>
-                              kz
                               <strong> /{item.quantity}</strong>
                               <button
                                 className="btn btn-sm btn-success"
@@ -153,7 +162,15 @@ export default function Layout({ children }) {
                           <div style={{marginTop: "10px"}}>
                             <span style={{color: "#fff"}}>
                               <strong>
-                                Total: <span style={{color: "white"}}>{totalPrice.toFixed(2)} Kz</span>
+                                Total: <span style={{color: "white"}}>         <NumberFormat
+                      value={totalPrice}
+                      displayType={"text"}
+                      thousandSeparator=" "
+                      allowNegative={false}
+                      suffix={" kz"}
+                      
+                      fixedDecimalScale={true}
+                    /></span>
                               </strong>
                             </span>
                             <br />

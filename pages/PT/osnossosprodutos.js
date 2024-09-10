@@ -147,14 +147,12 @@ const addToCart = (product) => {
                             <NumberFormat
                       value={item.preco}
                       displayType={"text"}
-                      thousandSeparator={true}
                       className="price"
                       thousandSeparator=" "
                       decimalSeparator=","
                       allowNegative={false}
                       suffix={" kz"}
                       
-                      decimalScale={2}
                       fixedDecimalScale={true}
                     /></span>
                             
