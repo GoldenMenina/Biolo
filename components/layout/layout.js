@@ -116,12 +116,12 @@ export default function Layout({ children }) {
                         </a>
                       </div>
                       <div className="content-box">
-                        <h3 style={{color: "white", marginBottom: "20px"}}>
+                        <h3 style={{color:'black', marginBottom: "20px"}}>
                           Carrinho <i className="flaticon-shopping-cart-1"></i>
                         </h3>
                         <div style={{marginTop: "10px"}}>
                           {cartItems.map((item, index) => (
-                            <li key={item.id} style={{color: "white", marginBottom: "10px"}}>
+                            <li key={item.id} style={{ marginBottom: "10px"}}>
                               <span style={{marginRight: "5px"}}>
                                 {item.corte} ({item.categoria})
                               </span>
@@ -139,8 +139,8 @@ export default function Layout({ children }) {
                               </span>
                               <strong> /{item.quantity}</strong>
                               <button
-                                className="btn btn-sm btn-success"
-                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
+                                className="btn btn-sm btn-light"
+                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px",backgroundColor:"#f0f0f0"}}
                                 onClick={() => {
                                   
                               addToCart(item)    
@@ -149,8 +149,8 @@ export default function Layout({ children }) {
                                 <i className="fa fa-plus"></i>
                               </button>
                               <button
-                                className="btn btn-sm btn-warning"
-                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px"}}
+                                className="btn btn-sm btn-light"
+                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px",backgroundColor:"#f0f0f0"}}
                                 onClick={()=>{
                                   removeFromCart(item.id)
                                 }}
@@ -173,8 +173,7 @@ export default function Layout({ children }) {
                     /></span>
                               </strong>
                             </span>
-                            <br />
-                            -------------------------------------------
+                   <hr/>
                           </div>
                           <div style={{marginTop: "15px"}}>
                             <button
