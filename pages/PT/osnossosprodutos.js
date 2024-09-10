@@ -119,7 +119,7 @@ const addToCart = (product) => {
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
     />
-    <button type="submit"><i className="fas fa-search"></i></button>
+  <i className="fas fa-search"></i>
   </div>
 </div>
               </div>
