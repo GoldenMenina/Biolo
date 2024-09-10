@@ -214,7 +214,7 @@ export default function Layout({ children }) {
                 </div>
                 <ul class="social-links clearfix">
                   <li>
-                    <a target="_blank" href="https://web.facebook.com/profile.php?id=100063959979427"
+                    <a target="_blank" href="https://www.facebook.com/p/Giannu-Carnes-100063959979427/7"
                       ><i class="fab fa-facebook-f"></i
                     ></a>
                   </li>
@@ -539,7 +539,7 @@ export default function Layout({ children }) {
             <ul class="clearfix">
            
               <li>
-                <a href="https://web.facebook.com/profile.php?id=10006395997942"
+                <a href="https://www.facebook.com/p/Giannu-Carnes-100063959979427/"
                   ><span class="fab fa-facebook-square"></span
                 ></a>
               </li>
@@ -603,7 +603,7 @@ export default function Layout({ children }) {
                     </ul>
                     <ul class="social-links clearfix">
                       <li>
-                        <a href="https://web.facebook.com/profile.php?id=10006395997942"
+                        <a href="https://www.facebook.com/p/Giannu-Carnes-100063959979427/"
                           ><i class="fab fa-facebook-f"></i
                         ></a>
                       </li>
