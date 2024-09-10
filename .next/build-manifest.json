@@ -25,11 +25,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/PT/aempresa.js"
     ],
-    "/PT/osnossosservicos": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/PT/osnossosservicos.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

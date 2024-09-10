@@ -32,7 +32,7 @@ export default function Home() {
                   planeta que todos compartilhamos.
                 </p>
                 <div className="btn-box">
-                  <a href="#index.html" className="theme-btn"
+                  <a href="/PT/aempresa" className="theme-btn"
                     >Saiba Mais<i className="fas fa-long-arrow-alt-right"></i
                   ></a>
                 </div>
@@ -52,7 +52,7 @@ export default function Home() {
                   planeta que todos compartilhamos.
                 </p>
                 <div className="btn-box">
-                  <a href="#index.html" className="theme-btn"
+                <a href="/PT/aempresa" className="theme-btn"
                     >Saiba Mais<i className="fas fa-long-arrow-alt-right"></i
                   ></a>
                 </div>
@@ -72,7 +72,7 @@ export default function Home() {
                   planeta que todos compartilhamos.
                 </p>
                 <div className="btn-box">
-                  <a href="#index.html" className="theme-btn"
+                  <a href="/PT/aempresa" className="theme-btn"
                     >Saiba Mais<i className="fas fa-long-arrow-alt-right"></i
                   ></a>
                 </div>
