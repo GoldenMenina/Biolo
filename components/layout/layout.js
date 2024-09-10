@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import AdditionalCommentsModal from '../AdditionalCommentsModal';
 
+import Modal from '../Modal';
 export default function Layout({ children }) {
   const router = useRouter();
   const [usuario, setUsuario] = useState(null);
@@ -11,8 +12,10 @@ export default function Layout({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const openModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true)
   };
 
   const addToCart = (product) => {
@@ -88,13 +91,7 @@ export default function Layout({ children }) {
 
   return (
     <div class="boxed_wrapper ltr">
-      <AdditionalCommentsModal
-  isOpen={isModalOpen}
-  onClose={() => setIsModalOpen(false)}
-  comments={additionalComments}
-  setComments={setAdditionalComments}
-  onSend={sendWhatsAppMessage}
-/>
+  
       <div class="preloader"></div>
 
       <div class="xs-sidebar-group info-group info-sidebar">
@@ -610,14 +607,19 @@ export default function Layout({ children }) {
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                   <div class="footer-widget newsletter-widget">
+
                     <div class="widget-title">
                       <h6>Newsletter</h6>
                     </div>
+
+                    <div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
+    </div>
                     <div class="widget-content">
                       <p>
                         Fique atualizado sobre tudo que é novo e importante!
                       </p>
-                      <form
+                      <form onSubmit={openModal}
                         class="newsletter-form"
                       >
                         <div class="form-group">
@@ -627,8 +629,8 @@ export default function Layout({ children }) {
                             placeholder="Email"
                             required=""
                           />
-                          <button onClick={()=>{
-                            openModal()
+                          <button type="submit" onClick={()=>{
+                          
                           }}>
                             <i class="flaticon-paper-plane-1"></i>
                           </button>
@@ -662,6 +664,7 @@ export default function Layout({ children }) {
           </div>
         </div>
       </footer>
+ 
     
       <button class="scroll-top scroll-to-target" data-target="html">
         <span class="fa fa-arrow-up"></span>
