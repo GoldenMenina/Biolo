@@ -67,7 +67,7 @@ export default function Servicos() {
                   </p>
 
                   <div className="more-btn centred" style={{marginTop: '20px'}}>
-                    <a href="#shop-1.html" className="theme-btn">Saber Mais</a>
+                    <a href="#shop-1.html" className="theme-btn" style={{fontWeight:'normal'}}>Saber Mais</a>
                   </div>
                 </div>
               </div>
@@ -89,7 +89,7 @@ export default function Servicos() {
                     refeitórios, restaurantes, e talhos.
                     </p>
                   <div className="more-btn centred" style={{marginTop: '20px'}}>
-                    <a href="#shop-1.html" className="theme-btn">Saber Mais</a>
+                    <a href="#shop-1.html" className="theme-btn"style={{fontWeight:'normal'}} >Saber Mais</a>
                   </div>
                 </div>
               </div>

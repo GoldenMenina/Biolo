@@ -20,11 +20,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/PT/aempresa.js"
     ],
-    "/PT/osnossosprodutos": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/PT/osnossosprodutos.js"
-    ],
     "/PT/osnossosservicos": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
