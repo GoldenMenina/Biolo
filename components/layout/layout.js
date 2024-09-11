@@ -21,11 +21,25 @@ export default function Layout({ children }) {
   };
 
   const addToCart = (product) => {
+    console.log("add cart")
+   
+
+    try {
+      console.log('Adding to cart:', product);
+      console.log("add cart")
+      // ...
+    } catch (error) {
+      console.error('Error in addToCart:', error);
+    }
+
+    return false
     const updatedCart = cartItems.map(item =>
       item.id === product.id
         ? { ...item, quantity: item.quantity + 1 }
         : item
     );
+
+    console.log(updatedCart)
 
     if (!updatedCart.some(item => item.id === product.id)) {
       updatedCart.push({ ...product, quantity: 1 });
@@ -59,17 +73,38 @@ export default function Layout({ children }) {
     router.push(newLang === 'en' ? '/ENG' : '/');
   };
 
+  const loadCartItems = () => {
+ 
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  
+
+    if(savedCartItems.length === cartItems.length){
+      
+      return false
+    }
+    setCartItems(savedCartItems);
+  };
   useEffect(() => {
     const storedLang = localStorage.getItem('lang') || 'pt';
     setLang(storedLang);
 
-    const loadCartItems = () => {
-      const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-      setCartItems(savedCartItems);
-    };
+
 
     loadCartItems();
   }, [router.asPath]);
+
+
+
+  useEffect(() => {
+    // Initial load
+    loadCartItems();
+
+    // Set up an interval to load cart items every second
+    const intervalId = setInterval(loadCartItems, 900);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);  
 
   const sendWhatsAppMessage = () => {
     const message = cartItems.map(item => (
@@ -121,11 +156,12 @@ export default function Layout({ children }) {
                         </h3>
                         <div style={{marginTop: "10px"}}>
                           {cartItems.map((item, index) => (
-                            <li key={item.id} style={{ marginBottom: "10px"}}>
+                            <>
+                            <li key={item.id}  style={{ marginBottom: "10px", position: "relative" }}>
                               <span style={{marginRight: "5px"}}>
                                 {item.corte} ({item.categoria})
                               </span>
-                              |
+                              <br />
                               <span style={{marginRight: "3px"}}>
                                 <NumberFormat
                       value={item.preco}
@@ -138,26 +174,46 @@ export default function Layout({ children }) {
                     />
                               </span>
                               <strong> /{item.quantity}</strong>
+                              <br/>
                               <button
-                                className="btn btn-sm btn-light"
-                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px",backgroundColor:"#f0f0f0"}}
-                                onClick={() => {
-                                  
-                              addToCart(item)    
-                                }}
-                              >
-                                <i className="fa fa-plus"></i>
-                              </button>
-                              <button
-                                className="btn btn-sm btn-light"
-                                style={{fontSize: "0.675rem", lineHeight: 1.3, marginLeft: "5px",backgroundColor:"#f0f0f0"}}
-                                onClick={()=>{
-                                  removeFromCart(item.id)
-                                }}
-                              >
-                                <i className="fa fa-minus"></i>
-                              </button>
+      className="btn btn-sm btn-light debug-button"
+      style={{
+        fontSize: "0.675rem",
+        lineHeight: 1.3,
+        marginLeft: "5px",
+        backgroundColor: "#f0f0f0",
+        position: "relative",
+        zIndex: 10
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        console.log('Add button clicked', item);
+        addToCart(item);
+      }}
+    >
+      <i className="fa fa-plus"></i>
+    </button>
+    <button
+      className="btn btn-sm btn-light debug-button"
+      style={{
+        fontSize: "0.675rem",
+        lineHeight: 1.3,
+        marginLeft: "5px",
+        backgroundColor: "#f0f0f0",
+        position: "relative",
+        zIndex: 10
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        console.log('Remove button clicked', item.id);
+        removeFromCart(item.id);
+      }}
+    >
+      <i className="fa fa-minus"></i>
+    </button>
                             </li>
+                            <hr/>
+                            </>
                           ))}
                           <div style={{marginTop: "10px"}}>
                             <span style={{color: "#fff"}}>

@@ -19,10 +19,11 @@ export default function Produtos() {
   useEffect(() => {
     carregarProdutos();
   }, []);
+
   useEffect(() => {
   const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   setCartItems(savedCartItems);
-}, []);
+}, [cartItems]);
 
   async function carregarProdutos() {
     const { data, error } = await supabase.from('produtos').select('*');
