@@ -212,6 +212,24 @@ export default function Layout({ children }) {
     >
       <i className="fa fa-minus"></i>
     </button>
+    <button
+      className="btn btn-sm btn-light debug-button pull-right"
+      style={{
+        fontSize: "0.675rem",
+        lineHeight: 1.3,
+        marginLeft: "5px",
+        backgroundColor: "#f0f0f0",
+        position: "relative",
+        zIndex: 10
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        console.log('Remove button clicked', item.id);
+        removeFromCart(item.id);
+      }}
+    >
+      <i className="fa fa-times"></i>
+    </button>
                             </li>
                             <hr/>
                             </>
