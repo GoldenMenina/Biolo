@@ -144,7 +144,7 @@ export default function Layout({ children }) {
                       <div className="logo text-center">
                         <a href="index.html">
                           <img
-                            src="assets/images/giannulogo.png"
+                            src="/assets/images/giannulogo.png"
                             style={{height: "160px", width: "auto"}}
                             alt=""
                           />
@@ -173,7 +173,8 @@ export default function Layout({ children }) {
                       fixedDecimalScale={true}
                     />
                               </span>
-                              <strong> /{item.quantity}</strong>
+
+                              <strong> X {item.quantity}</strong>
                               <br/>
                               <button
       className="btn btn-sm btn-light debug-button"
