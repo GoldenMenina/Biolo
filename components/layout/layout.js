@@ -64,7 +64,7 @@ export default function Layout({ children }) {
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
   };
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
+  var totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
   const languageChange = () => {
     const newLang = lang === 'en' ? 'pt' : 'en';
@@ -82,6 +82,7 @@ export default function Layout({ children }) {
       
       return false
     }
+    totalPrice = savedCartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
     setCartItems(savedCartItems);
   };
   useEffect(() => {
@@ -162,7 +163,7 @@ export default function Layout({ children }) {
                                 {item.corte} ({item.categoria})
                               </span>
                               <br />
-                              <span style={{marginRight: "3px"}}>
+                              <span style={{marginRight: "3px"}} >
                                 <NumberFormat
                       value={item.preco}
                       displayType={"text"}
@@ -234,10 +235,10 @@ export default function Layout({ children }) {
                             <hr/>
                             </>
                           ))}
-                          <div style={{marginTop: "10px"}}>
-                            <span style={{color: "#fff"}}>
+                          <div >
+                            <span style={{color: "#000"}}>
                               <strong>
-                                Total: <span style={{color: "white"}}>         <NumberFormat
+                                Total: <span style={{color: "#000"}}>         <NumberFormat
                       value={totalPrice}
                       displayType={"text"}
                       thousandSeparator=" "
@@ -256,7 +257,7 @@ export default function Layout({ children }) {
                               onClick={()=>{handleFinalizar()}}
                               className="btn btn-success"
                             >
-                              Finalizar
+                              Finalizar <i className="fa fa-arrow-right"></i>
                             </button>
                           </div>
                         </div>
