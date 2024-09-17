@@ -56,7 +56,10 @@ function removeFromCart(itemId) {
 
     // Retrieve cart items from localStorage
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  
+   if(cartItems.length == 1 ){
+        localStorage.removeItem('cartItems');
+        window.location.reload();
+    }
     // Convert itemId to a number if it's a string
     const idToDelete = parseInt(itemId, 10);
   
@@ -65,9 +68,7 @@ function removeFromCart(itemId) {
   
     // Save the updated items to localStorage
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-    if(cartItems.length == 0){
-        localStorage.removeItem('cartItems');
-    }
+   
   
     console.log('Item removed from cart:', idToDelete);
 }
