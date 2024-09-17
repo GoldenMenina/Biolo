@@ -671,7 +671,7 @@ export default function Layout({ children }) {
         <span className="fa fa-arrow-up"></span>
       </button>
         <button x-show="total > 0" className="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
-          <i className="flaticon-shopping-cart-1"></i></button>
+          <i className="flaticon-shopping-cart-1"></i> <span style={{color:"white",marginTop:"-10px",fontSize:"11px",fontWeight:"900"}}>{cartItems.length} </span> </button>
     
           
     </div>
