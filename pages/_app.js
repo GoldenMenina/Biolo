@@ -68,6 +68,8 @@ export default function App({
     <script defer src="/assets/js/appear.js"></script>
       <script defer src="/assets/js/scrollbar.js"></script>
     <script defer src="/assets/js/nav-tool.js"></script>
+    <script defer src="/assets/js/btns.js"></script>
+
 
     
     <script defer src="/assets/js/script.js"></script>

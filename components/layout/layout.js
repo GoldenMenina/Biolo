@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Script from 'next/script';
+
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import AdditionalCommentsModal from '../AdditionalCommentsModal';
@@ -20,49 +22,6 @@ export default function Layout({ children }) {
     setIsModalOpen(true)
   };
 
-  const addToCart = (product) => {
-    console.log("add cart")
-   
-
-    try {
-      console.log('Adding to cart:', product);
-      console.log("add cart")
-      // ...
-    } catch (error) {
-      console.error('Error in addToCart:', error);
-    }
-
-    return false
-    const updatedCart = cartItems.map(item =>
-      item.id === product.id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    );
-
-    console.log(updatedCart)
-
-    if (!updatedCart.some(item => item.id === product.id)) {
-      updatedCart.push({ ...product, quantity: 1 });
-    }
-
-    setCartItems(updatedCart);
-    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-  };
-
-  const removeFromCart = (itemId) => {
-    alert(8888)
-    const updatedItems = cartItems
-      .map(item => {
-        if (item.id === itemId) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      })
-      .filter(item => item.quantity > 0);
-
-    setCartItems(updatedItems);
-    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-  };
 
   var totalPrice = cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
 
@@ -128,19 +87,21 @@ export default function Layout({ children }) {
 
 
   return (
-    <div class="boxed_wrapper ltr">
+    <div className="boxed_wrapper ltr">
   
-      <div class="preloader"></div>
+      <div className="preloader"></div>
 
-      <div class="xs-sidebar-group info-group info-sidebar">
-        <div class="xs-overlay xs-bg-black"></div>
-        <div class="xs-sidebar-widget">
-          <div class="sidebar-widget-container">
-            <div class="widget-heading">
-              <a href="#" class="close-side-widget">X</a>
+      <div className="xs-sidebar-group info-group info-sidebar">
+        <div className="xs-overlay xs-bg-black"></div>
+        <div className="xs-sidebar-widget">
+          <div className="sidebar-widget-container">
+            <div className="widget-heading">
+              <a href="#" className="close-side-widget">X</a>
+           
+
             </div>
-            <div class="sidebar-textwidget">
-              <div class="sidebar-info-contents">
+            <div className="sidebar-textwidget">
+              <div className="sidebar-info-contents">
                     <div className="content-inner">
                       <div className="logo text-center">
                         <a href="index.html">
@@ -157,8 +118,8 @@ export default function Layout({ children }) {
                         </h3>
                         <div style={{marginTop: "10px"}}>
                           {cartItems.map((item, index) => (
-                            <>
-                            <li key={item.id}  style={{ marginBottom: "10px", position: "relative" }}>
+                            <div key={item.id}>
+                            <li   style={{ marginBottom: "10px", position: "relative" }}>
                               <span style={{marginRight: "5px"}}>
                                 {item.corte} ({item.categoria})
                               </span>
@@ -178,25 +139,16 @@ export default function Layout({ children }) {
                               <strong> X {item.quantity}</strong>
                               <br/>
                               <button
-      className="btn btn-sm btn-light debug-button"
-      style={{
-        fontSize: "0.675rem",
-        lineHeight: 1.3,
-        marginLeft: "5px",
-        backgroundColor: "#f0f0f0",
-        position: "relative",
-        zIndex: 10
-      }}
-      onClick={(e) => {
-        e.stopPropagation();
-        console.log('Add button clicked', item);
-        addToCart(item);
-      }}
+      className="btn btn-sm btn-light add-btn debug-button"
+
+
+      data-id={item.id}
     >
       <i className="fa fa-plus"></i>
     </button>
     <button
-      className="btn btn-sm btn-light debug-button"
+    data-id={item.id}
+      className="btn btn-sm btn-light minus-btn debug-button"
       style={{
         fontSize: "0.675rem",
         lineHeight: 1.3,
@@ -205,35 +157,22 @@ export default function Layout({ children }) {
         position: "relative",
         zIndex: 10
       }}
-      onClick={(e) => {
-        e.stopPropagation();
-        console.log('Remove button clicked', item.id);
-        removeFromCart(item.id);
-      }}
+ 
     >
       <i className="fa fa-minus"></i>
     </button>
     <button
+    data-id={item.id}
+    id="deletebtn"
       className="btn btn-sm btn-light debug-button pull-right"
-      style={{
-        fontSize: "0.675rem",
-        lineHeight: 1.3,
-        marginLeft: "5px",
-        backgroundColor: "#f0f0f0",
-        position: "relative",
-        zIndex: 10
-      }}
-      onClick={(e) => {
-        e.stopPropagation();
-        console.log('Remove button clicked', item.id);
-        removeFromCart(item.id);
-      }}
+    
+      
     >
       <i className="fa fa-times"></i>
     </button>
                             </li>
                             <hr/>
-                            </>
+                            </div>
                           ))}
                           <div >
                             <span style={{color: "#000"}}>
@@ -253,8 +192,7 @@ export default function Layout({ children }) {
                           </div>
                           <div style={{marginTop: "15px"}}>
                             <button
-                            
-                              onClick={()=>{handleFinalizar()}}
+                            id="fazercompra"
                               className="btn btn-success"
                             >
                               Finalizar <i className="fa fa-arrow-right"></i>
@@ -269,18 +207,18 @@ export default function Layout({ children }) {
         </div>
       </div>
       
-      {(router.pathname === "/" || router.pathname === "/ENG") && router.pathname != "/admin/dashboard" && ( <header class="main-header style-two">
-        <div class="header-top">
-          <div class="auto-container clearfix">
-            <div class="top-left pull-left clearfix">
-              <div class="left-info pull-left clearfix">
-                <div class="language">
-                  <div class="lang-btn">
-                    <span class="icon flaticon-location"></span>
-                    <span class="txt">{lang == 'en'?'English': 'português'} </span>
-                    <span class="arrow fa fa-angle-down"></span>
+      {(router.pathname === "/" || router.pathname === "/ENG") && router.pathname != "/admin/dashboard" && ( <header className="main-header style-two">
+        <div className="header-top">
+          <div className="auto-container clearfix">
+            <div className="top-left pull-left clearfix">
+              <div className="left-info pull-left clearfix">
+                <div className="language">
+                  <div className="lang-btn">
+                    <span className="icon flaticon-location"></span>
+                    <span className="txt">{lang == 'en'?'English': 'português'} </span>
+                    <span className="arrow fa fa-angle-down"></span>
                   </div>
-                  <div class="lang-dropdown">
+                  <div className="lang-dropdown">
                     <ul>
                       <li><a onClick={()=>
                         {languageChange()
@@ -288,19 +226,19 @@ export default function Layout({ children }) {
                     </ul>
                   </div>
                 </div>
-                <ul class="social-links clearfix">
+                <ul className="social-links clearfix">
                   <li>
                     <a target="_blank" href="https://www.facebook.com/p/Giannu-Carnes-100063959979427/7"
-                      ><i class="fab fa-facebook-f"></i
+                      ><i className="fab fa-facebook-f"></i
                     ></a>
                   </li>
                   <li>
-                    <a target="_blank" href="https://www.instagram.com/giannucarnes/"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/giannucarnes/"><i className="fab fa-instagram"></i></a>
                   </li>
                 </ul>
               </div>
-              <div class="logo-box">
-                <figure class="logo">
+              <div className="logo-box">
+                <figure className="logo">
                   <a href="index.html"
                     ><img
                       src="assets/images/giannulogo.png"
@@ -310,42 +248,41 @@ export default function Layout({ children }) {
                 </figure>
               </div>
             </div>
-            <div class="top-right pull-right">
-              <ul class="menu-right-content pull-left clearfix">
-                <li class="user-box">
+            <div className="top-right pull-right">
+              <ul className="menu-right-content pull-left clearfix">
+                <li className="user-box">
                   <a href="#index.html"
-                    ><i class="flaticon-user-symbol-of-thin-outline"></i
+                    ><i className="flaticon-user-symbol-of-thin-outline"></i
                   ></a>
                 </li>
-                <li class="search-box-outer">
-                  <div class="dropdown">
+                <li className="search-box-outer">
+                  <div className="dropdown">
                     <button
-                      class="search-box-btn"
+                      className="search-box-btn"
                       type="button"
                       id="dropdownMenu3"
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span class="flaticon-search"></span>
+                      <span className="flaticon-search"></span>
                     </button>
                     <ul
-                      class="dropdown-menu pull-right search-panel"
+                      className="dropdown-menu pull-right search-panel"
                       aria-labelledby="dropdownMenu3"
                     >
-                      <li class="panel-outer">
-                        <div class="form-container">
+                      <li className="panel-outer">
+                        <div className="form-container">
                           <form method="post" action="blog.html">
-                            <div class="form-group">
+                            <div className="form-group">
                               <input
                                 type="search"
                                 name="field-name"
-                                value=""
                                 placeholder="Pesquisar...."
                                 required=""
                               />
-                              <button type="submit" class="search-btn">
-                                <span class="fas fa-search"></span>
+                              <button type="submit" className="search-btn">
+                                <span className="fas fa-search"></span>
                               </button>
                             </div>
                           </form>
@@ -354,9 +291,9 @@ export default function Layout({ children }) {
                     </ul>
                   </div>
                 </li>
-                <li class="cart-box">
-                  <a href="#shop-1.html" class="navSidebar-button"
-                    ><i class="flaticon-shopping-cart-1"></i><span x-text="cart.length">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span></a
+                <li className="cart-box">
+                  <a href="#shop-1.html" className="navSidebar-button"
+                    ><i className="flaticon-shopping-cart-1"></i><span x-text="cart.length">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span></a
                   >
                 </li>
                
@@ -364,44 +301,43 @@ export default function Layout({ children }) {
             </div>
           </div>
         </div>
-        <div class="header-upper">
-          <div class="auto-container">
-            <div class="outer-box clearfix">
-              <div class="menu-area">
+        <div className="header-upper">
+          <div className="auto-container">
+            <div className="outer-box clearfix">
+              <div className="menu-area">
               
-                <div class="mobile-nav-toggler">
-                  <i class="icon-bar"></i>
-                  <i class="icon-bar"></i>
-                  <i class="icon-bar"></i>
+                <div className="mobile-nav-toggler">
+                  <i className="icon-bar"></i>
+                  <i className="icon-bar"></i>
+                  <i className="icon-bar"></i>
                 </div>
-                <nav class="main-menu navbar-expand-md navbar-light">
+                <nav className="main-menu navbar-expand-md navbar-light">
                   <div
-                    class="collapse navbar-collapse show clearfix"
+                    className="collapse navbar-collapse show clearfix"
                     id="navbarSupportedContent"
                   >
-                    <ul class="navigation clearfix">
+                    <ul className="navigation clearfix">
                      <li>
 
-          <Link href={lang == 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>
-            <a>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
-          </Link>
+    
+            <a href={lang == 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
+         
         </li>
   <li>
-          <Link href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>
-            <a>{lang === 'en' ? 'Services' : 'Serviços'}</a>
-          </Link>
+            <a href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>{lang === 'en' ? 'Services' : 'Serviços'}</a>
+         
         </li>
 
         <li>
-          <Link href={lang === 'en' ? '/ENG/ourproducts' : '/PT/osnossosprodutos'}>
-            <a>{lang === 'en' ? 'Products' : 'Produtos'}</a>
-          </Link>
+ 
+            <a href={lang === 'en' ? '/ENG/ourproducts' : '/PT/osnossosprodutos'}>{lang === 'en' ? 'Products' : 'Produtos'}</a>
+         
         </li>
 
         <li>
-          <Link href={lang === 'en' ? '/ENG/contactus' : '/PT/contacte-nos'}>
-            <a>{lang === 'en' ? 'Contact Us' : 'Contacte-nos'}</a>
-          </Link>
+        
+            <a href={lang === 'en' ? '/ENG/contactus' : '/PT/contacte-nos'}>{lang === 'en' ? 'Contact Us' : 'Contacte-nos'}</a>
+          
         </li>
                     </ul>
                   </div>
@@ -411,10 +347,10 @@ export default function Layout({ children }) {
           </div>
         </div>
 
-        <div class="sticky-header">
-          <div class="auto-container">
-            <div class="outer-box clearfix">
-              <figure class="logo-box pull-left">
+        <div className="sticky-header">
+          <div className="auto-container">
+            <div className="outer-box clearfix">
+              <figure className="logo-box pull-left">
                 <a href="#index.html"
                   ><img
                     src="assets/images/giannulogo.png"
@@ -422,8 +358,8 @@ export default function Layout({ children }) {
                     alt=""
                 /></a>
               </figure>
-              <div class="menu-area pull-right">
-                <nav class="main-menu clearfix">
+              <div className="menu-area pull-right">
+                <nav className="main-menu clearfix">
                 </nav>
               </div>
             </div>
@@ -433,34 +369,34 @@ export default function Layout({ children }) {
      )}
      
      
-   {router.pathname != "/" && router.pathname != "/ENG" && router.pathname != "/admin/dashboard" &&(<header class="main-header">
-        <div class="header-top">
-          <div class="auto-container">
-            <div class="top-info">
-              <ul class="info-list clearfix">
+   {router.pathname != "/" && router.pathname != "/ENG" && router.pathname != "/admin/dashboard" &&(<header className="main-header">
+        <div className="header-top">
+          <div className="auto-container">
+            <div className="top-info">
+              <ul className="info-list clearfix">
                 <li>
-                  <i class="flaticon-location-pin"></i>
+                  <i className="flaticon-location-pin"></i>
                   Avendida Pedro de castro Van-Dúnem Loy, Talatona
                 </li>
                 <li>
-                  <i class="flaticon-envelope"></i>
+                  <i className="flaticon-envelope"></i>
                   <a href="mailto:clientes.particulares@giannu.co.ao"
                     >clientes.particulares@giannu.co.ao</a
                   >
                 </li>
-                <li class="phone">
-                  <i class="flaticon-dial"></i>
+                <li className="phone">
+                  <i className="flaticon-dial"></i>
                   <a href="tel:244931781843">+244 931 781 843 {lang}</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="header-upper">
-          <div class="auto-container">
-            <div class="outer-box clearfix">
-              <div class="logo-box">
-                <figure class="logo">
+        <div className="header-upper">
+          <div className="auto-container">
+            <div className="outer-box clearfix">
+              <div className="logo-box">
+                <figure className="logo">
                 
                   <a href="/"
                     ><img
@@ -471,72 +407,72 @@ export default function Layout({ children }) {
                   </a>
                 </figure>
               </div>
-              <div class="menu-area pull-right">
+              <div className="menu-area pull-right">
                 
-                <div class="mobile-nav-toggler">
-                  <i class="icon-bar"></i>
-                  <i class="icon-bar"></i>
-                  <i class="icon-bar"></i>
+                <div className="mobile-nav-toggler">
+                  <i className="icon-bar"></i>
+                  <i className="icon-bar"></i>
+                  <i className="icon-bar"></i>
                 </div>
-                <nav class="main-menu navbar-expand-md navbar-light">
+                <nav className="main-menu navbar-expand-md navbar-light">
                   <div
-                    class="collapse navbar-collapse show clearfix"
+                    className="collapse navbar-collapse show clearfix"
                     id="navbarSupportedContent"
                   >
-                    <ul class="navigation clearfix">
+                    <ul className="navigation clearfix">
                       <li>
 
-          <Link href={lang === 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>
-            <a>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
-          </Link>
+     
+            <a href={lang === 'en' ? '/ENG/ourcompany' : '/PT/aempresa'}>{lang === 'en' ? 'About Us' : 'Sobre nós'}</a>
+      
         </li>
 
         <li>
-          <Link href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>
-            <a>{lang === 'en' ? 'Services' : 'Serviços'}</a>
-          </Link>
+  
+            <a href={lang === 'en' ? '/ENG/services' : '/PT/osnossosservicos'}>{lang === 'en' ? 'Services' : 'Serviços'}</a>
+         
         </li>
 
         <li>
-          <Link href={lang === 'en' ? '/ENG/ourproducts' : '/PT/osnossosprodutos'}>
-            <a>{lang === 'en' ? 'Products' : 'Produtos'}</a>
-          </Link>
+       
+            <a href={lang === 'en' ? '/ENG/ourproducts' : '/PT/osnossosprodutos'}>{lang === 'en' ? 'Products' : 'Produtos'}</a>
+          
         </li>
 
         <li>
-          <Link href={lang === 'en' ? '/ENG/contactus' : '/PT/contacte-nos'}>
-            <a>{lang === 'en' ? 'Contact Us' : 'Contacte-nos'}</a>
-          </Link>
+  
+            <a href={lang === 'en' ? '/ENG/contactus' : '/PT/contacte-nos'}>{lang === 'en' ? 'Contact Us' : 'Contacte-nos'}</a>
+        
         </li>
                     </ul>
                   </div>
                 </nav>
-                <ul class="menu-right-content pull-left clearfix">
-                  <li class="user-box">
+                <ul className="menu-right-content pull-left clearfix">
+                  <li className="user-box">
                     <a href="#../index.html"
-                      ><i class="flaticon-user-symbol-of-thin-outline"></i
+                      ><i className="flaticon-user-symbol-of-thin-outline"></i
                     ></a>
                   </li>
-                  <li class="search-box-outer">
-                    <div class="dropdown">
+                  <li className="search-box-outer">
+                    <div className="dropdown">
                       <button
-                        class="search-box-btn"
+                        className="search-box-btn"
                         type="button"
                         id="dropdownMenu3"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        <span class="flaticon-search"></span>
+                        <span className="flaticon-search"></span>
                       </button>
                       <ul
-                        class="dropdown-menu pull-right search-panel"
+                        className="dropdown-menu pull-right search-panel"
                         aria-labelledby="dropdownMenu3"
                       >
-                        <li class="panel-outer">
-                          <div class="form-container">
+                        <li className="panel-outer">
+                          <div className="form-container">
                             <form method="post" action="blog.html">
-                              <div class="form-group">
+                              <div className="form-group">
                                 <input
                                   type="search"
                                   name="field-name"
@@ -544,8 +480,8 @@ export default function Layout({ children }) {
                                   placeholder="Search...."
                                   required=""
                                 />
-                                <button type="submit" class="search-btn">
-                                  <span class="fas fa-search"></span>
+                                <button type="submit" className="search-btn">
+                                  <span className="fas fa-search"></span>
                                 </button>
                               </div>
                             </form>
@@ -554,9 +490,9 @@ export default function Layout({ children }) {
                       </ul>
                     </div>
                   </li>
-                  <li class="cart-box">
-                    <a href="shop-1.html" class="navSidebar-button"
-                      ><i class="flaticon-shopping-cart-1"></i
+                  <li className="cart-box">
+                    <a href="shop-1.html" className="navSidebar-button"
+                      ><i className="flaticon-shopping-cart-1"></i
                       ><span x-text="cart.length">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span></a
                     >
                   </li>
@@ -567,10 +503,10 @@ export default function Layout({ children }) {
         </div>
 
         
-        <div class="sticky-header">
-          <div class="auto-container">
-            <div class="outer-box clearfix">
-              <figure class="logo-box pull-left">
+        <div className="sticky-header">
+          <div className="auto-container">
+            <div className="outer-box clearfix">
+              <figure className="logo-box pull-left">
               
                 <a href="/"
                   ><img
@@ -579,8 +515,8 @@ export default function Layout({ children }) {
                     alt=""
                 /></a>
               </figure>
-              <div class="menu-area pull-right">
-                <nav class="main-menu clearfix">
+              <div className="menu-area pull-right">
+                <nav className="main-menu clearfix">
                   
                 </nav>
               </div>
@@ -590,12 +526,12 @@ export default function Layout({ children }) {
       </header>)}
     
       
-      <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <div class="close-btn"><i class="fas fa-times"></i></div>
+      <div className="mobile-menu">
+        <div className="menu-backdrop"></div>
+        <div className="close-btn"><i className="fas fa-times"></i></div>
 
-        <nav class="menu-box">
-          <div class="nav-logo">
+        <nav className="menu-box">
+          <div className="nav-logo">
             <a href="#index.html"
               ><img src="assets/images/logo-2.png" alt="" title=""
             /></a>
@@ -603,7 +539,7 @@ export default function Layout({ children }) {
           <div className="menu-outer">
             
           </div>
-            <div class="contact-info">
+            <div className="contact-info">
             <h4>Contact Info</h4>
             <ul>
               <li>Avendida Pedro de castro Van-Dúnem Loy, Talatona</li>
@@ -611,20 +547,20 @@ export default function Layout({ children }) {
               <li><a href="mailto:Giannu.lda@gmail.com">Giannu.lda@gmail.com</a></li>
             </ul>
           </div>
-          <div class="social-links">
-            <ul class="clearfix">
+          <div className="social-links">
+            <ul className="clearfix">
            
               <li>
                 <a href="https://www.facebook.com/p/Giannu-Carnes-100063959979427/"
-                  ><span class="fab fa-facebook-square"></span
+                  ><span className="fab fa-facebook-square"></span
                 ></a>
               </li>
          
               <li>
-                <a href="https://www.instagram.com/giannucarnes/"><span class="fab fa-instagram"></span></a>
+                <a href="https://www.instagram.com/giannucarnes/"><span className="fab fa-instagram"></span></a>
               </li>
               <li>
-                <a href="#index.html"><span class="fab fa-youtube"></span></a>
+                <a href="#index.html"><span className="fab fa-youtube"></span></a>
               </li>
             </ul>
           </div>
@@ -633,14 +569,14 @@ export default function Layout({ children }) {
       
     {children}
   
-      <footer class="main-footer mr-0">
-        <div class="auto-container">
-          <div class="footer-top">
-            <div class="widget-section">
-              <div class="row clearfix">
-                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                  <div class="footer-widget logo-widget">
-                    <figure class="footer-logo">
+      <footer className="main-footer mr-0">
+        <div className="auto-container">
+          <div className="footer-top">
+            <div className="widget-section">
+              <div className="row clearfix">
+                <div className="col-lg-4 col-md-6 col-sm-12 footer-column">
+                  <div className="footer-widget logo-widget">
+                    <figure className="footer-logo">
                       <a href="#index.html"
                         ><img
                           src="assets/images/giannulogo.png"
@@ -652,7 +588,7 @@ export default function Layout({ children }) {
                           alt=""
                       />
                     </figure>
-                    <div class="text">
+                    <div className="text">
                       <p>
                         O nosso foco é a satisfação do cliente na
                         <strong> Qualidade</strong> dos nossos
@@ -661,54 +597,54 @@ export default function Layout({ children }) {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                  <div class="footer-widget contact-widget">
-                    <ul class="info clearfix">
+                <div className="col-lg-4 col-md-6 col-sm-12 footer-column">
+                  <div className="footer-widget contact-widget">
+                    <ul className="info clearfix">
                       <li>
-                        <i class="flaticon-phone"></i>
+                        <i className="flaticon-phone"></i>
                         <p>Ligue para nós</p>
                         <h5>
                           <a href="#tel:+244931781843">+244 931 781 843</a>
                         </h5>
                       </li>
                       <li>
-                        <i class="flaticon-maps-and-flags"></i>
+                        <i className="flaticon-maps-and-flags"></i>
                         <p>Endereço</p>
                         <h5>Avendida Pedro de castro Van-Dúnem Loy, Talatona</h5>
                       </li>
                     </ul>
-                    <ul class="social-links clearfix">
+                    <ul className="social-links clearfix">
                       <li>
                         <a href="https://www.facebook.com/p/Giannu-Carnes-100063959979427/"
-                          ><i class="fab fa-facebook-f"></i
+                          ><i className="fab fa-facebook-f"></i
                         ></a>
                       </li>
                       <li>
                         <a href="https://www.instagram.com/giannucarnes/"
-                          ><i class="fab fa-instagram"></i
+                          ><i className="fab fa-instagram"></i
                         ></a>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                  <div class="footer-widget newsletter-widget">
+                <div className="col-lg-4 col-md-6 col-sm-12 footer-column">
+                  <div className="footer-widget newsletter-widget">
 
-                    <div class="widget-title">
+                    <div className="widget-title">
                       <h6>Newsletter</h6>
                     </div>
 
                     <div>
       <Modal isOpen={isModalOpen} onClose={closeModal} />
     </div>
-                    <div class="widget-content">
+                    <div className="widget-content">
                       <p>
                         Fique atualizado sobre tudo que é novo e importante!
                       </p>
                       <form onSubmit={openModal}
-                        class="newsletter-form"
+                        className="newsletter-form"
                       >
-                        <div class="form-group">
+                        <div className="form-group">
                           <input
                             type="email"
                             name="email"
@@ -718,7 +654,7 @@ export default function Layout({ children }) {
                           <button type="submit" onClick={()=>{
                           
                           }}>
-                            <i class="flaticon-paper-plane-1"></i>
+                            <i className="flaticon-paper-plane-1"></i>
                           </button>
                         </div>
                       </form>
@@ -728,35 +664,37 @@ export default function Layout({ children }) {
               </div>
             </div>
           </div>
-          <div class="footer-bottom clearfix">
-            <div class="copyright pull-left">
+          <div className="footer-bottom clearfix">
+            <div className="copyright pull-left">
               <h5>
                 Direitos autorais &copy; 2024. Giannu Carnes. Todos os direitos
                 reservados
                 <a href="#" target="_blank">Giannu Carnes</a>.
               </h5>
             </div>
-            <ul class="footer-nav pull-right clearfix">
+            <ul className="footer-nav pull-right clearfix">
               <li><a href="index.html">Página Inicial</a></li>
               <li>
-              <Link href="/PT/aempresa">
-              <a>Sobre nós</a>
-              </Link>
+           
+              <a href="/PT/aempresa">Sobre nós</a>
               
               </li>
-              <li><Link href="/PT/osnossosprodutos"><a >Produtos</a></Link></li>
-              <li><Link href="/PT/contacte-nos"><a>Contacte-nos</a></Link></li>
+              <li><a href="/PT/osnossosprodutos">Produtos</a></li>
+              <li><a href="/PT/contacte-nos">Contacte-nos</a></li>
             </ul>
           </div>
         </div>
       </footer>
  
     
-      <button class="scroll-top scroll-to-target" data-target="html">
-        <span class="fa fa-arrow-up"></span>
+      <button className="scroll-top scroll-to-target" data-target="html">
+        <span className="fa fa-arrow-up"></span>
       </button>
-        <button x-show="total > 0" class="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
-          <i class="flaticon-shopping-cart-1"></i></button>
+        <button x-show="total > 0" className="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
+          <i className="flaticon-shopping-cart-1"></i></button>
+     
+
+          
     </div>
 
 
