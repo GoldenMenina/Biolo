@@ -164,9 +164,7 @@ export default function Layout({ children }) {
     <button
     data-id={item.id}
     id="deletebtn"
-      className="btn btn-sm btn-light debug-button pull-right"
-    
-      
+    className="btn btn-sm btn-light debug-button pull-right"  
     >
       <i className="fa fa-times"></i>
     </button>
@@ -193,6 +191,7 @@ export default function Layout({ children }) {
                           <div style={{marginTop: "15px"}}>
                             <button
                             id="fazercompra"
+                            data-id={totalPrice}
                               className="btn btn-success"
                             >
                               Finalizar <i className="fa fa-arrow-right"></i>
@@ -692,8 +691,7 @@ export default function Layout({ children }) {
       </button>
         <button x-show="total > 0" className="scroll-top  navSidebar-button" style={{marginRight: "60px"}} data-target="html">
           <i className="flaticon-shopping-cart-1"></i></button>
-     
-
+    
           
     </div>
 

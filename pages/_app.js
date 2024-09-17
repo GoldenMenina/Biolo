@@ -1,6 +1,8 @@
 import Head from "next/head";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Layout from "../components/layout/layout";
+import Script from 'next/script';
+
 import $ from "jquery";
 import { useRef, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -54,10 +56,14 @@ export default function App({
     <link href="/assets/css/color.css" rel="stylesheet" />
     <link href="/assets/css/style.css" rel="stylesheet" />
     <link href="/assets/css/responsive.css" rel="stylesheet" />
-  
+    
         </Head>
+     
         <Component {...pageProps} />
-        
+           <Script 
+        src="/assets/js/btns.js" // External script URL
+        strategy="afterInteractive" // Load the script lazily after the page loads
+      />
   <script defer src="/assets/js/jquery.js"></script>
     <script defer src="/assets/js/popper.min.js"></script>
     <script defer src="/assets/js/bootstrap.min.js"></script>
@@ -68,7 +74,7 @@ export default function App({
     <script defer src="/assets/js/appear.js"></script>
       <script defer src="/assets/js/scrollbar.js"></script>
     <script defer src="/assets/js/nav-tool.js"></script>
-    <script defer src="/assets/js/btns.js"></script>
+    {/* <script defer src="/assets/js/btns.js"></script> */}
 
 
     

@@ -53,6 +53,7 @@ function removeFromCart(itemId) {
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
   }
   function deleteFromCart(itemId) {
+
     // Retrieve cart items from localStorage
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   
@@ -64,6 +65,9 @@ function removeFromCart(itemId) {
   
     // Save the updated items to localStorage
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    if(cartItems.length == 0){
+        localStorage.removeItem('cartItems');
+    }
   
     console.log('Item removed from cart:', idToDelete);
 }
@@ -82,6 +86,8 @@ function removeFromCart(itemId) {
     const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
     localStorage.setItem('cartItems', JSON.stringify([]));
     window.open(whatsappUrl, "_blank");
+    window.location.reload();
+    
 
     
   };
