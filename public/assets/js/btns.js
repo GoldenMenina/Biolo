@@ -92,34 +92,12 @@ function removeFromCart(itemId) {
     
   };
   
+
+ 
+   
   
   // Select all buttons with the class 'add-btn'
-  var buttonsAdd = document.querySelectorAll('.add-btn');
-  
-  // Loop through each button and add a click event listener
-  buttonsAdd.forEach(function(button) {
-    button.addEventListener('click', function() {
-      // Get the value of the data-id attribute
-      const itemId = this.getAttribute('data-id');
-      
-      addToCart(itemId);
-      console.log('Added to cart:', itemId);
-    });
-  });
-  
-  // Select all buttons with the class 'minus-btn'
-  var buttonsMinus = document.querySelectorAll('.minus-btn');
-  
-  // Loop through each button and add a click event listener
-  buttonsMinus.forEach(function(button) {
-    button.addEventListener('click', function() {
-      // Get the value of the data-id attribute
-      const itemId = this.getAttribute('data-id');
-      
-      removeFromCart(itemId);
-      console.log('Removed from cart:', itemId);
-    });
-  });
+
   
   const buyButton = document.getElementById('fazercompra');
 
@@ -132,12 +110,53 @@ buyButton.addEventListener('click', function() {
 });
 
 
-const delelteButton = document.getElementById('deletebtn');
+function applyListeners() {
+  const buttonsAdd = document.querySelectorAll('.add-btn');
+  buttonsAdd.forEach(function(button) {
+    // Remove existing listener before adding a new one
+    button.removeEventListener('click', handleAddClick);
 
-// Add a click event listener to the button
-delelteButton.addEventListener('click', function() {
-  // The function that gets executed when the button is clicked
- 
+    button.addEventListener('click', handleAddClick);
+  });
+
+  const buttonsMinus = document.querySelectorAll('.minus-btn');
+  buttonsMinus.forEach(function(button) {
+    // Remove existing listener before adding a new one
+    button.removeEventListener('click', handleMinusClick);
+
+    button.addEventListener('click', handleMinusClick);
+  });
+
+  const buttonsDelet = document.querySelectorAll('.deletebtn');
+  buttonsDelet.forEach(function(button) {
+    // Remove existing listener before adding a new one
+    button.removeEventListener('click', handleMinusClick);
+
+    button.addEventListener('click', handleDeleteClick);
+  });
+}
+function handleDeleteClick(event) {
   const itemId = this.getAttribute('data-id');
-  deleteFromCart(itemId)
-});
+  deleteFromCart(itemId);
+}
+
+function handleAddClick(event) {
+  const itemId = this.getAttribute('data-id');
+  addToCart(itemId);
+  console.log('Added to cart:', itemId);
+}
+
+function handleMinusClick(event) {
+  const itemId = this.getAttribute('data-id');
+  removeFromCart(itemId);
+  console.log('Removed from cart:', itemId);
+}
+
+// Poll every 1 second to check for the buttons
+setInterval(() => {
+  applyListeners();
+}, 1000);
+
+// Apply listeners initially
+applyListeners();
+

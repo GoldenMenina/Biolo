@@ -66,24 +66,6 @@ export default function Layout({ children }) {
     return () => clearInterval(intervalId);
   }, []);  
 
-  const sendWhatsAppMessage = () => {
-    const message = cartItems.map(item => (
-      `${item.corte} (${item.categoria}) - ${item.quantity} Kz`
-    )).join('\n');
-
-    const totalPriceMessage = `Total: ${totalPrice} Kz`;
-    const commentsMessage = additionalComments ? `\n\nAdditional Comments: ${additionalComments}` : '';
-    const whatsappMessage = encodeURIComponent(`${message}\n\n${totalPriceMessage}${commentsMessage}`);
-    const whatsappUrl = `https://wa.me/+244931781843?text=${whatsappMessage}`;
-
-    window.open(whatsappUrl, "_blank");
-    setIsModalOpen(false);
-    setAdditionalComments('');
-  };
-
-  const handleFinalizar = () => {
-    openModal();
-  };
 
 
   return (
@@ -163,8 +145,7 @@ export default function Layout({ children }) {
     </button>
     <button
     data-id={item.id}
-    id="deletebtn"
-    className="btn btn-sm btn-light debug-button pull-right"  
+    className="btn btn-sm btn-light deletebtn debug-button pull-right"  
     >
       <i className="fa fa-times"></i>
     </button>
