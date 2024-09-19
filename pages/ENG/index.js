@@ -404,7 +404,7 @@ export default function Home() {
       ].map((image, index) => (
         <div className="service-block-one" key={index}>
           <div className="">
-            <img className="img-fluid" src={`assets/images/parceiros/${image}`} alt={`Parceiro ${index + 1}`} />
+            <img className="img-fluid" src={`assets/images/parceiros/${image}`}  style={{height:'220px'}}  alt={`Parceiro ${index + 1}`} />
           </div>
         </div>
       ))}
