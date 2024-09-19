@@ -230,11 +230,7 @@ export default function Layout({ children }) {
             </div>
             <div className="top-right pull-right">
               <ul className="menu-right-content pull-left clearfix">
-                <li className="user-box">
-                  <a href="#index.html"
-                    ><i className="flaticon-user-symbol-of-thin-outline"></i
-                  ></a>
-                </li>
+           
                 <li className="search-box-outer">
                   <div className="dropdown">
                     <button
@@ -523,8 +519,13 @@ export default function Layout({ children }) {
             <h4>Contact Info</h4>
             <ul>
               <li>Avendida Pedro de castro Van-Dúnem Loy, Talatona</li>
-              <li><a href="tel:+244931 781843">+244  931 781 843/ 933 410 964</a></li>
-              <li><a href="mailto:Giannu.lda@gmail.com">Giannu.lda@gmail.com</a></li>
+              <li className="mt-4"><strong>Dept. Vendas</strong></li>
+              <li><a href="tel:+244931781843">+244  931 781 843</a></li>
+              <li><a href="mailto:vendas@giannu.co.ao">vendas@giannu.co.ao </a></li>
+
+              <li className="mt-4"><strong>Pos-Vendas</strong></li>
+              <li><a href="tel:+244933410964">+244 933 410 964</a></li>
+              <li><a href="mailto:pos-venda@giannu.co.ao ">pos-venda@giannu.co.ao</a></li>
             </ul>
           </div>
           <div className="social-links">
@@ -584,6 +585,12 @@ export default function Layout({ children }) {
                         <i className="flaticon-phone"></i>
                         <p>Ligue para nós</p>
                         <h5>
+                          <small>(Dept. Vendas)</small>
+                          <a href="#tel:+244931781843">+244 931 781 843</a>
+                        </h5>
+                        <h5>
+                          <div><small>(Vendas)</small></div>
+                        
                           <a href="#tel:+244931781843">+244 931 781 843</a>
                         </h5>
                       </li>
@@ -592,6 +599,27 @@ export default function Layout({ children }) {
                         <p>Endereço</p>
                         <h5>Avendida Pedro de castro Van-Dúnem Loy, Talatona</h5>
                       </li>
+
+                      <li>
+                        <i className="flaticon-mail"></i>
+                        <p>Correiro Elêtronico</p>
+                        <h5>
+                          <small>(Dept. Vendas)</small>
+                          <a href="mailto:clientes.particulares@giannu.co.ao"
+                    >clientes.particulares<br/>@giannu.co.ao</a
+                  >
+                        </h5>
+                        <h5 className="mt-5">
+                          <div><small>(Vendas)</small></div>
+                        
+                          <a href="mailto:clientes.particulares@giannu.co.ao"
+                    >clientes.particulares@<br/>giannu.co.ao</a
+                  >
+                        </h5>
+
+                  
+                      </li>
+                      
                     </ul>
                     <ul className="social-links clearfix">
                       <li>
