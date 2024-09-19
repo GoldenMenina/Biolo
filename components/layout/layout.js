@@ -587,7 +587,7 @@ export default function Layout({ children }) {
                           <a href="#tel:+244931781843">+244 931 781 843</a>
                         </h5>
                         <h5 className="mt-2">
-                          <div><small>(Vendas)</small></div>
+                          <div><small>(Pos-vendas)</small></div>
                         
                           <a href="#tel:+244933410964">+244 933 410 964    </a>
                         </h5>
@@ -608,7 +608,7 @@ export default function Layout({ children }) {
                   >
                         </h5>
                         <h5 className="mt-2">
-                          <div><small>(Vendas)</small></div>
+                          <div><small>(Pos-vendas)</small></div>
                         
                           <a href="mailto:clientes.particulares@giannu.co.ao"
                     >pos-venda@giannu.co.ao</a

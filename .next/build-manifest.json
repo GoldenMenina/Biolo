@@ -15,15 +15,15 @@
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/ENG/ourproducts": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/ENG/ourproducts.js"
+    ],
+    "/PT/contacte-nos": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/PT/contacte-nos.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

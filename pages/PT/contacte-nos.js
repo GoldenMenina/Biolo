@@ -68,7 +68,7 @@ export default function Contacto() {
                           <a href="#tel:+244931781843">+244 931 781 843</a>
                         </div>
                         <div className="mt-1">
-                          <div><small>(Vendas)</small></div>
+                          <div><small>(Pos-vendas)</small></div>
                         
                           <a href="#tel:+244933410964">+244 933 410 964</a>
                         </div>
@@ -91,7 +91,7 @@ export default function Contacto() {
                   >
                         </div>
                         <div className="mt-2">
-                          <div><small>(Vendas)</small></div>
+                          <div><small>(Pos-vendas)</small></div>
                         
                           <a href="mailto:pos-venda@giannu.co.ao"
                     >pos-venda@giannu.co.ao</a
