@@ -20,6 +20,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+    "/ENG": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/ENG.js"
+    ],
     "/PT/contacte-nos": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

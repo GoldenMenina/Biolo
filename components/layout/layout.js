@@ -30,7 +30,10 @@ export default function Layout({ children }) {
     localStorage.setItem('lang', newLang);
     setLang(newLang);
     router.push(newLang === 'en' ? '/ENG' : '/');
-   
+    router.events.on('routeChangeComplete', () => {
+      // Reload the page after navigation
+      router.reload();
+    });
 
   };
 
@@ -68,7 +71,12 @@ export default function Layout({ children }) {
     return () => clearInterval(intervalId);
   }, []);  
 
-
+  useEffect(() => {
+    // Cleanup listener on component unmount
+    return () => {
+      router.events.off('routeChangeComplete', () => {});
+    };
+  }, [router.events]);
 
   return (
     <div className="boxed_wrapper ltr">
