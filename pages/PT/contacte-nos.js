@@ -63,7 +63,15 @@ export default function Contacto() {
                     </div>
                     <h3>Nº Telefone</h3>
                     <p>
-                      <a href="tel:+244931781843">+244 931 781 843</a><br />
+                    <div>
+                          <div><small>(Dept. Vendas)</small></div>
+                          <a href="#tel:+244931781843">+244 931 781 843</a>
+                        </div>
+                        <div className="mt-1">
+                          <div><small>(Vendas)</small></div>
+                        
+                          <a href="#tel:+244933410964">+244 933 410 964</a>
+                        </div>
                     </p>
                   </div>
                 </div>
@@ -76,9 +84,20 @@ export default function Contacto() {
                     <div className="icon-box"><i className="flaticon-mail"></i></div>
                     <h3>Email</h3>
                     <p>
-                      <a href="mailto:clientes.particulares@giannu.co.ao">clientes.particulares@giannu.co.ao</a><br />
-                      <a href="mailto:clientes.corporate@giannu.co.ao">clientes.corporate@giannu.co.ao</a>
-                    </p>
+                    <div>
+                          <div><small>(Dept. Vendas)</small></div>
+                          <a href="mailto:vendas@giannu.co.ao"
+                    >vendas@giannu.co.ao</a
+                  >
+                        </div>
+                        <div className="mt-2">
+                          <div><small>(Vendas)</small></div>
+                        
+                          <a href="mailto:pos-venda@giannu.co.ao"
+                    >pos-venda@giannu.co.ao</a
+                  >
+                        </div>
+                   </p> 
                   </div>
                 </div>
               </div>

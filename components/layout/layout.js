@@ -30,6 +30,8 @@ export default function Layout({ children }) {
     localStorage.setItem('lang', newLang);
     setLang(newLang);
     router.push(newLang === 'en' ? '/ENG' : '/');
+    router.reload();
+
   };
 
   const loadCartItems = () => {
@@ -356,8 +358,8 @@ export default function Layout({ children }) {
                 </li>
                 <li>
                   <i className="flaticon-envelope"></i>
-                  <a href="mailto:clientes.particulares@giannu.co.ao"
-                    >clientes.particulares@giannu.co.ao</a
+                  <a href="mailto:vendas@giannu.co.ao"
+                    >vendas@giannu.co.ao</a
                   >
                 </li>
                 <li className="phone">
@@ -424,11 +426,7 @@ export default function Layout({ children }) {
                   </div>
                 </nav>
                 <ul className="menu-right-content pull-left clearfix">
-                  <li className="user-box">
-                    <a href="#../index.html"
-                      ><i className="flaticon-user-symbol-of-thin-outline"></i
-                    ></a>
-                  </li>
+        
                   <li className="search-box-outer">
                     <div className="dropdown">
                       <button
@@ -588,10 +586,10 @@ export default function Layout({ children }) {
                           <small>(Dept. Vendas)</small>
                           <a href="#tel:+244931781843">+244 931 781 843</a>
                         </h5>
-                        <h5>
+                        <h5 className="mt-2">
                           <div><small>(Vendas)</small></div>
                         
-                          <a href="#tel:+244931781843">+244 931 781 843</a>
+                          <a href="#tel:+244933410964">+244 933 410 964    </a>
                         </h5>
                       </li>
                       <li>
@@ -606,14 +604,14 @@ export default function Layout({ children }) {
                         <h5>
                           <small>(Dept. Vendas)</small>
                           <a href="mailto:clientes.particulares@giannu.co.ao"
-                    >clientes.particulares<br/>@giannu.co.ao</a
+                    >vendas@giannu.co.ao</a
                   >
                         </h5>
-                        <h5 className="mt-5">
+                        <h5 className="mt-2">
                           <div><small>(Vendas)</small></div>
                         
                           <a href="mailto:clientes.particulares@giannu.co.ao"
-                    >clientes.particulares@<br/>giannu.co.ao</a
+                    >pos-venda@giannu.co.ao</a
                   >
                         </h5>
 

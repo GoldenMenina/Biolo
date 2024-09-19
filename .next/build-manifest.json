@@ -20,15 +20,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
-    "/PT/osnossosprodutos": [
+    "/ENG/ourproducts": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/PT/osnossosprodutos.js"
-    ],
-    "/PT/osnossosservicos": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/PT/osnossosservicos.js"
+      "static/chunks/pages/ENG/ourproducts.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
