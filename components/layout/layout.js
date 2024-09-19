@@ -30,7 +30,7 @@ export default function Layout({ children }) {
     localStorage.setItem('lang', newLang);
     setLang(newLang);
     router.push(newLang === 'en' ? '/ENG' : '/');
-    router.reload();
+   
 
   };
 
