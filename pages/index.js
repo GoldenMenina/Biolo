@@ -408,106 +408,106 @@ export default function Home() {
                 <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
                     <div className="service-block-one">
                         <div className="">
-                          <img className="img-fluid" src="assets/images/parceiros/one.png" style={{height:'220px'}} />
+                          <img className="img-fluid" src="assets/images/parceiros/one.png"  />
                         </div>
                     </div>
                       <div className="service-block-one">
                         <div className="">
-                          <img className="img-fluid" src="assets/images/parceiros/two.png" style={{height:'220px'}} />
-                        </div>
-                    </div>
-                    
-                      <div className="service-block-one">
-                        <div className="">
-                          <img className="img-fluid" src="assets/images/parceiros/three.png" style={{height:'220px'}} />
+                          <img className="img-fluid" src="assets/images/parceiros/two.png"  />
                         </div>
                     </div>
                     
                       <div className="service-block-one">
                         <div className="">
-                          <img className="img-fluid" src="assets/images/parceiros/four.png" style={{height:'220px'}} />
+                          <img className="img-fluid" src="assets/images/parceiros/three.jpg"  />
+                        </div>
+                    </div>
+                    
+                      <div className="service-block-one">
+                        <div className="">
+                          <img className="img-fluid" src="assets/images/parceiros/four.png"  />
                         </div>
                     </div>
                     
                     
                    <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/five.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/five.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/six.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/six.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/seven.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/seven.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/eight.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/eight.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/nine.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/nine.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/ten.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/ten.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/eleven.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/eleven.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/twelve.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/twelve.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/thirteen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/thirteen.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/fourteen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/fourteen.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/fifteen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/fifteen.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/sixteen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/sixteen.jpg"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/seventeen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/seventeen.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/eighteen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/eighteen.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/nineteen.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/nineteen.png"  />
                       </div>
                     </div>
                     <div className="service-block-one">
                       <div className="">
-                        <img className="img-fluid" src="assets/images/parceiros/twenty.png" style={{height:'220px'}} />
+                        <img className="img-fluid" src="assets/images/parceiros/twenty.png"  />
                       </div>
                     </div>
                     

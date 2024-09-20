@@ -383,7 +383,7 @@ export default function Home() {
       {[
         "one.png",
         "two.png",
-        "three.png",
+        "three.jpg",
         "four.png",
         "five.png",
         "six.png",
@@ -396,7 +396,7 @@ export default function Home() {
         "thirteen.png",
         "fourteen.png",
         "fifteen.png",
-        "sixteen.png",
+        "sixteen.jpg",
         "seventeen.png",
         "eighteen.png",
         "nineteen.png",
@@ -404,7 +404,7 @@ export default function Home() {
       ].map((image, index) => (
         <div className="service-block-one" key={index}>
           <div className="">
-            <img className="img-fluid" src={`assets/images/parceiros/${image}`}  style={{height:'220px'}}  alt={`Parceiro ${index + 1}`} />
+            <img className="img-fluid" src={`assets/images/parceiros/${image}`}   alt={`Parceiro ${index + 1}`} />
           </div>
         </div>
       ))}
