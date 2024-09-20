@@ -381,26 +381,26 @@ export default function Home() {
     </div>
     <div className="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
       {[
-        "one.jpg",
-        "two.jpg",
-        "three.jpg",
-        "four.jpg",
-        "five.jpg",
-        "six.jpg",
-        "seven.jpg",
-        "eight.jpg",
-        "nine.jpg",
-        "ten.jpg",
-        "eleven.jpg",
-        "twelve.jpg",
-        "thirteen.jpg",
-        "fourteen.jpg",
-        "fifteen.jpg",
-        "sixteen.jpg",
-        "seventeen.jpg",
-        "eighteen.jpg",
-        "nineteen.jpg",
-        "twenty.jpg"
+        "one.png",
+        "two.png",
+        "three.png",
+        "four.png",
+        "five.png",
+        "six.png",
+        "seven.png",
+        "eight.png",
+        "nine.png",
+        "ten.png",
+        "eleven.png",
+        "twelve.png",
+        "thirteen.png",
+        "fourteen.png",
+        "fifteen.png",
+        "sixteen.png",
+        "seventeen.png",
+        "eighteen.png",
+        "nineteen.png",
+        "twenty.png"
       ].map((image, index) => (
         <div className="service-block-one" key={index}>
           <div className="">
