@@ -141,12 +141,12 @@ export default function Home() {
                   <div className="text">
                     <p>
                       <strong>A Giannu Carnes</strong> é uma marca registada da
-                      empresa
+                      empresa 
                       <span style={{fontWeight: 'bold',fontStyle: 'italic'}}>
-                        ZHA Serviços e Investimentos LDA</span
+                       {' '}ZHA Serviços e Investimentos LDA</span
                       >, empresa de direito angolano que, de entre outras
                       actividades dedica-se a comercialização de
-                      <span style={{fontWeight: 'bold'}}> carnes</span>
+                      <span style={{fontWeight: 'bold'}}> carnes</span>{' '}
                       exclusivamente nacionais de origem nobre...
                     </p>
                   </div>
@@ -518,7 +518,7 @@ export default function Home() {
         </section>
       
 
-<section style={{marginTop:"-100px"}}>
+<section style={{marginTop:"150px"}}>
 <BeefCutsMap />
 </section>
 

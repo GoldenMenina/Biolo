@@ -19,8 +19,8 @@ const beefCuts = [
 
 export default function BeefCutsMap() {
   return (
-    <main className={styles.main}>
-         <div className="sec-title text-center">
+    <main className={styles.main} >
+         <div className="sec-title text-center" >
             <span>Conhça os cortes</span>
             <h2>Cortes Bovinos</h2>
           </div>
