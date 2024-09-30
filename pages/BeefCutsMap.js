@@ -2,19 +2,34 @@ import Image from 'next/image'
 import styles from './BeefCutsMap.module.css'
 
 const beefCuts = [
-  { top: '14.33%', left: '36%', title: 'CUPIM', image: 'assets/images/produtos/foods/cupim.jpg' },
-  { top: '23.53%', left: '32.5%', title: 'ACEM', image: 'assets/images/produtos/foods/acem.png' },
-  { top: '46.33%', left: '28.5%', title: 'PEITO', image: 'assets/images/produtos/foods/peito.png' },
-  { top: '19.13%', left: '58.88%', title: 'COSTELA', image: 'assets/images/produtos/foods/costela.webp' },
-  { top: '51.33%', left: '74.88%', title: 'FRALDINHA', image: 'assets/images/produtos/foods/fraldinha.jpg' },
-  { top: '32.33%', left: '63.75%', title: 'FILÉ MIGNON', image: 'assets/images/produtos/foods/file.webp' },
-  { top: '19.73%', left: '87.25%', title: 'PICANHA', image: 'assets/images/produtos/foods/peito.png' },
-  { top: '32.53%', left: '83.38%', title: 'ALCATRA', image: 'assets/images/produtos/foods/picanha.webp' },
-  { top: '52.13%', left: '80.63%', title: 'MAMINHA', image: 'assets/images/produtos/foods/maminha.webp' },
-  { top: '53.93%', left: '87%', title: 'COXÃO MOLE', image: 'assets/images/produtos/foods/coxao.webp' },
-  { top: '58.73%', left: '80%', title: 'PATINHO', image: 'assets/images/produtos/foods/patinho.jpeg' },
-  { top: '43.33%', left: '90.88%', title: 'COXÃO DURO', image: 'assets/images/produtos/foods/duro.webp' },
-  { top: '29.93%', left: '99.63%', title: 'RABO', image: 'assets/images/produtos/foods/rabo.jpg' },
+  { top: '12.56%', left: '33.88%', title: 'CUPIM', image: 'assets/images/produtos/foods/cupim.jpg' },
+  { top: '24.53%', left: '29.13%', title: 'ACEM', image: 'assets/images/produtos/foods/acem.png' },
+  { top: '22.46%', left: '21.00%', title: 'PESCOÇO', image: 'assets/images/produtos/foods/rabo.jpg' },
+  { top: '48.04%', left: '26.13%', title: 'PEITO', image: 'assets/images/produtos/foods/peito.png' },
+  { top: '44.54%', left: '36.50%', title: 'PALETA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '73.83%', left: '36.75%', title: 'MÚSCULO DIANTEIRO', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '21.43%', left: '44.88%', title: 'CAPA DE FILÉ', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '20.81%', left: '56.88%', title: 'FILÉ DE COSTELA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '15.66%', left: '74.50%', title: 'CONTRAFILÉ', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '28.72%', left: '74.00%', title: 'FILÉ MIGNON', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '15.86%', left: '84.75%', title: 'PICANHA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '40.62%', left: '56.00%', title: 'PONTA DE AGULHA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '49.90%', left: '73.63%', title: 'ABA DO FILÉ', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '39.38%', left: '71.63%', title: 'FRALDINHA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '76.71%', left: '85.13%', title: 'MÚSCULO TRASEIRO', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '57.32%', left: '83.13%', title: 'PATINHO', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '30.30%', left: '30.30%', title: 'ALCATRA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '41.85%', left: '83.75%', title: 'COXÃO MOLE', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '52.79%', left: '79.25%', title: 'MAMINHA', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '26.80%', left: '92.50%', title: 'COXÃO DURO', image: 'assets/images/produtos/foods/costela.webp' },
+  { top: '44.33%', left: '93.63%', title: 'LAGARTO', image: 'assets/images/produtos/foods/costela.webp' },
+
+
+
+
+
+
+
 ]
 
 export default function BeefCutsMap() {
@@ -40,8 +55,7 @@ export default function BeefCutsMap() {
           >
             <div className={styles.tooltip}>
               <strong>{cut.title}</strong>
-              <Image src={`/${cut.image}`} alt={cut.title} width={50} height={50} className={styles.thumbnailImage} />
-            </div>
+         </div>
           </div>
         ))}
       </div>
