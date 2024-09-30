@@ -2,17 +2,28 @@ import BeefCutsMap from './BeefCutsMap'
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { createClient } from '@supabase/supabase-js';
 
 import PorkCutsMap from './PorkCutsMap'
 
 import { useRef, useState, useEffect } from "react";
-
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export default function Home() {
   const router = useRouter();
 
-  
+  async function carregarProdutos() {
+    const { data, error } = await supabase.from('produtos').select('*');
+    if (error) console.error('Erro ao carregar produtos:', error);
+    else console.log(true);
+  }
 
+  useEffect(() => {
+    carregarProdutos();
+  }, []);
   
 
   return(
