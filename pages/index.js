@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import PorkCutsMap from './PorkCutsMap'
 
 import { useRef, useState, useEffect } from "react";
 
@@ -394,7 +395,9 @@ export default function Home() {
                               </div> 
                               </div>
               </section>   
-      
+              <section style={{marginTop:"150px"}}>
+<PorkCutsMap />
+</section>
       
       
       
