@@ -78,7 +78,7 @@ function removeFromCart(itemId) {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     localStorage.removeItem('cartItems');
     const message = cartItems.map(item => (
-      `${item.quantity} ${item.corte} (${item.categoria}) - ${item.preco} Kz`
+      `${item.quantity} ${item.nome} (${item.categoria}) - ${item.preco} Kz`
     )).join('\n');
 
     const totalPriceMessage = `Total: ${totalPrice} Kz`;

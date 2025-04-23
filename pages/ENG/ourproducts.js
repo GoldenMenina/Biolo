@@ -34,7 +34,7 @@ export default function Produtos() {
   const filteredProdutos = produtos
   .filter(produto => 
     (!selectedCategoria || produto.categoria === selectedCategoria) &&
-    (produto.corte.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (produto.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
      produto.categoria.toLowerCase().includes(searchTerm.toLowerCase()))
   );
     
@@ -133,12 +133,12 @@ const addToCart = (product) => {
                       <div className="shop-block-one">
                         <div className="inner-box">
                           <figure className="image-box">
-                            <img src={item.image} alt={item.corte} />
+                            <img src={item.image} alt={item.nome} />
                           </figure>
                           <div className="lower-content">
                             <h6>
                               <a href="#" style={{ fontSize: '15px' }}>
-                                {item.corte}
+                                {item.nome}
                               </a>
                             </h6>
                             <div>
