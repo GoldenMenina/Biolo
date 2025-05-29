@@ -93,33 +93,33 @@ const [selectedProductId, setSelectedProductId] = useState(null);
         setProdutoEditado(produto);
         setShowProductForm(true);
       }}
-      onManagePrices={(productId) => {
-        setSelectedProductId(productId);
-        setShowPriceForm(true);
+      onProductSavedOrDeleted={() => {
+        // This prop will trigger a re-fetch in ProductList when a product is saved or deleted
+        // No direct action needed here, ProductList's useEffect handles it.
       }}
     />
     <ProductForm
       show={showProductForm}
       onClose={() => setShowProductForm(false)}
       produtoEditado={produtoEditado}
-      onSave={() => {/* refresh product list */}}
+      onSave={() => {
+        // When a product is saved, we want to ensure the list refreshes.
+        // ProductList's useEffect listens to onProductSavedOrDeleted, so we can just close the form.
+        // The ProductList component will handle its own refresh.
+      }}
     />
-    <ProductPriceForm
-      show={showPriceForm}
-      onClose={() => setShowPriceForm(false)}
-      productId={selectedProductId}
-      onSave={() => {/* refresh product list if needed */}}
-    />
+    {/* Removed ProductPriceForm as it's not directly related to 'produtos' table */}
   </div>
 )}
 
 
-{section === 'gama-comercial' && (
+{/* Removed GamaComercialManagement section as it's not directly related to 'produtos' table */}
+{/* {section === 'gama-comercial' && (
   <div>
     <h2 className="mb-3">Gestão de Gamas Comerciais</h2>
     <GamaComercialManagement />
   </div>
-)}
+)} */}
 
         {section === 'clients' && (
           <div>

@@ -1,204 +1,239 @@
 import { useState, useEffect, useRef } from 'react';
 import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
+import { supabase } from '../../lib/supabaseClient'; // Import supabase client
 
-// Mock data - simulating database records
-const MOCK_GAMA_COMERCIAL = [];
+// Moved cloudinaryUp outside the component to avoid re-declaration and potential linting issues
+async function cloudinaryUp(file, setErrorMessage) { // Pass setErrorMessage as a parameter
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  
 
-// Mock products data
-const MOCK_PRODUTOS = [];
+  const formdata = new FormData();
+  formdata.append("file", file);
+  formdata.append("cloud_name", cloudName);
+  formdata.append("upload_preset", uploadPreset);
+
+  try {
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/dbagu0ju8/image/upload`,
+      {
+        method: 'POST',
+        body: formdata,
+      }
+    );
+    console.log(response)
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Cloudinary upload failed: ${response.statusText}. Details: ${JSON.stringify(errorData)}`);
+    }
+    const data = await response.json();
+    return data.secure_url;
+  } catch (error) {
+    console.error('Error uploading to Cloudinary:', error);
+    setErrorMessage(`Erro ao fazer upload da imagem: ${error.message}`); // Set error message in the component
+    return null;
+  }
+}
 
 export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
   const [formData, setFormData] = useState({
-    id: '',
-    designacao: '',
-    gama_comercial_id: '',
-    imagem: '',
-    quantidade: '',
-    status_do_produto_id: '1',
-    data_de_inicio_de_comercializacao: '',
-    data_de_fim_de_comercializacao: ''
+    produto_id: null,
+    nome: '',
+    preco: '',
+    categoria: '',
+    image: '',
+    tipo_corte: '',
+    quantidade_estoque: 0,
+    activo: false, // Changed default to false
   });
 
-  const [gamaComercialOptions, setGamaComercialOptions] = useState([]);
-  const [showGamaComercialForm, setShowGamaComercialForm] = useState(false);
-  const [novaGamaComercial, setNovaGamaComercial] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [imagePreview, setImagePreview] = useState('');
   const fileInputRef = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file object
 
   useEffect(() => {
     if (show) {
-      // Simulate API fetch delay
-      setIsLoading(true);
-      setTimeout(() => {
-        // Reset form or populate with existing product
-        if (produtoEditado) {
-          // Find the product in our mock data
-          const produto = MOCK_PRODUTOS.find(p => p.id === produtoEditado.id) || produtoEditado;
-          setFormData({
-            ...produto,
-            quantidade: produto.quantidade || ''
-          });
-          setImagePreview(produto.imagem || '');
-        } else {
-          setFormData({
-            id: '',
-            designacao: '',
-            gama_comercial_id: '',
-            imagem: '',
-            quantidade: '',
-            status_do_produto_id: '1',
-            data_de_inicio_de_comercializacao: '',
-            data_de_fim_de_comercializacao: ''
-          });
-          setImagePreview('');
-        }
-        
-        // Get gama comercial options (simulate API call)
-        fetchGamaComercial();
-        setIsLoading(false);
-      }, 500); // Simulate network delay
+      setErrorMessage('');
+      setSaveSuccess(false);
+      if (produtoEditado) {
+        setFormData({
+          produto_id: produtoEditado.produto_id,
+          nome: produtoEditado.nome || '',
+          preco: produtoEditado.preco || '',
+          categoria: produtoEditado.categoria || '',
+          image: produtoEditado.image || '',
+          tipo_corte: produtoEditado.tipo_corte || '',
+          quantidade_estoque: produtoEditado.quantidade_estoque || 0,
+          activo: produtoEditado.activo !== undefined ? produtoEditado.activo : true,
+        });
+        setImagePreview(produtoEditado.image || '');
+      } else {
+        setFormData({
+          produto_id: null,
+          nome: '',
+          preco: '',
+          categoria: '',
+          image: '',
+          tipo_corte: '',
+          quantidade_estoque: 0,
+          activo: false, // Ensure new products default to false
+        });
+        setImagePreview('');
+      }
+      setSelectedFile(null); // Clear selected file on modal open/close
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''; // Clear file input
+      }
     }
   }, [produtoEditado, show]);
 
-  // Simulated API calls
-  const fetchGamaComercial = () => {
-    // Simulate fetching from database
-    setGamaComercialOptions(MOCK_GAMA_COMERCIAL);
-  };
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }));
-    
-    // Update image preview if URL is changed manually
-    if (name === 'imagem') {
-      setImagePreview(value);
-    }
-    
-    // Reset success/error messages when form changes
     setSaveSuccess(false);
     setErrorMessage('');
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (!file) return;
-    
-    // Check file type
+    if (!file) {
+      setSelectedFile(null);
+      setImagePreview('');
+      setFormData(prev => ({ ...prev, image: '' }));
+      return;
+    }
+
     if (!file.type.match('image.*')) {
       setErrorMessage('Por favor, selecione apenas arquivos de imagem.');
+      setSelectedFile(null);
+      setImagePreview('');
       return;
     }
-    
-    // Check file size (limit to 5MB)
-    if (file.size > 5 * 1024 * 1024) {
+
+    if (file.size > 5 * 1024 * 1024) { // 5MB limit
       setErrorMessage('A imagem selecionada é muito grande. O tamanho máximo é 5MB.');
+      setSelectedFile(null);
+      setImagePreview('');
       return;
     }
-    
-    // Create a preview URL
+
+    setSelectedFile(file);
     const reader = new FileReader();
     reader.onload = (event) => {
       setImagePreview(event.target.result);
-      // In a real app, you would upload this to a server and get a URL back
-      // For now, we'll just use the data URL as a placeholder
-      setFormData(prev => ({
-        ...prev,
-        imagem: event.target.result
-      }));
     };
     reader.readAsDataURL(file);
+    setErrorMessage('');
   };
 
-  const handleGamaComercialSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!novaGamaComercial.trim()) return;
-    
-    // Simulate API call to add new gama comercial
-    setIsLoading(true);
-    setTimeout(() => {
-      const newId = Math.max(...gamaComercialOptions.map(g => g.id), 0) + 1;
-      const newGama = { id: newId, designacao: novaGamaComercial };
-      
-      // Add to our "database"
-      setGamaComercialOptions(prev => [...prev, newGama]);
-      
-      // Select the new option
-      setFormData(prev => ({
-        ...prev,
-        gama_comercial_id: newId.toString()
-      }));
-      
-      // Reset form
-      setNovaGamaComercial('');
-      setShowGamaComercialForm(false);
-      setIsLoading(false);
-    }, 600);
-  };
+    setErrorMessage('');
+    setIsSaving(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Validate required fields
-    if (!formData.designacao || !formData.gama_comercial_id || formData.quantidade === '') {
-      setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
+    const { nome, preco, categoria, tipo_corte, quantidade_estoque, activo } = formData;
+
+    // Basic validation for required fields
+    if (!nome.trim()) {
+      setErrorMessage('O nome do produto é obrigatório.');
+      setIsSaving(false);
       return;
     }
-    
-    // Simulate API call to save product
-    setIsSaving(true);
-    setTimeout(() => {
-      // If editing, update the product
-      if (produtoEditado) {
-        console.log('Produto atualizado:', formData);
-      } else {
-        // Create new product - generate ID
-        const newProduct = {
-          ...formData,
-          id: Math.max(...MOCK_PRODUTOS.map(p => p.id), 0) + 1
-        };
-        console.log('Novo produto criado:', newProduct);
-        // In a real app, we would add this to our database
-        MOCK_PRODUTOS.push(newProduct);
-      }
-      
+
+    // Validate preco
+    const parsedPreco = parseFloat(preco);
+    if (isNaN(parsedPreco) || parsedPreco < 0) {
+      setErrorMessage('O preço deve ser um número positivo.');
       setIsSaving(false);
+      return;
+    }
+
+    // Validate quantidade_estoque
+    const parsedQuantidadeEstoque = parseInt(quantidade_estoque);
+    if (isNaN(parsedQuantidadeEstoque) || parsedQuantidadeEstoque < 0) {
+      setErrorMessage('A quantidade em estoque deve ser um número não negativo.');
+      setIsSaving(false);
+      return;
+    }
+
+    // For new products, ensure all required fields are present.
+    // For existing products, we assume initial values are valid,
+    // and only validate if they are changed or if they are explicitly required.
+    // 'categoria' and 'tipo_corte' are text fields, if they are not required,
+    // an empty string is acceptable.
+    if (!categoria.trim()) {
+      setErrorMessage('A categoria do produto é obrigatória.');
+      setIsSaving(false);
+      return;
+    }
+
+    let imageUrl = formData.image;
+    if (selectedFile) {
+      const uploadedUrl = await cloudinaryUp(selectedFile, setErrorMessage); // Pass setErrorMessage
+      if (!uploadedUrl) {
+        setIsSaving(false);
+        return; // Stop if image upload failed (error message set by cloudinaryUp)
+      }
+      imageUrl = uploadedUrl;
+    }
+
+    const productData = {
+      nome,
+      preco: parseFloat(preco),
+      categoria,
+      image: imageUrl,
+      tipo_corte,
+      quantidade_estoque: parseInt(quantidade_estoque),
+      activo,
+    };
+
+    let error = null;
+    if (produtoEditado) {
+      // Update existing product
+      const { error: updateError } = await supabase
+        .from('produtos')
+        .update(productData)
+        .eq('produto_id', formData.produto_id);
+      error = updateError;
+    } else {
+      // Create new product
+      const { error: insertError } = await supabase
+        .from('produtos')
+        .insert([productData]);
+      error = insertError;
+    }
+
+    if (error) {
+      console.error('Erro ao salvar produto:', error);
+      setErrorMessage(`Erro ao salvar produto: ${error.message}`);
+    } else {
       setSaveSuccess(true);
-      
-      // Close after a brief delay to show success message
+      onSave && onSave(); // Trigger refresh in parent
       setTimeout(() => {
-        onSave && onSave();
         onClose();
       }, 1000);
-    }, 800);
+    }
+    setIsSaving(false);
   };
 
-  // Find the gama comercial name for display
-  const getGamaName = (id) => {
-    const gama = gamaComercialOptions.find(g => g.id === parseInt(id));
-    return gama ? gama.designacao : '';
-  };
-
-  // Trigger file input click
   const handleSelectImage = () => {
     fileInputRef.current.click();
   };
 
-  // Remove selected image
   const handleRemoveImage = () => {
     setImagePreview('');
     setFormData(prev => ({
       ...prev,
-      imagem: ''
+      image: ''
     }));
+    setSelectedFile(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -239,17 +274,17 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
 
               <div className="card border-0 shadow-sm rounded mt-3 mb-4">
                 <div className="card-header bg-light py-2">
-                  <h6 className="mb-0">Informações Básicas</h6>
+                  <h6 className="mb-0">Informações do Produto</h6>
                 </div>
                 <div className="card-body pt-3">
                   <Row>
-                    <Col md={7}>
+                    <Col md={6}>
                       <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Designação <span className="text-danger">*</span></Form.Label>
+                        <Form.Label className="fw-medium">Nome <span className="text-danger">*</span></Form.Label>
                         <Form.Control 
                           type="text" 
-                          name="designacao" 
-                          value={formData.designacao} 
+                          name="nome" 
+                          value={formData.nome} 
                           onChange={handleChange} 
                           required 
                           className="border-secondary-subtle"
@@ -257,13 +292,65 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
                         />
                       </Form.Group>
                     </Col>
-                    <Col md={5}>
+                    <Col md={6}>
                       <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Quantidade <span className="text-danger">*</span></Form.Label>
+                        <Form.Label className="fw-medium">Preço <span className="text-danger">*</span></Form.Label>
                         <Form.Control 
                           type="number" 
-                          name="quantidade" 
-                          value={formData.quantidade} 
+                          name="preco" 
+                          value={formData.preco} 
+                          onChange={handleChange}
+                          required
+                          min="0"
+                          step="0.01"
+                          className="border-secondary-subtle"
+                          placeholder="0.00"
+                        />
+                        <Form.Text className="text-muted">
+                          Preço unitário do produto
+                        </Form.Text>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fw-medium">Categoria <span className="text-danger">*</span></Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          name="categoria" 
+                          value={formData.categoria} 
+                          onChange={handleChange}
+                          required
+                          className="border-secondary-subtle"
+                          placeholder="Ex: Frutas, Legumes, Carnes"
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fw-medium">Tipo de Corte</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          name="tipo_corte" 
+                          value={formData.tipo_corte} 
+                          onChange={handleChange}
+                          className="border-secondary-subtle"
+                          placeholder="Ex: Cubos, Fatias, Inteiro"
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label className="fw-medium">Quantidade em Estoque <span className="text-danger">*</span></Form.Label>
+                        <Form.Control 
+                          type="number" 
+                          name="quantidade_estoque" 
+                          value={formData.quantidade_estoque} 
                           onChange={handleChange}
                           required
                           min="0"
@@ -271,118 +358,37 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
                           placeholder="0"
                         />
                         <Form.Text className="text-muted">
-                          Quantidade disponível para venda
+                          Quantidade disponível no estoque
                         </Form.Text>
                       </Form.Group>
                     </Col>
-                  </Row>
-                  
-                  <Row>
-                    <Col md={7}>
+                    <Col md={6}>
                       <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Gama Comercial <span className="text-danger">*</span></Form.Label>
-                        <div className="input-group">
-                          <Form.Select 
-                            name="gama_comercial_id" 
-                            value={formData.gama_comercial_id} 
-                            onChange={handleChange}
-                            required
-                            className="border-secondary-subtle"
-                          >
-                            <option value="">Selecione uma gama</option>
-                            {gamaComercialOptions.map(gama => (
-                              <option key={gama.id} value={gama.id}>
-                                {gama.designacao}
-                              </option>
-                            ))}
-                          </Form.Select>
-                          <Button 
-                            variant="outline-secondary" 
-                            onClick={() => setShowGamaComercialForm(true)}
-                            title="Adicionar nova gama"
-                          >
-                            <i className="bi bi-plus-lg"></i>
-                          </Button>
-                        </div>
-                        {formData.gama_comercial_id && (
-                          <Form.Text className="text-muted">
-                            Gama selecionada: {getGamaName(formData.gama_comercial_id)}
-                          </Form.Text>
-                        )}
-                      </Form.Group>
-                    </Col>
-                    <Col md={5}>
-                      <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Status do Produto</Form.Label>
-                        <Form.Select 
-                          name="status_do_produto_id" 
-                          value={formData.status_do_produto_id} 
+                        <Form.Label className="fw-medium">Produto Ativo</Form.Label>
+                        <Form.Check 
+                          type="switch"
+                          id="activo-switch"
+                          name="activo"
+                          label={formData.activo ? 'Sim (Disponível para venda)' : 'Não (Indisponível para venda)'}
+                          checked={formData.activo}
                           onChange={handleChange}
-                          required
-                          className="border-secondary-subtle"
-                        >
-                          <option value="1">Activo</option>
-                          <option value="2">Discontinuado</option>
-                        </Form.Select>
-                        <Form.Text className="text-muted">
-                          {formData.status_do_produto_id === '1' ? 
-                            'Produto disponível para venda' : 
-                            'Produto não disponível para novas vendas'}
-                        </Form.Text>
+                          className="mt-2"
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
                 </div>
               </div>
               
-              {showGamaComercialForm && (
-                <div className="card border-0 shadow-sm rounded mb-4">
-                  <div className="card-header bg-light d-flex justify-content-between align-items-center py-2">
-                    <h6 className="mb-0">Nova Gama Comercial</h6>
-                    <Button 
-                      variant="link" 
-                      className="p-0 text-muted"
-                      onClick={() => setShowGamaComercialForm(false)}
-                      disabled={isLoading}
-                    >
-                      <i className="bi bi-x-lg"></i>
-                    </Button>
-                  </div>
-                  <div className="card-body">
-                    <div className="d-flex gap-2">
-                      <Form.Control
-                        type="text"
-                        placeholder="Nome da gama comercial"
-                        value={novaGamaComercial}
-                        onChange={(e) => setNovaGamaComercial(e.target.value)}
-                        className="border-secondary-subtle"
-                      />
-                      <Button 
-                        variant="success" 
-                        onClick={handleGamaComercialSubmit}
-                        disabled={!novaGamaComercial.trim() || isLoading}
-                        className="d-flex align-items-center"
-                      >
-                        {isLoading ? (
-                          <><Spinner size="sm" animation="border" className="me-1" /> Adicionando</>
-                        ) : (
-                          <><i className="bi bi-plus-lg me-1"></i> Adicionar</>
-                        )}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
               <div className="card border-0 shadow-sm rounded mb-4">
                 <div className="card-header bg-light py-2">
-                  <h6 className="mb-0">Detalhes do Produto</h6>
+                  <h6 className="mb-0">Imagem do Produto</h6>
                 </div>
                 <div className="card-body pt-3">
                   <Row>
                     <Col md={imagePreview ? 7 : 12}>
                       <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Imagem do Produto</Form.Label>
+                        <Form.Label className="fw-medium">Upload de Imagem</Form.Label>
                         <div className="d-flex gap-2 mb-2">
                           <Button 
                             variant="outline-primary" 
@@ -412,10 +418,10 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
                         />
                         <Form.Control 
                           type="text" 
-                          name="imagem" 
-                          value={formData.imagem} 
+                          name="image" // Changed from 'imagem' to 'image'
+                          value={formData.image} 
                           onChange={handleChange} 
-                          placeholder="https://exemplo.com/imagem.jpg"
+                          placeholder="URL da imagem (opcional)"
                           className="border-secondary-subtle"
                         />
                         <Form.Text className="text-muted">
@@ -441,33 +447,6 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
                         </div>
                       </Col>
                     )}
-                  </Row>
-                  
-                  <Row>
-                    <Col md={6}>
-                      <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Data de Início</Form.Label>
-                        <Form.Control 
-                          type="date" 
-                          name="data_de_inicio_de_comercializacao" 
-                          value={formData.data_de_inicio_de_comercializacao ? formData.data_de_inicio_de_comercializacao.split('T')[0] : ''} 
-                          onChange={handleChange} 
-                          className="border-secondary-subtle"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col md={6}>
-                      <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Data de Fim</Form.Label>
-                        <Form.Control 
-                          type="date" 
-                          name="data_de_fim_de_comercializacao" 
-                          value={formData.data_de_fim_de_comercializacao ? formData.data_de_fim_de_comercializacao.split('T')[0] : ''} 
-                          onChange={handleChange} 
-                          className="border-secondary-subtle"
-                        />
-                      </Form.Group>
-                    </Col>
                   </Row>
                 </div>
               </div>
