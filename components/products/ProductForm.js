@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
 import { supabase } from '../../lib/supabaseClient'; // Import supabase client
 
@@ -54,6 +54,21 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
   const [imagePreview, setImagePreview] = useState('');
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file object
+  const [categories, setCategories] = useState([]); // State to hold unique categories
+
+  const fetchCategories = useCallback(async () => {
+    const { data, error } = await supabase
+      .from('produtos')
+      .select('categoria', { distinct: true })
+      .not('categoria', 'is', null);
+
+    if (error) {
+      console.error('Erro ao buscar categorias:', error);
+    } else {
+      const uniqueCategories = [...new Set(data.map(item => item.categoria))].sort();
+      setCategories(['', ...uniqueCategories]); // Add empty option for "Select Category"
+    }
+  }, []);
 
   useEffect(() => {
     if (show) {
@@ -88,8 +103,9 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
       if (fileInputRef.current) {
         fileInputRef.current.value = ''; // Clear file input
       }
+      fetchCategories(); // Fetch categories when modal is shown
     }
-  }, [produtoEditado, show]);
+  }, [produtoEditado, show, fetchCategories]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -168,7 +184,7 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
     // and only validate if they are changed or if they are explicitly required.
     // 'categoria' and 'tipo_corte' are text fields, if they are not required,
     // an empty string is acceptable.
-    if (!categoria.trim()) {
+    if (!categoria) { // Check if a category is selected (empty string is default for "Select Category")
       setErrorMessage('A categoria do produto é obrigatória.');
       setIsSaving(false);
       return;
@@ -317,15 +333,18 @@ export default function ProductForm({ show, onClose, produtoEditado, onSave }) {
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label className="fw-medium">Categoria <span className="text-danger">*</span></Form.Label>
-                        <Form.Control 
-                          type="text" 
-                          name="categoria" 
-                          value={formData.categoria} 
+                        <Form.Select
+                          name="categoria"
+                          value={formData.categoria}
                           onChange={handleChange}
                           required
                           className="border-secondary-subtle"
-                          placeholder="Ex: Frutas, Legumes, Carnes"
-                        />
+                        >
+                          <option value="">Selecione uma Categoria</option>
+                          {categories.map(category => (
+                            <option key={category} value={category}>{category}</option>
+                          ))}
+                        </Form.Select>
                       </Form.Group>
                     </Col>
                     <Col md={6}>

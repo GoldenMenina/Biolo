@@ -21,9 +21,10 @@ export default function ProductList({ onEdit, onProductSavedOrDeleted }) {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState(''); // New state for category filter
-  const [categories, setCategories] = useState([]); // New state for unique categories
+const [searchTerm, setSearchTerm] = useState('');
+const [selectedCategory, setSelectedCategory] = useState(''); // New state for category filter
+const [categories, setCategories] = useState([]); // New state for unique categories
+const [filterActivo, setFilterActivo] = useState('all'); // New state for activo filter
 
   const fetchProdutos = useCallback(async () => {
     setLoading(true);
@@ -53,8 +54,12 @@ export default function ProductList({ onEdit, onProductSavedOrDeleted }) {
       query = query.eq('categoria', selectedCategory);
     }
 
+    if (filterActivo !== 'all') {
+      query = query.eq('activo', filterActivo === 'true');
+    }
+
     const { data, error, count } = await query
-      .order('produto_id', { ascending: true })
+      .order('produto_id', { ascending: false }) // Changed to descending
       .range(from, to);
 
     if (error) {
@@ -65,7 +70,7 @@ export default function ProductList({ onEdit, onProductSavedOrDeleted }) {
       setTotalCount(count);
     }
     setLoading(false);
-  }, [currentPage, searchTerm, selectedCategory]);
+  }, [currentPage, searchTerm, selectedCategory, filterActivo]); // Added filterActivo to dependencies
 
   const fetchCategories = useCallback(async () => {
     const { data, error } = await supabase
@@ -140,10 +145,15 @@ export default function ProductList({ onEdit, onProductSavedOrDeleted }) {
     setCurrentPage(1); // Reset to first page on new category filter
   };
 
+  const handleActivoFilterChange = (e) => {
+    setFilterActivo(e.target.value);
+    setCurrentPage(1); // Reset to first page on new activo filter
+  };
+
   return (
     <div className="table-responsive">
       <Row className="mb-3 align-items-end">
-        <Col md={5}>
+        <Col md={4}>
           <Form.Group>
             <Form.Label className="fw-medium">Pesquisar Produto</Form.Label>
             <Form.Control
@@ -168,8 +178,23 @@ export default function ProductList({ onEdit, onProductSavedOrDeleted }) {
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col md={3} className="text-end">
-          <p className="mb-0 fw-medium">Total de Produtos: {totalCount}</p> {/* Changed to totalCount */}
+        <Col md={4}>
+          <Form.Group>
+            <Form.Label className="fw-medium">Filtrar por Status</Form.Label>
+            <Form.Select
+              value={filterActivo}
+              onChange={handleActivoFilterChange}
+            >
+              <option value="all">Todos</option>
+              <option value="true">Ativos</option>
+              <option value="false">Inativos</option>
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col className="text-end">
+          <p className="mb-0 fw-medium">Total de Produtos: {totalCount}</p>
         </Col>
       </Row>
 
