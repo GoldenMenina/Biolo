@@ -1,22 +1,6 @@
 {
-  "/BeefCutsMap": "pages/BeefCutsMap.html",
-  "/ENG/contactus": "pages/ENG/contactus.html",
-  "/ENG": "pages/ENG.html",
-  "/ENG/ourcompany": "pages/ENG/ourcompany.html",
-  "/ENG/ourproducts": "pages/ENG/ourproducts.html",
-  "/ENG/services": "pages/ENG/services.html",
-  "/PT/aempresa": "pages/PT/aempresa.html",
-  "/PT/contacte-nos": "pages/PT/contacte-nos.html",
-  "/PT/osnossosprodutos": "pages/PT/osnossosprodutos.html",
-  "/PT/osnossosservicos": "pages/PT/osnossosservicos.html",
-  "/PorkCutsMap": "pages/PorkCutsMap.html",
   "/_app": "pages/_app.js",
-  "/admin/dashboard": "pages/admin/dashboard.html",
-  "/admin/indedx": "pages/admin/indedx.html",
-  "/api/deleteImage": "pages/api/deleteImage.js",
-  "/api/send-email": "pages/api/send-email.js",
-  "/": "pages/index.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/admin/dashboard": "pages/admin/dashboard.js"
 }
